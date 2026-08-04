@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roberto Contino | Estilistas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" href="./isologo.png">
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        brand: {
+                            blue: '#295f8f',
+                            gold: '#DCAF57',
+                            pink: '#E71F74',
+                            light: '#7F7F7F',
+                            dark: '#0f0f0f',
+                            white: '#ffffff',
+                            offwhite: '#f8f7f4',
+                            cream: '#f3f0ea'
+                        }
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('./hero1.jpg')"
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* === SCROLL REVEAL === */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(.16, 1, .3, 1), transform 0.8s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .reveal-delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .reveal-delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .reveal-delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        /* === GRAYSCALE === */
+        .grayscale-filter {
+            filter: grayscale(100%);
+            transition: filter 0.6s cubic-bezier(.16, 1, .3, 1);
+        }
+
+        .group:hover .grayscale-filter {
+            filter: grayscale(0%);
+        }
+
+        /* === HERO === */
+        .hero-overlay {
+            background: linear-gradient(160deg, rgba(15, 15, 15, 0.3) 0%, rgba(41, 95, 143, 0.55) 40%, rgba(15, 15, 15, 0.85) 100%);
+        }
+
+        /* === NAVBAR === */
+        .nav-transparent {
+            background: transparent;
+            backdrop-filter: none;
+            border-color: transparent;
+            box-shadow: none;
+        }
+
+        .nav-solid {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px) saturate(180%);
+            border-color: rgba(0, 0, 0, 0.06);
+            box-shadow: 0 1px 30px rgba(0, 0, 0, 0.06);
+        }
+
+        nav {
+            transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .nav-transparent a,
+        .nav-transparent button.nav-link {
+            color: rgba(255, 255, 255, 0.85);
+        }
+
+        .nav-transparent a:hover,
+        .nav-transparent button.nav-link:hover {
+            color: #DCAF57;
+        }
+
+        .nav-transparent .hamburger-icon {
+            color: white;
+        }
+
+        /* === GLASS PANEL === */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.97);
+            backdrop-filter: blur(20px) saturate(180%);
+        }
+
+        /* === EDITORIAL LINES === */
+        .editorial-line {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, #DCAF57 0%, transparent 100%);
+        }
+
+        /* === SCROLLBAR HIDE === */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* === WIDGET ANIMATIONS === */
+        .fade-in {
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* === PREMIUM BUTTON HOVER === */
+        .btn-premium {
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-premium::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, #DCAF57 0%, #c9983d 100%);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.4s cubic-bezier(.16, 1, .3, 1);
+            z-index: -1;
+        }
+
+        .btn-premium:hover::before {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .btn-premium:hover {
+            color: #0f0f0f;
+        }
+
+        /* === GOLD SEPARATOR === */
+        .gold-sep {
+            width: 80px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #DCAF57, transparent);
+            margin: 1.5rem auto;
+        }
+
+        /* === TEXTURE OVERLAY (editorial grain) === */
+        .texture-overlay::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            background-size: 150px;
+            z-index: 1;
+        }
+
+        .logo-text-blue {
+            color: #295f8f;
+        }
+    </style>
+</head>
+
+<body class="bg-brand-offwhite text-brand-dark font-sans antialiased">
+
+    <nav id="main-nav" class="fixed w-full z-50 border-b transition-all nav-transparent">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center cursor-pointer"
+                    onclick="window.scrollTo({top:0,behavior:'smooth'})">
+                    <img id="nav-logo" src="./blanco_solo.png" alt="Roberto Contino Estilistas"
+                        class="h-10 md:h-12 w-auto object-contain transition-all duration-300" />
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#nosotros"
+                        class="text-xs font-semibold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Nosotros</a>
+                    <a href="#equipo"
+                        class="text-xs font-semibold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Equipo</a>
+                    <a href="#contacto"
+                        class="text-xs font-semibold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Contacto</a>
+                    <button onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})"
+                        class="btn-premium bg-brand-blue text-white px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] border border-white/20 hover:border-brand-gold transition-all">
+                        Reservar Turno
+                    </button>
+                </div>
+                <!-- Mobile menu button -->
+                <div class="md:hidden flex items-center">
+                    <button onclick="toggleMobileMenu()"
+                        class="hamburger-icon hover:text-brand-gold focus:outline-none transition-colors">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute w-full left-0 top-full flex-col bg-white border-t border-gray-100 shadow-xl pb-4">
+            <a href="#nosotros" onclick="toggleMobileMenu()"
+                class="block px-6 py-4 text-brand-dark font-semibold border-b border-gray-50 hover:bg-gray-50 transition-colors">Nosotros</a>
+            <a href="#equipo" onclick="toggleMobileMenu()"
+                class="block px-6 py-4 text-brand-dark font-semibold border-b border-gray-50 hover:bg-gray-50 transition-colors">Equipo</a>
+            <a href="#contacto" onclick="toggleMobileMenu()"
+                class="block px-6 py-4 text-brand-dark font-semibold border-b border-gray-50 hover:bg-gray-50 transition-colors">Contacto</a>
+            <div class="px-6 pt-4 pb-2">
+                <button onclick="document.getElementById('reservas').scrollIntoView(); toggleMobileMenu();"
+                    class="w-full bg-brand-blue text-white px-4 py-2 rounded-md text-sm font-bold uppercase tracking-wider shadow-md">
+                    Reservar Turno
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative h-screen flex items-center justify-center overflow-hidden texture-overlay">
+        <!-- Imagen de fondo -->
+        <div class="absolute inset-0 z-0">
+            <div id="hero-bg"
+                class="absolute inset-0 bg-hero-pattern bg-cover bg-center bg-no-repeat scale-105 transition-transform duration-[2000ms]">
+            </div>
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <div class="relative z-10 text-center px-4 w-full max-w-5xl mt-16">
+            <p class="text-brand-gold/80 font-serif text-lg md:text-xl italic mb-6 tracking-wide reveal">Tu cabello en
+                manos expertas</p>
+            <div class="gold-sep reveal reveal-delay-1"></div>
+            <h1 class="mb-8 leading-[0.85] tracking-[-0.04em] block reveal reveal-delay-2">
+                <span class="block text-6xl md:text-9xl font-extrabold text-white uppercase"
+                    style="font-family: 'Montserrat', sans-serif;">Roberto</span>
+                <span class="block text-6xl md:text-9xl font-extrabold text-white uppercase"
+                    style="font-family: 'Montserrat', sans-serif;">Contino</span>
+                <span
+                    class="block text-lg md:text-2xl tracking-[0.4em] text-brand-gold font-light uppercase mt-8">Estilistas</span>
+            </h1>
+
+            <p class="text-white/60 text-base md:text-lg font-light mb-12 max-w-xl mx-auto reveal reveal-delay-3">
+                Experimentá el más alto nivel en cuidado y estilismo capilar en Olivos.
+            </p>
+
+            <button onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})"
+                class="btn-premium bg-transparent text-white border border-brand-gold/60 px-12 py-4 text-xs font-bold uppercase tracking-[0.25em] hover:border-brand-gold transition-all duration-500 reveal reveal-delay-4">
+                Agendar Cita
+            </button>
+        </div>
+
+        <!-- Scroll indicator -->
+        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center animate-bounce">
+            <div class="w-px h-10 bg-gradient-to-b from-brand-gold/60 to-transparent"></div>
+        </div>
+    </section>
+
+    <div class="bg-brand-dark text-center py-5 px-4 border-t border-brand-gold/20">
+        <p class="text-white/80 text-xs md:text-sm font-medium tracking-[0.2em] uppercase">
+            Lavado + Corte: Primera atención sin cargo <span class="mx-4 text-brand-gold/40">—</span> <a
+                href="#reservas"
+                class="text-brand-gold hover:text-white transition-colors duration-300 underline underline-offset-4 decoration-brand-gold/30 hover:decoration-brand-gold">Reservá
+                tu beneficio</a>
+        </p>
+    </div>
+
+    <!-- SECCIÓN: NOSOTROS Y DIFERENCIALES -->
+    <section id="nosotros" class="py-28 md:py-36 bg-white relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <!-- Imagen -->
+                <div class="relative h-[450px] md:h-[580px] overflow-hidden group reveal">
+                    <img src="./historia2.jpg" alt="Nuestro Salón"
+                        class="w-full h-full object-cover grayscale-filter transition-transform duration-1000 group-hover:scale-105" />
+                    <div
+                        class="absolute inset-0 bg-brand-dark/15 group-hover:bg-transparent transition-colors duration-700">
+                    </div>
+                    <!-- Decorative frame -->
+                    <div class="absolute top-4 left-4 right-4 bottom-4 border border-brand-gold/20 pointer-events-none">
+                    </div>
+                </div>
+                <!-- Contenido -->
+                <div class="reveal reveal-delay-2">
+                    <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Nuestra
+                        historia</span>
+                    <div class="editorial-line mb-8"></div>
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-extrabold text-brand-dark uppercase tracking-tight mb-8 leading-[1.1]"
+                        style="font-family: 'Montserrat', sans-serif;">Experiencia, oficio y evolución constante</h2>
+
+                    <div class="space-y-6 text-gray-600 font-light text-lg leading-relaxed max-w-xl">
+                        <p>
+                            Roberto Contino Estilistas es un salón con una sólida trayectoria en el cuidado, la
+                            transformación y la salud del cabello. Desde sus comienzos en Zona Norte, construyó una
+                            identidad basada en la excelencia profesional, la actualización permanente y una atención
+                            profundamente personalizada.
+                        </p>
+                        <p>
+                            Con el paso de los años, el salón se consolidó como un referente en Olivos y Vicente López,
+                            acompañando a generaciones de clientes que valoran la confianza, el asesoramiento honesto y
+                            la calidad constante de cada servicio.
+                        </p>
+                        <p>
+                            Nuestra experiencia combina oficio, creatividad y conocimiento técnico. Interpretamos las
+                            necesidades, el estilo y la personalidad de cada cliente para crear resultados que se vean
+                            bien, se sientan naturales y puedan mantenerse en el tiempo.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- DIFERENCIALES visuales -->
+            <div class="mt-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Tarjeta 1 -->
+                <div
+                    class="bg-white border border-gray-100/80 p-8 flex flex-col h-full hover:shadow-xl hover:shadow-brand-blue/5 hover:-translate-y-2 transition-all duration-500 group reveal reveal-delay-1">
+                    <div class="w-10 h-10 flex items-center justify-center mb-6">
+                        <img src="./peinado.png" alt="Icono Peinado" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="text-sm font-bold text-brand-dark uppercase tracking-[0.1em] mb-4">Experiencia
+                        profesional</h3>
+                    <div class="w-8 h-px bg-brand-gold/40 mb-4"></div>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed flex-grow">Una trayectoria construida
+                        sobre el oficio, la formación permanente y la atención de distintas generaciones de clientes.
+                    </p>
+                </div>
+                <!-- Tarjeta 2 -->
+                <div
+                    class="bg-white border border-gray-100/80 p-8 flex flex-col h-full hover:shadow-xl hover:shadow-brand-blue/5 hover:-translate-y-2 transition-all duration-500 group reveal reveal-delay-2">
+                    <div class="w-10 h-10 flex items-center justify-center mb-6">
+                        <img src="./tratamiento.png" alt="Icono tratamiento" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="text-sm font-bold text-brand-dark uppercase tracking-[0.1em] mb-4">Diagnóstico
+                        personalizado</h3>
+                    <div class="w-8 h-px bg-brand-gold/40 mb-4"></div>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed flex-grow">Analizamos la textura, el
+                        estado, el historial y las necesidades del cabello antes de recomendar cada servicio.</p>
+                </div>
+                <!-- Tarjeta 3 -->
+                <div
+                    class="bg-white border border-gray-100/80 p-8 flex flex-col h-full hover:shadow-xl hover:shadow-brand-blue/5 hover:-translate-y-2 transition-all duration-500 group reveal reveal-delay-3">
+                    <div class="w-10 h-10 flex items-center justify-center mb-6">
+                        <img src="./corte.png" alt="Icono corte" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="text-sm font-bold text-brand-dark uppercase tracking-[0.1em] mb-4">Especialización
+                        técnica</h3>
+                    <div class="w-8 h-px bg-brand-gold/40 mb-4"></div>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed flex-grow">Experiencia en corte,
+                        colorimetría, iluminación, reflejos, tratamientos y diseño de estilos personalizados.</p>
+                </div>
+                <!-- Tarjeta 4 -->
+                <div
+                    class="bg-white border border-gray-100/80 p-8 flex flex-col h-full hover:shadow-xl hover:shadow-brand-blue/5 hover:-translate-y-2 transition-all duration-500 group reveal reveal-delay-4">
+                    <div class="w-10 h-10 flex items-center justify-center mb-6">
+                        <img src="./color.png" alt="Icono color" class="w-full h-full object-contain" />
+                    </div>
+                    <h3 class="text-sm font-bold text-brand-dark uppercase tracking-[0.1em] mb-4">Cuidado capilar</h3>
+                    <div class="w-8 h-px bg-brand-gold/40 mb-4"></div>
+                    <p class="text-gray-500 font-light text-sm leading-relaxed flex-grow">Cada intervención busca
+                        alcanzar el resultado estético deseado preservando la salud, la fuerza y la calidad del cabello.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECCIÓN: METODOLOGÍA -->
+    <section id="metodo" class="py-28 md:py-36 bg-brand-dark relative texture-overlay overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-20 reveal">
+                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Atención
+                    personalizada</span>
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white uppercase tracking-tight mb-8 leading-[1.1]"
+                    style="font-family: 'Montserrat', sans-serif;">Nuestra forma de trabajar</h2>
+                <div class="gold-sep"></div>
+                <p class="text-white/50 font-light text-base md:text-lg max-w-2xl mx-auto">
+                    Cada servicio comienza mucho antes de aplicar un producto o realizar un corte. Escuchamos,
+                    analizamos y diseñamos una propuesta pensada especialmente para cada persona.
+                </p>
+            </div>
+
+            <!-- Proceso de 3 pasos -->
+            <div class="relative max-w-5xl mx-auto">
+                <!-- Línea conectora (solo desktop) -->
+                <div class="hidden md:block absolute top-12 left-16 right-16 h-px bg-white/10 z-0"></div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+                    <!-- Paso 1 -->
+                    <div class="text-center reveal reveal-delay-1">
+                        <div
+                            class="w-24 h-24 mx-auto bg-transparent border-2 border-brand-gold/40 rounded-full flex items-center justify-center text-3xl font-light text-brand-gold mb-8">
+                            1</div>
+                        <h3 class="text-sm font-bold text-white uppercase tracking-[0.15em] mb-4">Escuchamos y
+                            diagnosticamos</h3>
+                        <p class="text-white/40 font-light text-sm leading-relaxed">Conversamos sobre tus expectativas y
+                            evaluamos la textura, el estado, la porosidad, el historial químico y el comportamiento
+                            natural de tu cabello.</p>
+                    </div>
+                    <!-- Paso 2 -->
+                    <div class="text-center reveal reveal-delay-2">
+                        <div
+                            class="w-24 h-24 mx-auto bg-transparent border-2 border-brand-gold/40 rounded-full flex items-center justify-center text-3xl font-light text-brand-gold mb-8">
+                            2</div>
+                        <h3 class="text-sm font-bold text-white uppercase tracking-[0.15em] mb-4">Diseñamos una
+                            propuesta</h3>
+                        <p class="text-white/40 font-light text-sm leading-relaxed">Definimos el corte, el color o el
+                            tratamiento más adecuado, explicando las posibilidades reales, el mantenimiento y los
+                            cuidados necesarios.</p>
+                    </div>
+                    <!-- Paso 3 -->
+                    <div class="text-center reveal reveal-delay-3">
+                        <div
+                            class="w-24 h-24 mx-auto bg-transparent border-2 border-brand-gold/40 rounded-full flex items-center justify-center text-3xl font-light text-brand-gold mb-8">
+                            3</div>
+                        <h3 class="text-sm font-bold text-white uppercase tracking-[0.15em] mb-4">Realizamos el
+                            servicio</h3>
+                        <p class="text-white/40 font-light text-sm leading-relaxed">Aplicamos cada técnica con precisión
+                            profesional, buscando el equilibrio entre el resultado estético, la salud del cabello y su
+                            evolución en el tiempo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-20 text-center reveal reveal-delay-4">
+                <button onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})"
+                    class="btn-premium bg-transparent text-white border border-brand-gold/40 px-10 py-4 text-xs font-bold uppercase tracking-[0.25em] hover:border-brand-gold transition-all duration-500">
+                    Reservá una consulta con nuestro equipo
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="reservas" class="py-28 md:py-36 bg-brand-cream relative">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Turno
+                    online</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-6"
+                    style="font-family: 'Montserrat', sans-serif;">Reserva tu experiencia</h2>
+                <div class="gold-sep"></div>
+                <p class="mt-4 text-gray-500 font-light text-base">Seleccioná el servicio y agendá con nuestros
+                    especialistas.</p>
+            </div>
+
+            <!-- Contenedor del Widget -->
+            <div
+                class="bg-white shadow-2xl rounded-xl overflow-hidden border border-gray-100 min-h-[500px] flex flex-col relative">
+
+                <!-- Header del Widget (Breadcrumbs/Steps) -->
+                <div
+                    class="bg-brand-blue border-b border-brand-blue/20 p-5 flex justify-between items-center text-sm font-medium text-white">
+                    <span id="step-indicator" class="tracking-widest uppercase text-xs">Paso 1 de 4: Categoría</span>
+                    <button id="btn-back" class="hidden hover:text-brand-gold transition-colors flex items-center"
+                        onclick="goBack()">
+                        <i class="fas fa-arrow-left mr-2"></i> Volver
+                    </button>
+                </div>
+
+                <!-- Contenido Dinámico del Widget -->
+                <div class="p-8 md:p-12 flex-grow bg-white">
+
+                    <!-- Paso 1: Categorías -->
+                    <div id="step-1" class="widget-step grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 fade-in">
+                        <button id="btn-cat-colorimetria" onclick="selectCategory('colorimetria')"
+                            class="cat-btn flex flex-col items-center justify-center p-6 md:p-8 border border-gray-200 rounded-lg hover:border-brand-dark hover:shadow-lg transition-all group bg-gray-50 hover:bg-white relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-brand-dark/5 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom">
+                            </div>
+                            <img src="./color.png"
+                                class="w-12 h-12 md:w-16 md:h-16 mb-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all relative z-10 object-contain"
+                                alt="Colorimetría" />
+                            <span
+                                class="font-bold text-brand-blue uppercase tracking-wider text-xs md:text-sm text-center relative z-10">Color</span>
+                        </button>
+                        <button id="btn-cat-corte" onclick="selectCategory('corte')"
+                            class="cat-btn flex flex-col items-center justify-center p-6 md:p-8 border border-gray-200 rounded-lg hover:border-brand-blue hover:shadow-lg transition-all group bg-gray-50 hover:bg-white relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-brand-blue/5 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom">
+                            </div>
+                            <img src="./corte.png"
+                                class="w-12 h-12 md:w-16 md:h-16 mb-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all relative z-10 object-contain"
+                                alt="Corte" />
+                            <span
+                                class="font-bold text-brand-blue uppercase tracking-wider text-xs md:text-sm text-center relative z-10">Corte</span>
+                        </button>
+                        <button id="btn-cat-peinados" onclick="selectCategory('peinados')"
+                            class="cat-btn flex flex-col items-center justify-center p-6 md:p-8 border border-gray-200 rounded-lg hover:border-brand-blue hover:shadow-lg transition-all group bg-gray-50 hover:bg-white relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-brand-blue/5 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom">
+                            </div>
+                            <img src="./peinado.png"
+                                class="w-12 h-12 md:w-16 md:h-16 mb-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all relative z-10 object-contain"
+                                alt="Peinados" />
+                            <span
+                                class="font-bold text-brand-blue uppercase tracking-wider text-xs md:text-sm text-center relative z-10">Peinados</span>
+                        </button>
+                        <button id="btn-cat-tratamientos" onclick="selectCategory('tratamientos')"
+                            class="cat-btn flex flex-col items-center justify-center p-6 md:p-8 border border-gray-200 rounded-lg hover:border-brand-gold hover:shadow-lg transition-all group bg-gray-50 hover:bg-white relative overflow-hidden">
+                            <div
+                                class="absolute inset-0 bg-brand-gold/10 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom">
+                            </div>
+                            <img src="./tratamiento.png"
+                                class="w-12 h-12 md:w-16 md:h-16 mb-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all relative z-10 object-contain"
+                                alt="Tratamientos" />
+                            <span
+                                class="font-bold text-brand-blue uppercase tracking-wider text-xs md:text-sm text-center relative z-10">Tratamientos</span>
+                        </button>
+                    </div>
+
+                    <!-- Paso 2: Servicios -->
+                    <div id="step-2" class="widget-step hidden fade-in">
+                        <h3 class="text-2xl font-bold mb-8 text-center text-brand-blue" id="category-title">Seleccioná
+                            un Servicio</h3>
+                        <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            <!-- Los servicios se inyectan acá vía JS -->
+                        </div>
+                    </div>
+
+                    <!-- Paso 3: Profesionales -->
+                    <div id="step-3" class="widget-step hidden fade-in">
+                        <h3 class="text-2xl font-bold mb-2 text-center text-brand-blue">Elegí a tu Profesional</h3>
+                        <p class="text-center text-sm text-brand-light mb-8">Especialistas disponibles para <span
+                                id="selected-service-name" class="font-bold text-brand-dark"></span></p>
+                        <div id="pros-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
+                            <!-- Los profesionales se inyectan acá vía JS -->
+                        </div>
+                    </div>
+
+                    <!-- Paso 4: Fecha y Confirmación -->
+                    <div id="step-4" class="widget-step hidden fade-in">
+                        <h3 class="text-2xl font-bold mb-8 text-center text-brand-blue">Agendar Turno</h3>
+                        <div class="grid md:grid-cols-5 gap-8">
+                            <!-- Calendario Mockup -->
+                            <div class="md:col-span-3">
+                                <label
+                                    class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-4 border-b pb-2">1.
+                                    Seleccioná el Día</label>
+                                <div class="grid grid-cols-3 gap-3 mb-8">
+                                    <button
+                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all date-btn font-medium"
+                                        onclick="selectDate('Jue 15')">Jue 15</button>
+                                    <button
+                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all date-btn font-medium"
+                                        onclick="selectDate('Vie 16')">Vie 16</button>
+                                    <button
+                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all date-btn font-medium"
+                                        onclick="selectDate('Sáb 17')">Sáb 17</button>
+                                </div>
+                                <label
+                                    class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-4 border-b pb-2">2.
+                                    Seleccioná el Horario</label>
+                                <div class="grid grid-cols-3 gap-3">
+                                    <button
+                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all time-btn font-medium"
+                                        onclick="selectTime('10:00')">10:00</button>
+                                    <button
+                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all time-btn font-medium"
+                                        onclick="selectTime('14:30')">14:30</button>
+                                    <button
+                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all time-btn font-medium"
+                                        onclick="selectTime('17:00')">17:00</button>
+                                </div>
+                            </div>
+
+                            <!-- Resumen -->
+                            <div
+                                class="md:col-span-2 bg-gray-50 p-6 rounded-lg border border-brand-gold/30 flex flex-col justify-between shadow-sm">
+                                <div>
+                                    <h4
+                                        class="font-bold text-sm uppercase text-brand-gold tracking-wider mb-6 border-b border-brand-gold/30 pb-2">
+                                        Resumen</h4>
+
+                                    <div class="flex items-start mb-4">
+                                        <i class="fas fa-cut w-8 text-brand-light mt-1"></i>
+                                        <div>
+                                            <p class="text-xs text-brand-light uppercase">Servicio</p>
+                                            <p id="summary-service" class="font-bold text-brand-blue">-</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start mb-4">
+                                        <i class="fas fa-user w-8 text-brand-light mt-1"></i>
+                                        <div>
+                                            <p class="text-xs text-brand-light uppercase">Profesional</p>
+                                            <p id="summary-pro" class="font-bold text-brand-blue">-</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex items-start mb-4">
+                                        <i class="fas fa-calendar-alt w-8 text-brand-light mt-1"></i>
+                                        <div>
+                                            <p class="text-xs text-brand-light uppercase">Fecha y Hora</p>
+                                            <p id="summary-datetime" class="font-bold text-brand-blue text-sm">Pendiente
+                                                selección</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button id="btn-whatsapp" onclick="sendWhatsApp()" disabled
+                                    class="mt-8 w-full bg-brand-blue text-white py-4 rounded font-bold uppercase tracking-wider hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center shadow-md">
+                                    <i class="fab fa-whatsapp text-xl mr-2"></i> Solicitar Turno
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="equipo" class="py-28 md:py-36 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-20 reveal">
+                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Nuestros
+                    profesionales</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-6"
+                    style="font-family: 'Montserrat', sans-serif;">El Equipo</h2>
+                <div class="gold-sep"></div>
+                <p class="mt-4 text-gray-500 font-light text-base">Experiencia profesional en corte, color y cuidado
+                    capilar.</p>
+            </div>
+
+            <!-- Eje Principal: Roberto y Nora (Side by Side) -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-16">
+                <!-- Perfil Roberto -->
+                <div class="group relative overflow-hidden bg-brand-dark aspect-[4/5] lg:aspect-auto lg:h-[600px] cursor-pointer"
+                    onclick="filterByPro('roberto')">
+                    <!-- Foto inspirada en rc-recovery-2 -->
+                    <img src="./rober.jpg" alt="Roberto Contino"
+                        class="w-full h-full object-cover grayscale-filter transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-brand-dark/50 to-transparent">
+                    </div>
+                    <div
+                        class="absolute bottom-0 w-full p-8 md:p-10 transform translate-y-0 lg:translate-y-12 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-4xl font-extrabold text-white uppercase tracking-wider"
+                            style="font-family: 'Montserrat', sans-serif;">Roberto</h3>
+                        <p class="text-brand-gold font-serif text-xl italic mt-2">Director y especialista en corte</p>
+                        <div
+                            class="opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
+                            <p class="text-gray-200 text-sm font-light max-w-md md:mb-4">
+                                Con una amplia trayectoria en el diseño capilar, Roberto combina precisión técnica,
+                                geometría y visagismo para crear cortes personalizados. Cada propuesta considera la
+                                forma del rostro, la textura, el movimiento natural del cabello y los hábitos cotidianos
+                                de cada cliente.
+                            </p>
+                            <span
+                                class="inline-block border border-brand-gold text-brand-gold px-4 py-2 text-xs uppercase tracking-widest mt-4">Ver
+                                Servicios</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Perfil Nora -->
+                <div class="group relative overflow-hidden bg-brand-dark aspect-[4/5] lg:aspect-auto lg:h-[600px] cursor-pointer"
+                    onclick="filterByPro('nora')">
+                    <img src="./nora.jpg" alt="Nora"
+                        class="w-full h-full object-cover grayscale-filter transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
+                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-brand-dark/50 to-transparent">
+                    </div>
+                    <div
+                        class="absolute bottom-0 w-full p-8 md:p-10 transform translate-y-0 lg:translate-y-12 group-hover:translate-y-0 transition-transform duration-500">
+                        <h3 class="text-4xl font-extrabold text-white uppercase tracking-wider"
+                            style="font-family: 'Montserrat', sans-serif;">Nora</h3>
+                        <p class="text-brand-gold font-serif text-xl italic mt-2">Directora y master colorista</p>
+                        <div
+                            class="opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
+                            <p class="text-gray-200 text-sm font-light max-w-md md:mb-4">
+                                Especialista en colorimetría, iluminación y transformaciones personalizadas, Nora
+                                trabaja cada color a partir de un diagnóstico preciso del cabello, su base, su historial
+                                químico y el resultado buscado. Su experiencia abarca color, luces y balayage
+                                priorizando resultados naturales.
+                            </p>
+                            <span
+                                class="inline-block border border-brand-gold text-brand-gold px-4 py-2 text-xs uppercase tracking-widest mt-4">Ver
+                                Servicios</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resto del Staff -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-4">
+                <!-- Andrea -->
+                <div class="text-center group cursor-pointer" onclick="filterByPro('andrea')">
+                    <div
+                        class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden mb-6 bg-gray-100 border-4 border-transparent group-hover:border-brand-dark transition-all duration-300 shadow-md">
+                        <img src="./andrea.jpg" alt="Andrea" class="w-full h-full object-cover grayscale-filter" />
+                    </div>
+                    <h4 class="font-bold text-brand-blue text-xl uppercase tracking-wide">Andrea</h4>
+                    <p class="text-sm text-brand-light mt-1">Color & Tratamientos</p>
+                </div>
+                <!-- Nancy -->
+                <div class="text-center group cursor-pointer" onclick="filterByPro('nancy')">
+                    <div
+                        class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden mb-6 bg-gray-100 border-4 border-transparent group-hover:border-brand-blue transition-all duration-300 shadow-md">
+                        <img src="./nancy.jpg" alt="Nancy" class="w-full h-full object-cover grayscale-filter" />
+                    </div>
+                    <h4 class="font-bold text-brand-blue text-xl uppercase tracking-wide">Nancy</h4>
+                    <p class="text-sm text-brand-light mt-1">Corte & Tratamientos</p>
+                </div>
+                <!-- Eugenia -->
+                <div class="text-center group cursor-pointer" onclick="filterByPro('eugenia')">
+                    <div
+                        class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden mb-6 bg-gray-100 border-4 border-transparent group-hover:border-brand-gold transition-all duration-300 shadow-md">
+                        <img src="./eugenia.jpg" alt="Eugenia" class="w-full h-full object-cover grayscale-filter" />
+                    </div>
+                    <h4 class="font-bold text-brand-blue text-xl uppercase tracking-wide">Eugenia</h4>
+                    <p class="text-sm text-brand-light mt-1">Styling & Nutrición</p>
+                </div>
+                <!-- Yazmin -->
+                <div class="text-center group cursor-pointer" onclick="filterByPro('yazmin')">
+                    <div
+                        class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden mb-6 bg-gray-100 border-4 border-transparent group-hover:border-brand-blue transition-all duration-300 shadow-md">
+                        <img src="./cristal.jpg" alt="Yazmin" class="w-full h-full object-cover grayscale-filter" />
+                    </div>
+                    <h4 class="font-bold text-brand-blue text-xl uppercase tracking-wide">Yazmín</h4>
+                    <p class="text-sm text-brand-light mt-1">Corte & Tratamientos</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <section id="galeria" class="py-28 md:py-36 bg-brand-dark relative texture-overlay overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+            ```
+            <div class="text-center mb-16 md:mb-20 reveal">
+                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">
+                    Trabajos realizados
+                </span>
+
+                <h2 class="text-3xl md:text-5xl font-extrabold text-white uppercase tracking-tight mb-6 leading-[1.1]"
+                    style="font-family: 'Montserrat', sans-serif;">
+                    Estilos que hablan por sí solos
+                </h2>
+
+                <div class="gold-sep"></div>
+
+                <p class="mt-4 text-white/50 font-light text-base md:text-lg max-w-2xl mx-auto">
+                    Una selección de cortes, colores y terminaciones creadas por nuestro equipo.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-2 md:gap-4">
+
+                <figure class="group relative overflow-hidden bg-brand-dark aspect-[4/5] reveal reveal-delay-1">
+                    <img src="./a.jpg" alt="Cabello largo cobrizo con corte en capas y movimiento" loading="lazy"
+                        class="w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-105" />
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-500">
+                    </div>
+
+                    <figcaption
+                        class="absolute inset-x-0 bottom-0 p-5 md:p-7 translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+                        <span
+                            class="block text-[10px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] mb-2">
+                            Color y styling
+                        </span>
+                        <h3 class="text-white text-sm md:text-lg font-semibold">
+                            Cobrizo intenso
+                        </h3>
+                    </figcaption>
+                </figure>
+
+                <figure class="group relative overflow-hidden bg-brand-dark aspect-[4/5] reveal reveal-delay-2">
+                    <img src="./b.jpg" alt="Cabello rubio largo con corte en capas y puntas modeladas" loading="lazy"
+                        class="w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-105" />
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-500">
+                    </div>
+
+                    <figcaption
+                        class="absolute inset-x-0 bottom-0 p-5 md:p-7 translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+                        <span
+                            class="block text-[10px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] mb-2">
+                            Corte y peinado
+                        </span>
+                        <h3 class="text-white text-sm md:text-lg font-semibold">
+                            Capas con movimiento
+                        </h3>
+                    </figcaption>
+                </figure>
+
+                <figure class="group relative overflow-hidden bg-brand-dark aspect-[4/5] reveal reveal-delay-3">
+                    <img src="./c.jpg" alt="Cabello largo lacio con iluminación natural" loading="lazy"
+                        class="w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-105" />
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-500">
+                    </div>
+
+                    <figcaption
+                        class="absolute inset-x-0 bottom-0 p-5 md:p-7 translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+                        <span
+                            class="block text-[10px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] mb-2">
+                            Iluminación
+                        </span>
+                        <h3 class="text-white text-sm md:text-lg font-semibold">
+                            Tonos naturales
+                        </h3>
+                    </figcaption>
+                </figure>
+
+                <figure class="group relative overflow-hidden bg-brand-dark aspect-[4/5] reveal reveal-delay-4">
+                    <img src="./d.webp" alt="Cabello largo con reflejos y ondas suaves" loading="lazy"
+                        class="w-full h-full object-cover transition-all duration-1000 ease-out group-hover:scale-105" />
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-brand-dark/80 via-transparent to-transparent opacity-50 group-hover:opacity-80 transition-opacity duration-500">
+                    </div>
+
+                    <figcaption
+                        class="absolute inset-x-0 bottom-0 p-5 md:p-7 translate-y-3 group-hover:translate-y-0 transition-transform duration-500">
+                        <span
+                            class="block text-[10px] md:text-xs font-bold text-brand-gold uppercase tracking-[0.2em] mb-2">
+                            Reflejos
+                        </span>
+                        <h3 class="text-white text-sm md:text-lg font-semibold">
+                            Luz y dimensión
+                        </h3>
+                    </figcaption>
+                </figure>
+
+            </div>
+
+            <div class="mt-14 text-center reveal">
+                <a href="https://instagram.com/robertocontinook" target="_blank" rel="noopener noreferrer"
+                    class="btn-premium inline-flex items-center justify-center bg-transparent text-white border border-brand-gold/50 px-9 py-4 text-xs font-bold uppercase tracking-[0.2em] hover:border-brand-gold transition-all duration-500">
+
+                    <i class="fab fa-instagram text-lg mr-3"></i>
+                    Ver más trabajos
+                </a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Sección adaptada a los estilos y componentes existentes del documento. :contentReference[oaicite:0]{index=0} -->
+
+
+
+    <section id="contacto" class="py-28 md:py-36 bg-brand-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 reveal">
+                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Estemos en
+                    contacto</span>
+                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-6"
+                    style="font-family: 'Montserrat', sans-serif;">Contacto</h2>
+                <div class="gold-sep"></div>
+                <p class="mt-4 text-gray-500 font-light text-base">Envíanos tu consulta o planificá tu próxima visita.
+                </p>
+            </div>
+
+            <div
+                class="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 min-h-[600px]">
+
+                <!-- Columna Izquierda: Formulario -->
+                <div class="p-8 md:p-12 xl:p-16 flex flex-col justify-center">
+                    <h3 class="text-2xl font-bold text-brand-blue mb-8">Envíanos un mensaje</h3>
+                    <form class="space-y-6 flex-grow flex flex-col justify-center"
+                        onsubmit="event.preventDefault(); alert('Mensaje enviado (Simulado)');">
+                        <div>
+                            <label for="nombre"
+                                class="block text-sm font-medium text-brand-blue uppercase tracking-wider mb-2">Nombre
+                                completo</label>
+                            <input type="text" id="nombre"
+                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm"
+                                placeholder="Tu nombre" required>
+                        </div>
+                        <div>
+                            <label for="email"
+                                class="block text-sm font-medium text-brand-blue uppercase tracking-wider mb-2">Email</label>
+                            <input type="email" id="email"
+                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm"
+                                placeholder="tu@email.com" required>
+                        </div>
+                        <div>
+                            <label for="mensaje"
+                                class="block text-sm font-medium text-brand-blue uppercase tracking-wider mb-2">Consulta</label>
+                            <textarea id="mensaje" rows="4"
+                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm resize-none"
+                                placeholder="¿En qué te podemos ayudar?" required></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-brand-blue text-white py-4 rounded font-bold uppercase tracking-wider hover:bg-brand-gold hover:text-brand-dark transition-all shadow-md mt-4">
+                            Enviar Consulta
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Columna Derecha: Mapa y Vías de Contacto -->
+                <div class="bg-brand-dark p-8 md:p-12 xl:p-16 relative flex flex-col justify-between">
+                    <div class="absolute inset-0 bg-brand-blue/5"></div>
+
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold text-white mb-8">Información</h3>
+                        <div class="space-y-6 mb-10">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
+                                <div class="ml-4">
+                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Ubicación</p>
+                                    <p class="text-gray-300 font-light text-sm">Av. Maipú 2670<br>Olivos,
+                                        B1636<br>Provincia de Buenos Aires</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-phone-alt mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
+                                <div class="ml-4">
+                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Contacto
+                                        Directo</p>
+                                    <p class="text-gray-300 font-light text-sm mb-1">011 4711-0023</p>
+                                    <a href="https://wa.me/5491161654729" target="_blank"
+                                        class="text-brand-white hover:text-white transition-colors flex items-center text-sm font-medium">
+                                        <i class="fab fa-whatsapp mr-2 text-lg"></i> +54 9 11 6165-4729
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
+                                <div class="ml-4">
+                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Horarios de
+                                        Atención</p>
+                                    <p class="text-gray-300 font-light text-sm">Mar a Vie: 10:00 - 18:30<br>Sáb: 10:00 -
+                                        19:00</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Mapa Iframe -->
+                        <div
+                            class="h-48 md:h-56 w-full rounded border border-white/10 overflow-hidden relative shadow-inner">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3287.643336829709!2d-58.488319124401875!3d-34.51194385265434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb16b5a38aebd%3A0xe54d929f9df881db!2sAv.%20Maip%C3%BA%202670%2C%20B1636%20Olivos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1715000000000!5m2!1ses-419!2sar"
+                                class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen=""
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-brand-dark text-white pt-20 pb-10 relative texture-overlay">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+            <div>
+                <img src="./blanco_solo.png" alt="Roberto Contino Estilistas"
+                    class="h-12 w-auto object-contain mb-6 opacity-80" />
+                <p class="text-white/40 text-sm font-light leading-relaxed">Elegancia, precisión y vanguardia capilar.
+                    Primera atención sin cargo en Lavado y Corte para nuevos clientes.</p>
+            </div>
+
+            <div>
+                <h4 class="font-bold uppercase tracking-[0.2em] mb-6 text-brand-gold text-xs">Ubicación</h4>
+                <p class="text-white/50 font-light flex items-start mb-4">
+                    <i class="fas fa-map-marker-alt mt-1 mr-4 text-brand-gold/60"></i>
+                    <a href="https://maps.app.goo.gl/hGv5VjZ1XyXbQ7nGA" target="_blank"
+                        class="hover:text-white transition-colors duration-300">
+                        Av. Maipú 2670<br>Olivos, B1636<br>Provincia de Buenos Aires
+                    </a>
+                </p>
+                <p class="text-white/50 font-light text-sm mt-4">
+                    <span class="font-medium text-white/70">Horarios:</span><br>
+                    Mar a Vie: 10:00 - 18:30<br>
+                    Sáb: 10:00 - 19:00
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-bold uppercase tracking-[0.2em] mb-6 text-brand-gold text-xs">Contacto</h4>
+                <a href="https://wa.me/5491161654729" target="_blank"
+                    class="text-white/50 font-light flex items-center mb-4 hover:text-brand-gold transition-colors duration-300 group">
+                    <div
+                        class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center mr-3 group-hover:border-brand-gold/40 transition-colors">
+                        <i class="fab fa-whatsapp text-white/60 group-hover:text-brand-gold transition-colors"></i>
+                    </div>
+                    +54 9 11 6165-4729
+                </a>
+                <a href="tel:+541147110023"
+                    class="text-white/50 font-light flex items-center mb-4 hover:text-brand-gold transition-colors duration-300 group">
+                    <div
+                        class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center mr-3 group-hover:border-brand-gold/40 transition-colors">
+                        <i
+                            class="fas fa-phone-alt text-white/60 group-hover:text-brand-gold text-sm transition-colors"></i>
+                    </div>
+                    011 4711-0023
+                </a>
+                <a href="https://instagram.com/robertocontinook" target="_blank"
+                    class="text-white/50 font-light flex items-center hover:text-brand-gold transition-colors duration-300 group">
+                    <div
+                        class="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center mr-3 group-hover:border-brand-gold/40 transition-colors">
+                        <i class="fab fa-instagram text-white/60 group-hover:text-brand-gold transition-colors"></i>
+                    </div>
+                    @robertocontinook
+                </a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 pt-8 border-t border-white/5 relative z-10">
+            <p class="text-white/20 text-xs font-light text-center tracking-widest uppercase">© 2026 Roberto Contino
+                Estilistas. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Botón flotante WhatsApp -->
+    <a href="https://wa.me/5491161654729" target="_blank"
+        class="fixed bottom-6 right-6 bg-brand-blue text-brand-white w-14 h-14 rounded-full flex items-center justify-center shadow-2xl hover:scale-110 hover:shadow-brand-blue/20 border border-brand-blue/30 transition-all duration-300 z-50">
+        <i class="fab fa-whatsapp text-2xl"></i>
+    </a>
+
+    <script>
+        // --- MOBILE MENU ---
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+            menu.classList.toggle('flex');
+        }
+
+        // --- BASE DE DATOS RELACIONAL (Extraída del RTF) ---
+        const matrixData = [
+            { "id_profesional": "nora", "id_servicio": "color" },
+            { "id_profesional": "nora", "id_servicio": "luces" },
+            { "id_profesional": "nora", "id_servicio": "reflejos" },
+            { "id_profesional": "nora", "id_servicio": "corte" },
+            { "id_profesional": "nora", "id_servicio": "peinado" },
+            { "id_profesional": "roberto", "id_servicio": "corte" },
+            { "id_profesional": "andrea", "id_servicio": "color" },
+            { "id_profesional": "andrea", "id_servicio": "luces" },
+            { "id_profesional": "andrea", "id_servicio": "reflejos" },
+            { "id_profesional": "andrea", "id_servicio": "mechas" },
+            { "id_profesional": "andrea", "id_servicio": "queratina_botox" },
+            { "id_profesional": "andrea", "id_servicio": "alisado_nano" },
+            { "id_profesional": "andrea", "id_servicio": "peinado" },
+            { "id_profesional": "andrea", "id_servicio": "nutricion" },
+            { "id_profesional": "nancy", "id_servicio": "peinado" },
+            { "id_profesional": "nancy", "id_servicio": "queratina_botox" },
+            { "id_profesional": "nancy", "id_servicio": "alisado_nano" },
+            { "id_profesional": "nancy", "id_servicio": "corte" },
+            { "id_profesional": "eugenia", "id_servicio": "color" },
+            { "id_profesional": "eugenia", "id_servicio": "queratina_botox" },
+            { "id_profesional": "eugenia", "id_servicio": "alisado_nano" },
+            { "id_profesional": "eugenia", "id_servicio": "peinado" },
+            { "id_profesional": "eugenia", "id_servicio": "lavado" },
+            { "id_profesional": "eugenia", "id_servicio": "nutricion" },
+            { "id_profesional": "yazmin", "id_servicio": "queratina_botox" },
+            { "id_profesional": "yazmin", "id_servicio": "alisado_nano" },
+            { "id_profesional": "yazmin", "id_servicio": "peinado" },
+            { "id_profesional": "yazmin", "id_servicio": "lavado" },
+            { "id_profesional": "yazmin", "id_servicio": "nutricion" },
+            { "id_profesional": "yazmin", "id_servicio": "corte" }
+        ];
+
+        // --- DICCIONARIOS UI ---
+        const categoryMap = {
+            'colorimetria': { title: 'Colorimetría', services: ['color', 'luces', 'reflejos', 'mechas'], icon: './color.png' },
+            'corte': { title: 'Corte', services: ['corte'], icon: './corte.png' },
+            'peinados': { title: 'Peinados y Styling', services: ['peinado', 'lavado'], icon: './peinado.png' },
+            'tratamientos': { title: 'Tratamientos Capilares', services: ['queratina_botox', 'alisado_nano', 'nutricion'], icon: './tratamiento.png' }
+        };
+
+        const serviceNames = {
+            'color': 'Color', 'luces': 'Luces', 'reflejos': 'Reflejos', 'mechas': 'Mechas',
+            'corte': 'Corte', 'peinado': 'Peinado', 'lavado': 'Lavado',
+            'queratina_botox': 'Queratina / Botox', 'alisado_nano': 'Alisado Nano', 'nutricion': 'Nutrición'
+        };
+
+        const proNames = {
+            'roberto': 'Roberto Contino', 'nora': 'Nora', 'andrea': 'Andrea',
+            'nancy': 'Nancy', 'eugenia': 'Eugenia', 'yazmin': 'Yazmín'
+        };
+
+        const proImages = {
+            'roberto': './rober.jpg',
+            'nora': './nora.jpg',
+            'andrea': './andrea.jpg',
+            'nancy': './nancy.jpg',
+            'eugenia': './eugenia.jpg',
+            'yazmin': './cristal.jpg'
+        };
+
+        // --- ESTADO DEL WIDGET ---
+        let state = {
+            step: 1,
+            category: null,
+            serviceId: null,
+            proId: null,
+            date: null,
+            time: null,
+            flowType: 'standard' // 'standard' or 'by_pro'
+        };
+
+        // --- FUNCIONES CORE DEL UI ---
+
+        function updateUI() {
+            // Ocultar todos los steps
+            document.querySelectorAll('.widget-step').forEach(el => el.classList.add('hidden'));
+
+            // Mostrar step actual con animación
+            const currentStepEl = document.getElementById(`step-${state.step}`);
+            currentStepEl.classList.remove('hidden');
+
+            // Textos y Breadcrumbs
+            const stepTitles = ["Categoría", "Servicio", "Profesional", "Fecha y Hora"];
+            document.getElementById('step-indicator').innerText = `Paso ${state.step} de 4: ${stepTitles[state.step - 1]}`;
+
+            const btnBack = document.getElementById('btn-back');
+            if (state.step > 1) {
+                btnBack.classList.remove('hidden');
+            } else {
+                btnBack.classList.add('hidden');
+            }
+
+            // Actualizar interfaz de Categorías si venimos de atrás
+            if (state.step === 1) {
+                document.querySelectorAll('.cat-btn').forEach(btn => {
+                    btn.classList.remove('border-brand-dark', 'border-brand-blue', 'border-brand-gold', 'shadow-md');
+                    btn.classList.add('border-gray-200');
+                });
+
+                if (state.category) {
+                    const activeBtn = document.getElementById(`btn-cat-${state.category}`);
+                    if (activeBtn) {
+                        activeBtn.classList.remove('border-gray-200');
+                        if (state.category === 'colorimetria') activeBtn.classList.add('border-brand-dark', 'shadow-md');
+                        if (state.category === 'corte') activeBtn.classList.add('border-brand-blue', 'shadow-md');
+                        if (state.category === 'peinados') activeBtn.classList.add('border-brand-blue', 'shadow-md');
+                        if (state.category === 'tratamientos') activeBtn.classList.add('border-brand-gold', 'shadow-md');
+                    }
+                }
+            }
+
+            // Actualizar Resumen
+            if (state.serviceId) document.getElementById('summary-service').innerText = serviceNames[state.serviceId];
+            if (state.proId) document.getElementById('summary-pro').innerText = proNames[state.proId];
+
+            if (state.step === 4) {
+                checkConfirmReady();
+            }
+        }
+
+        function goBack() {
+            if (state.step > 1) {
+                if (state.flowType === 'by_pro' && state.step === 2) {
+                    // Si viene desde un perfil, volver al inicio resetea todo
+                    resetWidget();
+                    return;
+                }
+
+                state.step--;
+
+                // Limpiar estado futuro según el paso (mantenemos category visualmente)
+                if (state.step === 2) state.serviceId = null;
+                if (state.step === 3) {
+                    state.proId = null;
+                    state.date = null;
+                    state.time = null;
+                    document.getElementById('summary-pro').innerText = '-';
+                    document.getElementById('summary-datetime').innerText = 'Pendiente selección';
+                    document.getElementById('summary-datetime').classList.remove('text-brand-dark');
+                    // Resetear botones de fecha y hora
+                    document.querySelectorAll('.date-btn, .time-btn').forEach(btn => btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue'));
+                }
+                updateUI();
+            }
+        }
+
+        function resetWidget() {
+            state = { step: 1, category: null, serviceId: null, proId: null, date: null, time: null, flowType: 'standard' };
+            document.getElementById('summary-service').innerText = '-';
+            document.getElementById('summary-pro').innerText = '-';
+            document.getElementById('summary-datetime').innerText = 'Pendiente selección';
+            document.querySelectorAll('.date-btn, .time-btn').forEach(btn => btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue'));
+            updateUI();
+        }
+
+        function selectCategory(catKey) {
+            state.flowType = 'standard';
+            state.category = catKey;
+
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = '';
+
+            categoryMap[catKey].services.forEach(svcId => {
+                const btn = document.createElement('button');
+                btn.className = "p-5 border border-gray-200 rounded-lg text-left font-bold text-brand-blue hover:border-brand-dark hover:shadow-md hover:-translate-y-1 transition-all flex justify-between items-center group bg-white";
+                btn.innerHTML = `
+                    <span>${serviceNames[svcId]}</span>
+                    <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-brand-dark group-hover:text-white transition-colors">
+                        <i class="fas fa-chevron-right text-sm text-brand-light group-hover:text-white"></i>
+                    </div>
+                `;
+                btn.onclick = () => selectService(svcId);
+                grid.appendChild(btn);
+            });
+
+            document.getElementById('category-title').innerText = categoryMap[catKey].title;
+            state.step = 2;
+            updateUI();
+        }
+
+        function selectService(svcId) {
+            state.serviceId = svcId;
+
+            let availablePros = [];
+            if (state.flowType === 'standard') {
+                // Filtrar profesionales que hacen este servicio
+                availablePros = matrixData.filter(item => item.id_servicio === svcId).map(item => item.id_profesional);
+                // Eliminar duplicados si los hubiera
+                availablePros = [...new Set(availablePros)];
+
+                renderPros(availablePros);
+                document.getElementById('selected-service-name').innerText = serviceNames[svcId];
+                state.step = 3;
+            } else if (state.flowType === 'by_pro') {
+                // Si venimos del perfil, ya tenemos al profesional, saltar a fecha
+                state.step = 4;
+            }
+
+            updateUI();
+        }
+
+        function renderPros(prosList) {
+            const grid = document.getElementById('pros-grid');
+            grid.innerHTML = '';
+
+            if (prosList.length === 0) {
+                grid.innerHTML = '<p class="col-span-full text-center text-brand-light py-8">No hay profesionales disponibles para este servicio actualmente.</p>';
+            } else {
+                prosList.forEach(proId => {
+                    const btn = document.createElement('button');
+                    btn.className = "flex flex-col items-center p-6 border border-gray-200 rounded-xl hover:border-brand-blue hover:shadow-lg transition-all group bg-white";
+                    btn.innerHTML = `
+                        <div class="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-brand-blue transition-colors">
+                            <img src="${proImages[proId]}" alt="${proNames[proId]}" class="w-full h-full object-cover grayscale-filter" />
+                        </div>
+                        <span class="font-bold text-sm text-brand-blue group-hover:text-brand-dark transition-colors">${proNames[proId]}</span>
+                    `;
+                    btn.onclick = () => selectPro(proId);
+                    grid.appendChild(btn);
+                });
+            }
+        }
+
+        function selectPro(proId) {
+            state.proId = proId;
+            state.step = 4;
+            updateUI();
+        }
+
+        // ENTRY POINT SECUNDARIO: Desde los perfiles del equipo
+        function filterByPro(proId) {
+            // Scroll to widget
+            document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' });
+
+            state.flowType = 'by_pro';
+            state.proId = proId;
+            state.category = null;
+
+            // Buscar servicios de este profesional en la matriz
+            const proServices = matrixData.filter(item => item.id_profesional === proId).map(item => item.id_servicio);
+
+            const grid = document.getElementById('services-grid');
+            grid.innerHTML = '';
+
+            proServices.forEach(svcId => {
+                const btn = document.createElement('button');
+                btn.className = "p-5 border border-brand-blue/20 rounded-lg text-left font-bold text-brand-blue hover:border-brand-blue hover:shadow-md transition-all flex justify-between items-center group bg-white";
+                btn.innerHTML = `
+                    <span>${serviceNames[svcId]}</span>
+                    <div class="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
+                        <i class="fas fa-check text-sm text-brand-blue group-hover:text-white"></i>
+                    </div>
+                `;
+                btn.onclick = () => selectService(svcId);
+                grid.appendChild(btn);
+            });
+
+            document.getElementById('category-title').innerHTML = `Servicios de <span class="text-brand-dark">${proNames[proId]}</span>`;
+            state.step = 2; // Saltamos categoría, vamos directo a elegir servicio de este pro
+            updateUI();
+        }
+
+        function selectDate(dateStr) {
+            state.date = dateStr;
+
+            // Visual feedback
+            document.querySelectorAll('.date-btn').forEach(btn => {
+                if (btn.innerText === dateStr) {
+                    btn.classList.add('bg-brand-blue', 'text-white', 'border-brand-blue');
+                    btn.classList.remove('bg-gray-50');
+                } else {
+                    btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue');
+                    btn.classList.add('bg-gray-50');
+                }
+            });
+
+            updateSummaryTime();
+        }
+
+        function selectTime(timeStr) {
+            state.time = timeStr;
+
+            // Visual feedback
+            document.querySelectorAll('.time-btn').forEach(btn => {
+                if (btn.innerText === timeStr) {
+                    btn.classList.add('bg-brand-blue', 'text-white', 'border-brand-blue');
+                    btn.classList.remove('bg-gray-50');
+                } else {
+                    btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue');
+                    btn.classList.add('bg-gray-50');
+                }
+            });
+
+            updateSummaryTime();
+        }
+
+        function updateSummaryTime() {
+            const summaryNode = document.getElementById('summary-datetime');
+            if (state.date && state.time) {
+                summaryNode.innerText = `${state.date} a las ${state.time}hs`;
+                summaryNode.classList.add('text-brand-dark'); // Highlight when complete
+            } else if (state.date) {
+                summaryNode.innerText = `${state.date} (Falta horario)`;
+            } else if (state.time) {
+                summaryNode.innerText = `Horario: ${state.time}hs (Falta fecha)`;
+            }
+            checkConfirmReady();
+        }
+
+        function checkConfirmReady() {
+            const btn = document.getElementById('btn-whatsapp');
+            if (state.serviceId && state.proId && state.date && state.time) {
+                btn.disabled = false;
+                btn.classList.add('animate-pulse');
+                setTimeout(() => btn.classList.remove('animate-pulse'), 1000);
+            } else {
+                btn.disabled = true;
+            }
+        }
+
+        function sendWhatsApp() {
+            const phone = "5491161654729";
+            const message = `Hola RC Estilistas! Me gustaría solicitar un turno:
+✂️ *Servicio:* ${serviceNames[state.serviceId]}
+👤 *Profesional:* ${proNames[state.proId]}
+📅 *Día:* ${state.date}
+⏰ *Hora:* ${state.time}hs
+
+Aguardamos confirmación. ¡Muchas gracias!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
+
+            // Custom Message Box instead of alert
+            const msgBox = document.createElement('div');
+            msgBox.className = "fixed top-32 left-1/2 transform -translate-x-1/2 bg-brand-blue text-white px-8 py-4 rounded-lg shadow-2xl z-[60] flex items-center font-bold";
+            msgBox.innerHTML = '<i class="fab fa-whatsapp text-green-400 text-2xl mr-3"></i> Redirigiendo a WhatsApp...';
+            document.body.appendChild(msgBox);
+
+            setTimeout(() => {
+                msgBox.style.opacity = '0';
+                msgBox.style.transition = 'opacity 0.5s';
+                setTimeout(() => msgBox.remove(), 500);
+                resetWidget(); // Limpiar el widget después de enviar
+            }, 3000);
+        }
+
+        // === NAVBAR SCROLL LOGIC ===
+        const header = document.getElementById('main-nav');
+        const logo = document.getElementById('nav-logo');
+        const scrollThreshold = 50;
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold) {
+                header.classList.remove('nav-transparent');
+                header.classList.add('nav-solid');
+                logo.src = './azul_solo.png';
+                logo.classList.replace('h-10', 'h-12'); // grow slightly
+                logo.classList.replace('md:h-12', 'md:h-14'); // grow slightly
+                document.querySelectorAll('#main-nav a').forEach(a => {
+                    a.classList.replace('hover:text-brand-gold', 'hover:text-brand-blue');
+                    a.style.color = '#7F7F7F';
+                });
+                document.querySelectorAll('#main-nav, .hamburger-icon').forEach(btn => btn.style.color = '#295f8f');
+            } else {
+                header.classList.add('nav-transparent');
+                header.classList.remove('nav-solid');
+                logo.src = './blanco_solo.png';
+                logo.classList.replace('h-12', 'h-10'); // shrink slightly
+                logo.classList.replace('md:h-14', 'md:h-12'); // shrink slightly
+                document.querySelectorAll('#main-nav a').forEach(a => {
+                    a.classList.replace('hover:text-brand-blue', 'hover:text-brand-gold');
+                    a.style.color = 'rgba(255,255,255,0.85)';
+                });
+                document.querySelectorAll('#main-nav, .hamburger-icon').forEach(btn => btn.style.color = 'white');
+            }
+        });
+
+        // === SCROLL REVEAL ANIMATIONS ===
+        document.addEventListener("DOMContentLoaded", () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal').forEach((el) => {
+                observer.observe(el);
+            });
+
+            // Trigger initial scroll event to set nav state in case of page reload halfway down
+            window.dispatchEvent(new Event('scroll'));
+        });
+    </script>
+</body>
+
+</html>
