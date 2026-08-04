@@ -12,7 +12,7 @@ El proyecto está configurado para desplegarse de manera automática en **GitHub
 3. En la sección **Build and deployment**, bajo **Source**, selecciona **GitHub Actions** en lugar de "Deploy from a branch".
 4. ¡Listo! El workflow se encargará de compilar y publicar el sitio automáticamente con cada cambio en la rama `main`.
 
-Una vez activado, el sitio estará disponible en la URL proporcionada por GitHub (generalmente `https://francocontino.github.io/rc/`).
+Una vez activado, el sitio estará disponible en la URL proporcionada por GitHub (generalmente `https://francocontino.github.io/robercon/`).
 
 ## 🛠️ Tecnologías Utilizadas
 
