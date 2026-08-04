@@ -44,9 +44,6 @@
         /* === MOBILE MENU TRANSITION === */
         #mobile-menu {
             transition: all 0.3s ease-in-out;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
         }
         #mobile-menu.active {
             max-height: 400px;
@@ -91,20 +88,20 @@
         nav {
             transition: background 0.4s ease, backdrop-filter 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
+/* Modificado para que no afecte al dropdown móvil */
+.nav-transparent .desktop-link,
+.nav-transparent button.nav-link {
+    color: rgba(255, 255, 255, 0.85);
+}
 
-        .nav-transparent a,
-        .nav-transparent button.nav-link {
-            color: rgba(255, 255, 255, 0.85);
-        }
+.nav-transparent .desktop-link:hover,
+.nav-transparent button.nav-link:hover {
+    color: #DCAF57;
+}
 
-        .nav-transparent a:hover,
-        .nav-transparent button.nav-link:hover {
-            color: #DCAF57;
-        }
-
-        .nav-transparent .hamburger-icon {
-            color: white;
-        }
+.nav-transparent .hamburger-icon {
+    color: white;
+}
 
         /* === GLASS PANEL === */
         .glass-panel {
@@ -216,12 +213,10 @@
                         class="h-10 md:h-10 w-auto object-contain transition-all duration-300" />
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#nosotros"
-                        class="text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Nosotros</a>
-                    <a href="#equipo"
-                        class="text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Equipo</a>
-                    <a href="#contacto"
-                        class="text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Contacto</a>
+    <a href="#nosotros" class="desktop-link text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Nosotros</a>
+    <a href="#equipo" class="desktop-link text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Equipo</a>
+    <a href="#contacto" class="desktop-link text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Contacto</a>
+    <!-- El botón se mantiene igual -->
                     <button onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})"
                         class="btn-premium bg-brand-blue text-white px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] border border-white/20 hover:border-brand-gold transition-all">
                         Reservar Turno
@@ -295,10 +290,10 @@
 
     <div class="bg-brand-dark text-center py-5 px-4 border-t border-brand-gold/20">
         <p class="text-white/80 text-xs md:text-sm font-medium tracking-[0.2em] uppercase">
-            Lavado + Corte: Primera atención sin cargo <span class="mx-4 text-brand-gold/40">—</span> <a
+            Atención personalizada<span class="mx-4 text-brand-gold/40">—</span> <a
                 href="#reservas"
                 class="text-brand-gold hover:text-white transition-colors duration-300 underline underline-offset-4 decoration-brand-gold/30 hover:decoration-brand-gold">Reservá
-                tu beneficio</a>
+                tu horario</a>
         </p>
     </div>
 
@@ -993,12 +988,11 @@
     </section>
 
     <footer class="bg-brand-dark text-white pt-20 pb-10 relative texture-overlay">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
+        <div class="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
             <div>
                 <img src="./blanco_solo.png" alt="Roberto Contino Estilistas"
                     class="h-12 w-auto object-contain mb-6 opacity-80" />
-                <p class="text-white/90 font-light leading-relaxed">Elegancia, precisión y vanguardia capilar.
-                    Primera atención sin cargo en Lavado y Corte para nuevos clientes.</p>
+                <p class="text-white/90 font-light leading-relaxed">Elegancia, precisión y vanguardia capilar.</p>
             </div>
 
             <div>
@@ -1071,8 +1065,10 @@
         // --- MOBILE MENU ---
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('active');
-        }
+            menu.classList.toggle('hidden');
+        menu.classList.toggle('flex');
+        menu.classList.toggle('active'); // <-- Esta línea soluciona el problema
+    }
 
         // --- BASE DE DATOS RELACIONAL (Extraída del RTF) ---
         const matrixData = [
@@ -1424,36 +1420,42 @@ Aguardamos confirmación. ¡Muchas gracias!`;
             }, 3000);
         }
 
-        // === NAVBAR SCROLL LOGIC ===
-        const header = document.getElementById('main-nav');
-        const logo = document.getElementById('nav-logo');
-        const scrollThreshold = 50;
+       // === NAVBAR SCROLL LOGIC ===
+const header = document.getElementById('main-nav');
+const logo = document.getElementById('nav-logo');
+const scrollThreshold = 50;
 
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > scrollThreshold) {
-                header.classList.remove('nav-transparent');
-                header.classList.add('nav-solid');
-                logo.src = './azul_solo.png';
-                logo.classList.replace('h-10', 'h-12'); // grow slightly
-                logo.classList.replace('md:h-12', 'md:h-14'); // grow slightly
-                document.querySelectorAll('#main-nav a').forEach(a => {
-                    a.classList.replace('hover:text-brand-gold', 'hover:text-brand-blue');
-                    a.style.color = '#7F7F7F';
-                });
-                document.querySelectorAll('#main-nav, .hamburger-icon').forEach(btn => btn.style.color = '#295f8f');
-            } else {
-                header.classList.add('nav-transparent');
-                header.classList.remove('nav-solid');
-                logo.src = './blanco_solo.png';
-                logo.classList.replace('h-12', 'h-10'); // shrink slightly
-                logo.classList.replace('md:h-14', 'md:h-12'); // shrink slightly
-                document.querySelectorAll('#main-nav a').forEach(a => {
-                    a.classList.replace('hover:text-brand-blue', 'hover:text-brand-gold');
-                    a.style.color = 'rgba(255,255,255,0.85)';
-                });
-                document.querySelectorAll('#main-nav, .hamburger-icon').forEach(btn => btn.style.color = 'white');
-            }
+window.addEventListener('scroll', () => {
+    if (window.scrollY > scrollThreshold) {
+        header.classList.remove('nav-transparent');
+        header.classList.add('nav-solid');
+        logo.src = './azul_solo.png';
+        logo.classList.replace('h-10', 'h-12'); // grow slightly
+        logo.classList.replace('md:h-12', 'md:h-14'); // grow slightly
+        
+        // Ahora solo afecta a los links de escritorio
+        document.querySelectorAll('.desktop-link').forEach(a => {
+            a.classList.replace('hover:text-brand-gold', 'hover:text-brand-blue');
+            a.style.color = '#7F7F7F';
         });
+        
+        document.querySelectorAll('#main-nav, .hamburger-icon').forEach(btn => btn.style.color = '#295f8f');
+    } else {
+        header.classList.add('nav-transparent');
+        header.classList.remove('nav-solid');
+        logo.src = './blanco_solo.png';
+        logo.classList.replace('h-12', 'h-10'); // shrink slightly
+        logo.classList.replace('md:h-14', 'md:h-12'); // shrink slightly
+        
+        // Ahora solo afecta a los links de escritorio
+        document.querySelectorAll('.desktop-link').forEach(a => {
+            a.classList.replace('hover:text-brand-blue', 'hover:text-brand-gold');
+            a.style.color = 'rgba(255,255,255,0.85)';
+        });
+        
+        document.querySelectorAll('#main-nav, .hamburger-icon').forEach(btn => btn.style.color = 'white');
+    }
+});
 
         // === SCROLL REVEAL ANIMATIONS ===
         document.addEventListener("DOMContentLoaded", () => {
