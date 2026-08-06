@@ -766,9 +766,9 @@
     </div>
 
     <div
-        id="mobile-menu"
-        class="pointer-events-none absolute left-0 top-full w-full -translate-y-3 opacity-0 transition-all duration-300"
-    >
+    id="mobile-menu"
+    class="invisible pointer-events-none absolute left-0 top-full w-full -translate-y-3 opacity-0 transition-all duration-300"
+>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div
                 class="pointer-events-auto ml-auto max-w-sm overflow-hidden border border-black/5 bg-white/95 shadow-[0_24px_60px_rgba(15,15,15,.20)] backdrop-blur-xl"
@@ -785,11 +785,11 @@
                 </div>
 
                 <div class="flex flex-col">
-                    <a
+                   <a
                         href="#nosotros"
-                        onclick="toggleMobileMenu()"
+                        onclick="toggleMobileMenu(true)"
                         class="group flex min-h-14 items-center justify-between border-b border-black/5 px-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-dark transition-colors hover:bg-brand-cream hover:text-brand-blue"
-                    >
+                        >
                         Nosotros
                         <i
                             class="fas fa-arrow-right text-[10px] text-brand-gold transition-transform group-hover:translate-x-1"
@@ -799,7 +799,7 @@
 
                     <a
                         href="#equipo"
-                        onclick="toggleMobileMenu()"
+                        onclick="toggleMobileMenu(true)"
                         class="group flex min-h-14 items-center justify-between border-b border-black/5 px-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-dark transition-colors hover:bg-brand-cream hover:text-brand-blue"
                     >
                         Equipo
@@ -811,7 +811,7 @@
 
                     <a
                         href="#contacto"
-                        onclick="toggleMobileMenu()"
+                        onclick="toggleMobileMenu(true)"
                         class="group flex min-h-14 items-center justify-between border-b border-black/5 px-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-dark transition-colors hover:bg-brand-cream hover:text-brand-blue"
                     >
                         Contacto
@@ -823,11 +823,11 @@
                 </div>
 
                 <div class="p-4">
-                    <button
-                        type="button"
-                        onclick="document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu();"
-                        class="flex min-h-14 w-full items-center justify-center bg-brand-blue px-5 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-brand-gold hover:text-brand-dark"
-                    >
+                   <button
+                    type="button"
+                    onclick="document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu(true);"
+                    class="flex min-h-14 w-full items-center justify-center bg-brand-blue px-5 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-brand-gold hover:text-brand-dark"
+                        >
                         Reservar turno
                         <i
                             class="fas fa-calendar-alt ml-3 text-sm"
@@ -1640,13 +1640,72 @@
 
 
     // --- MOBILE MENU --------------------------------------------->
-        function toggleMobileMenu() {
-            const menu = document.getElementById('mobile-menu');
-            menu.classList.toggle('hidden');
-        menu.classList.toggle('flex');
-        menu.classList.toggle('active'); // <-- Esta línea soluciona el problema
-    }
+        function toggleMobileMenu(forceClose = false) {
+    const menu = document.getElementById('mobile-menu');
+    const button = document.getElementById('menu-toggle');
+    const icon = document.getElementById('menu-icon');
 
+    if (!menu || !button || !icon) return;
+
+    const currentlyOpen = button.getAttribute('aria-expanded') === 'true';
+    const shouldOpen = forceClose ? false : !currentlyOpen;
+
+    button.setAttribute('aria-expanded', String(shouldOpen));
+    button.setAttribute(
+        'aria-label',
+        shouldOpen ? 'Cerrar menú' : 'Abrir menú'
+    );
+
+    if (shouldOpen) {
+        menu.classList.remove(
+            'invisible',
+            'pointer-events-none',
+            '-translate-y-3',
+            'opacity-0'
+        );
+
+        menu.classList.add(
+            'visible',
+            'pointer-events-auto',
+            'translate-y-0',
+            'opacity-100'
+        );
+
+        icon.className = 'fas fa-times text-xl';
+    } else {
+        menu.classList.remove(
+            'visible',
+            'pointer-events-auto',
+            'translate-y-0',
+            'opacity-100'
+        );
+
+        menu.classList.add(
+            'invisible',
+            'pointer-events-none',
+            '-translate-y-3',
+            'opacity-0'
+        );
+
+        icon.className = 'fas fa-bars text-xl';
+    }
+}
+document.addEventListener('click', event => {
+    const menu = document.getElementById('mobile-menu');
+    const button = document.getElementById('menu-toggle');
+
+    if (!menu || !button) return;
+
+    const isOpen = button.getAttribute('aria-expanded') === 'true';
+
+    if (
+        isOpen &&
+        !menu.contains(event.target) &&
+        !button.contains(event.target)
+    ) {
+        toggleMobileMenu(true);
+    }
+}); 
     // --- INSERTAR WIDGET --------------------------------------------->
 
     document.addEventListener("DOMContentLoaded", () => {
