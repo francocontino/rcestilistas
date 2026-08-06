@@ -1,0 +1,2176 @@
+<style>
+        /* Todo el rediseño queda limitado a #reservas para no afectar otras secciones del sitio. */
+        #reservas {
+            --widget-bg: #0f1113;
+            --widget-panel: #15191d;
+            --widget-panel-soft: #1b2025;
+            --widget-card: #181d22;
+            --widget-card-hover: #20262c;
+            --widget-text: #f7f4ee;
+            --widget-muted: #a9adb1;
+            --widget-line: rgba(220, 175, 87, 0.25);
+            --widget-line-soft: rgba(255,255,255,0.10);
+            --widget-blue: #295f8f;
+            --widget-gold: #DCAF57;
+            --widget-shadow: 0 26px 70px rgba(0,0,0,.28);
+            background:
+                radial-gradient(circle at 15% 10%, rgba(41,95,143,.18), transparent 34%),
+                radial-gradient(circle at 90% 80%, rgba(220,175,87,.08), transparent 30%),
+                #0b0d0f;
+            color: var(--widget-text);
+            transition: background .35s ease, color .35s ease;
+        }
+
+        #reservas[data-theme="light"] {
+            --widget-bg: #f7f4ee;
+            --widget-panel: #ffffff;
+            --widget-panel-soft: #f3f0ea;
+            --widget-card: #fbfaf7;
+            --widget-card-hover: #ffffff;
+            --widget-text: #121416;
+            --widget-muted: #6f7377;
+            --widget-line: rgba(220, 175, 87, 0.42);
+            --widget-line-soft: rgba(15,15,15,0.10);
+            --widget-shadow: 0 24px 60px rgba(31,36,41,.12);
+            background:
+                radial-gradient(circle at 10% 12%, rgba(41,95,143,.09), transparent 30%),
+                radial-gradient(circle at 92% 82%, rgba(220,175,87,.12), transparent 32%),
+                #f3f0ea;
+        }
+
+        #reservas .widget-shell {
+            background: var(--widget-panel);
+            border: 1px solid var(--widget-line-soft);
+            box-shadow: var(--widget-shadow);
+            transition: background .35s ease, border-color .35s ease, box-shadow .35s ease;
+        }
+
+        #reservas .widget-topbar {
+            background:
+                linear-gradient(110deg, rgba(41,95,143,.98), rgba(30,67,101,.98)),
+                var(--widget-blue);
+            border-bottom: 1px solid rgba(255,255,255,.12);
+        }
+
+        #reservas .widget-content,
+        #reservas .widget-summary,
+        #reservas .widget-card,
+        #reservas .widget-choice {
+            transition: background .35s ease, border-color .35s ease, color .35s ease, transform .25s ease, box-shadow .25s ease;
+        }
+
+        #reservas .widget-content { background: var(--widget-panel); }
+        #reservas .widget-card,
+        #reservas .widget-choice {
+            background: var(--widget-card);
+            border: 1px solid var(--widget-line-soft);
+            color: var(--widget-text);
+        }
+
+        #reservas .widget-card:hover,
+        #reservas .widget-choice:hover {
+            background: var(--widget-card-hover);
+            border-color: rgba(220,175,87,.65);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 34px rgba(0,0,0,.14);
+        }
+
+        #reservas .widget-card:focus-visible,
+        #reservas .widget-choice:focus-visible,
+        #reservas button:focus-visible {
+            outline: 2px solid var(--widget-gold);
+            outline-offset: 3px;
+        }
+
+        #reservas .widget-card[aria-pressed="true"],
+        #reservas .widget-choice.is-selected {
+            background: linear-gradient(135deg, var(--widget-blue), #1f4c74);
+            border-color: var(--widget-gold);
+            color: white;
+            box-shadow: 0 14px 30px rgba(41,95,143,.24);
+        }
+
+        #reservas .widget-card[aria-pressed="true"] .muted,
+        #reservas .widget-choice.is-selected .muted { color: rgba(255,255,255,.75); }
+
+        #reservas .widget-summary {
+            background: linear-gradient(160deg, var(--widget-panel-soft), var(--widget-card));
+            border: 1px solid var(--widget-line);
+        }
+
+        #reservas .widget-title { color: var(--widget-text); }
+        #reservas .widget-muted { color: var(--widget-muted); }
+        #reservas .widget-label { color: var(--widget-gold); }
+        #reservas .widget-divider { border-color: var(--widget-line-soft); }
+
+        #reservas .editorial-kicker {
+            letter-spacing: .28em;
+            text-transform: uppercase;
+            color: var(--widget-gold);
+        }
+
+        #reservas .editorial-line {
+            width: 72px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--widget-gold), transparent);
+        }
+
+        #reservas .category-icon {
+            width: 72px;
+            height: 72px;
+            object-fit: contain;
+            filter: grayscale(1) brightness(1.45);
+            opacity: .78;
+            transition: filter .3s ease, opacity .3s ease, transform .3s ease;
+        }
+
+        #reservas[data-theme="light"] .category-icon { filter: grayscale(1); opacity: .62; }
+        #reservas .widget-card:hover .category-icon,
+        #reservas .widget-card[aria-pressed="true"] .category-icon {
+            filter: none;
+            opacity: 1;
+            transform: scale(1.04);
+        }
+
+        #reservas .pro-photo {
+            width: 112px;
+            height: 112px;
+            object-fit: cover;
+            border-radius: 999px;
+            border: 1px solid rgba(220,175,87,.45);
+            filter: grayscale(1);
+            transition: filter .45s ease, transform .35s ease, border-color .35s ease;
+        }
+
+        #reservas .widget-card:hover .pro-photo {
+            filter: grayscale(0);
+            transform: scale(1.025);
+            border-color: var(--widget-gold);
+        }
+
+        #reservas .fade-in { animation: widgetFade .38s cubic-bezier(.16,1,.3,1); }
+        @keyframes widgetFade {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        #reservas .theme-toggle {
+            background: rgba(255,255,255,.10);
+            border: 1px solid rgba(255,255,255,.22);
+            color: white;
+        }
+        #reservas .theme-toggle:hover { background: rgba(255,255,255,.17); }
+
+        #reservas .cta-button {
+            background: var(--widget-blue);
+            color: white;
+            border: 1px solid rgba(220,175,87,.7);
+            box-shadow: 0 14px 28px rgba(41,95,143,.25);
+            transition: transform .25s ease, background .25s ease, box-shadow .25s ease, opacity .25s ease;
+        }
+        #reservas .cta-button:not(:disabled):hover {
+            background: var(--widget-gold);
+            color: #101214;
+            transform: translateY(-2px);
+            box-shadow: 0 18px 34px rgba(220,175,87,.22);
+        }
+        #reservas .cta-button:disabled { opacity: .42; cursor: not-allowed; box-shadow: none; }
+
+        #reservas .progress-track { background: rgba(0,0,0,.24); }
+        #reservas .progress-fill { background: linear-gradient(90deg, #e6bd6d, var(--widget-gold)); }
+
+        @media (prefers-reduced-motion: reduce) {
+            #reservas *, #reservas *::before, #reservas *::after {
+                animation-duration: .01ms !important;
+                transition-duration: .01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+    </style>
+
+<!-- RESERVAS -->
+<section id="reservas" data-theme="dark" class="relative overflow-hidden z-100 py-16 sm:py-20 md:py-28 lg:py-36">
+    <div
+        class="pointer-events-none absolute inset-0"
+        aria-hidden="true"
+        style="background:
+            radial-gradient(circle at 8% 15%, rgba(41,95,143,.28), transparent 32%),
+            radial-gradient(circle at 92% 82%, rgba(220,175,87,.12), transparent 28%);"
+    ></div>
+
+    <div
+        class="pointer-events-none absolute left-0 top-24 hidden h-px w-[28%] bg-gradient-to-r from-transparent to-brand-gold/30 lg:block"
+        aria-hidden="true"
+    ></div>
+
+    <div
+        class="pointer-events-none absolute bottom-24 right-0 hidden h-px w-[28%] bg-gradient-to-l from-transparent to-brand-gold/30 lg:block"
+        aria-hidden="true"
+    ></div>
+
+    <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+        <!-- Encabezado editorial -->
+        <div class="mb-10 grid gap-6 sm:mb-14 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-12">
+            <div class="reveal max-w-3xl">
+                
+
+                <h2
+                    class="text-4xl font-extrabold uppercase leading-[.95] tracking-tight text-white sm:text-5xl lg:text-6xl"
+                    style="font-family: 'Montserrat', sans-serif;"
+                >
+                    Turnos<br class="hidden sm:block"> online
+                </h2>
+            </div>
+
+            
+        </div>
+
+        <div class="widget-shell min-h-[620px] overflow-hidden rounded-[16px] border border-white/10 lg:rounded-[20px]">
+
+            <!-- Barra de progreso -->
+            <header class="widget-topbar px-4 py-4 text-white sm:px-6 sm:py-5 md:px-8">
+                <div class="flex items-center gap-4 sm:gap-6">
+
+                    <button
+                        id="btn-back"
+                        type="button"
+                        class="hidden h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/15 text-white/85 transition hover:border-brand-gold hover:text-brand-gold"
+                        onclick="goBack()"
+                        aria-label="Volver al paso anterior"
+                    >
+                        <i class="fas fa-arrow-left text-sm" aria-hidden="true"></i>
+                    </button>
+
+                    <div class="min-w-0 flex-1">
+                        <div class="flex items-center justify-between gap-4">
+                            <span
+                                id="step-indicator"
+                                class="truncate text-[9px] font-semibold uppercase tracking-[.18em] text-white sm:text-[11px] sm:tracking-[.22em]"
+                            >
+                                Paso 1 de 5 · Categoría
+                            </span>
+
+                            <span
+                                id="step-counter"
+                                class="shrink-0 text-[10px] font-semibold tracking-[.14em] text-white/60 sm:text-xs"
+                            >
+                                01 / 05
+                            </span>
+                        </div>
+
+                        <div class="progress-track mt-3 h-[3px] overflow-hidden rounded-full">
+                            <div
+                                id="progress-bar"
+                                class="progress-fill h-full rounded-full transition-all duration-500"
+                                style="width: 20%"
+                            ></div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <div class="widget-content min-h-[560px] p-4 sm:p-7 md:p-10 lg:p-12">
+
+                <!-- PASO 1 -->
+                <div id="step-1" class="widget-step fade-in">
+                    <div class="grid gap-8 lg:grid-cols-[.72fr_1.28fr] lg:gap-12">
+
+                        <!-- Introducción -->
+                        <div class="flex flex-col justify-between">
+                            <div>
+                                <span class="editorial-kicker block text-[9px] font-semibold sm:text-[10px]">
+                                    Comenzá por acá
+                                </span>
+
+                                <h3
+                                    class="widget-title mt-4 text-3xl font-extrabold uppercase leading-[1.02] tracking-tight sm:text-4xl lg:text-5xl"
+                                    style="font-family: 'Montserrat', sans-serif;"
+                                >
+                                    Seleccioná un servicio
+                                </h3>
+
+                                <div class="mt-6 h-px w-16 bg-brand-gold"></div>
+
+                                <p class="widget-muted mt-6 max-w-md text-sm font-light leading-6 sm:text-base sm:leading-7">
+                                    Seleccioná una categoría para conocer los servicios y profesionales disponibles.
+                                </p>
+                            </div>
+
+                            <div class="widget-summary mt-8 hidden rounded-xl p-5 lg:block">
+                                <div class="flex items-start gap-4">
+                                    <div class="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-brand-gold/30 text-brand-gold">
+                                        <i class="fas fa-layer-group text-sm" aria-hidden="true"></i>
+                                    </div>
+
+                                    <div>
+                                        <p class="widget-title text-xs font-bold uppercase tracking-[.14em]">
+                                            Podés combinar servicios
+                                        </p>
+
+                                        <p class="widget-muted mt-2 text-xs leading-5">
+                                            Agregá más de un servicio y elegí un profesional diferente para cada uno.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Categorías -->
+                        <div class="grid grid-cols-2 gap-3 sm:gap-4">
+                            <button
+                                id="btn-cat-colorimetria"
+                                type="button"
+                                onclick="selectCategory('colorimetria')"
+                                class="cat-btn widget-card group relative flex min-h-[180px] flex-col items-start justify-between overflow-hidden rounded-xl p-4 text-left sm:min-h-[220px] sm:p-6"
+                                aria-pressed="false"
+                            >
+                                <span class="pointer-events-none absolute right-3 top-2 text-6xl font-extrabold leading-none text-white/[.025] sm:text-8xl">
+                                    01
+                                </span>
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-full border border-brand-gold/20 bg-white/[.03] sm:h-14 sm:w-14">
+                                    <img
+                                        src="./color.png"
+                                        class="category-icon h-8 w-8 object-contain sm:h-9 sm:w-9"
+                                        alt=""
+                                        aria-hidden="true"
+                                    >
+                                </div>
+
+                                <div class="relative z-10">
+                                    <span class="block text-[10px] font-bold uppercase tracking-[.18em] text-brand-gold">
+                                        Técnicos
+                                    </span>
+
+                                    <span class="widget-title mt-2 block text-lg font-bold uppercase tracking-[.04em] sm:text-xl">
+                                        Color
+                                    </span>
+
+                                    <span class="muted widget-muted mt-2 block text-xs leading-5">
+                                        Colorimetría y técnicas
+                                    </span>
+                                </div>
+                            </button>
+
+                            <button
+                                id="btn-cat-corte"
+                                type="button"
+                                onclick="selectCategory('corte')"
+                                class="cat-btn widget-card group relative flex min-h-[180px] flex-col items-start justify-between overflow-hidden rounded-xl p-4 text-left sm:min-h-[220px] sm:p-6"
+                                aria-pressed="false"
+                            >
+                                <span class="pointer-events-none absolute right-3 top-2 text-6xl font-extrabold leading-none text-white/[.025] sm:text-8xl">
+                                    02
+                                </span>
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-full border border-brand-gold/20 bg-white/[.03] sm:h-14 sm:w-14">
+                                    <img
+                                        src="./corte.png"
+                                        class="category-icon h-8 w-8 object-contain sm:h-9 sm:w-9"
+                                        alt=""
+                                        aria-hidden="true"
+                                    >
+                                </div>
+
+                                <div class="relative z-10">
+                                    <span class="block text-[10px] font-bold uppercase tracking-[.18em] text-brand-gold">
+                                        Salón
+                                    </span>
+
+                                    <span class="widget-title mt-2 block text-lg font-bold uppercase tracking-[.04em] sm:text-xl">
+                                        Corte
+                                    </span>
+
+                                    <span class="muted widget-muted mt-2 block text-xs leading-5">
+                                        Diseño y forma
+                                    </span>
+                                </div>
+                            </button>
+
+                            <button
+                                id="btn-cat-peinados"
+                                type="button"
+                                onclick="selectCategory('peinados')"
+                                class="cat-btn widget-card group relative flex min-h-[180px] flex-col items-start justify-between overflow-hidden rounded-xl p-4 text-left sm:min-h-[220px] sm:p-6"
+                                aria-pressed="false"
+                            >
+                                <span class="pointer-events-none absolute right-3 top-2 text-6xl font-extrabold leading-none text-white/[.025] sm:text-8xl">
+                                    03
+                                </span>
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-full border border-brand-gold/20 bg-white/[.03] sm:h-14 sm:w-14">
+                                    <img
+                                        src="./peinado.png"
+                                        class="category-icon h-8 w-8 object-contain sm:h-9 sm:w-9"
+                                        alt=""
+                                        aria-hidden="true"
+                                    >
+                                </div>
+
+                                <div class="relative z-10">
+                                    <span class="block text-[10px] font-bold uppercase tracking-[.18em] text-brand-gold">
+                                        Salón
+                                    </span>
+
+                                    <span class="widget-title mt-2 block text-lg font-bold uppercase tracking-[.04em] sm:text-xl">
+                                        Peinados
+                                    </span>
+
+                                    <span class="muted widget-muted mt-2 block text-xs leading-5">
+                                        Styling y terminación
+                                    </span>
+                                </div>
+                            </button>
+
+                            <button
+                                id="btn-cat-tratamientos"
+                                type="button"
+                                onclick="selectCategory('tratamientos')"
+                                class="cat-btn widget-card group relative flex min-h-[180px] flex-col items-start justify-between overflow-hidden rounded-xl p-4 text-left sm:min-h-[220px] sm:p-6"
+                                aria-pressed="false"
+                            >
+                                <span class="pointer-events-none absolute right-3 top-2 text-6xl font-extrabold leading-none text-white/[.025] sm:text-8xl">
+                                    04
+                                </span>
+
+                                <div class="flex h-12 w-12 items-center justify-center rounded-full border border-brand-gold/20 bg-white/[.03] sm:h-14 sm:w-14">
+                                    <img
+                                        src="./tratamiento.png"
+                                        class="category-icon h-8 w-8 object-contain sm:h-9 sm:w-9"
+                                        alt=""
+                                        aria-hidden="true"
+                                    >
+                                </div>
+
+                                <div class="relative z-10">
+                                    <span class="block text-[10px] font-bold uppercase tracking-[.18em] text-brand-gold">
+                                        Especiales
+                                    </span>
+
+                                    <span class="widget-title mt-2 block text-lg font-bold uppercase tracking-[.04em] sm:text-xl">
+                                        Tratamientos
+                                    </span>
+
+                                    <span class="muted widget-muted mt-2 block text-xs leading-5">
+                                        Cuidado capilar
+                                    </span>
+                                </div>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- PASO 2 -->
+                <div id="step-2" class="widget-step hidden fade-in">
+                    <div class="mb-8 border-b border-white/10 pb-6 sm:mb-10 sm:flex sm:items-end sm:justify-between">
+                        <div>
+                            <p class="editorial-kicker text-[10px] font-semibold">
+                                Seleccioná una opción
+                            </p>
+
+                            <h3
+                                id="category-title"
+                                class="widget-title mt-3 text-3xl font-extrabold uppercase tracking-tight md:text-4xl"
+                            >
+                                Servicio
+                            </h3>
+                        </div>
+
+                        <p class="widget-muted mt-3 max-w-sm text-sm leading-6 sm:mt-0 sm:text-right">
+                            Elegí el servicio que mejor se ajuste al resultado que buscás.
+                        </p>
+                    </div>
+
+                    <div
+                        id="services-grid"
+                        class="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3"
+                    ></div>
+                </div>
+
+                <!-- PASO 3 -->
+                <div id="step-3" class="widget-step hidden fade-in">
+                    <div class="mb-8 border-b border-white/10 pb-6 sm:mb-10 sm:flex sm:items-end sm:justify-between">
+                        <div>
+                            <p class="editorial-kicker text-[10px] font-semibold">
+                                Atención especializada
+                            </p>
+
+                            <h3 class="widget-title mt-3 text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
+                                Elegí a tu profesional
+                            </h3>
+                        </div>
+
+                        <p class="widget-muted mt-3 max-w-sm text-sm leading-6 sm:mt-0 sm:text-right">
+                            Disponibles para
+                            <span
+                                id="selected-service-name"
+                                class="widget-title font-semibold"
+                            ></span>
+                        </p>
+                    </div>
+
+                    <div
+                        id="pros-grid"
+                        class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
+                    ></div>
+                </div>
+
+                <!-- PASO 4 -->
+                <div id="step-4" class="widget-step hidden fade-in">
+                    <div class="mb-8 border-b border-white/10 pb-6 sm:mb-10 sm:flex sm:items-end sm:justify-between">
+                        <div>
+                            <p class="editorial-kicker text-[10px] font-semibold">
+                                Armá tu experiencia
+                            </p>
+
+                            <h3 class="widget-title mt-3 text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
+                                Tu selección
+                            </h3>
+                        </div>
+
+                        <p class="widget-muted mt-3 max-w-md text-sm leading-6 sm:mt-0 sm:text-right">
+                            Combiná varios servicios y elegí un profesional diferente para cada uno.
+                        </p>
+                    </div>
+
+                    <div class="mx-auto max-w-4xl">
+                        <div
+                            id="booking-items"
+                            class="space-y-3"
+                            aria-live="polite"
+                        ></div>
+
+                        <div class="mt-6 grid gap-3 sm:mt-8 sm:grid-cols-2">
+                            <button
+                                type="button"
+                                onclick="addAnotherService()"
+                                class="widget-choice flex min-h-14 items-center justify-center rounded-lg px-4 text-[10px] font-bold uppercase tracking-[.14em] sm:px-5 sm:text-xs"
+                            >
+                                <i class="fas fa-plus mr-3" aria-hidden="true"></i>
+                                Agregar otro servicio
+                            </button>
+
+                            <button
+                                id="btn-continue-date"
+                                type="button"
+                                onclick="continueToDateTime()"
+                                class="cta-button flex min-h-14 items-center justify-center rounded-lg px-4 text-[10px] font-bold uppercase tracking-[.14em] sm:px-5 sm:text-xs"
+                            >
+                                Elegir fecha y hora
+                                <i class="fas fa-arrow-right ml-3" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+               <!-- PASO 5 -->
+<div id="step-5" class="widget-step hidden fade-in">
+
+    <!-- SUBPASO 5A · FECHA -->
+    <div id="datetime-step-date">
+        <div class="mb-8 border-b border-white/10 pb-6 sm:mb-10 sm:flex sm:items-end sm:justify-between">
+            <div>
+                <p class="editorial-kicker text-[10px] font-semibold">
+                    Último paso
+                </p>
+
+                <h3 class="widget-title mt-3 text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
+                    Elegí la fecha
+                </h3>
+            </div>
+
+            <p
+                id="availability-description"
+                class="widget-muted mt-3 max-w-md text-sm leading-6 sm:mt-0 sm:text-right"
+            >
+                Las fechas se calculan según los días habituales de los profesionales seleccionados.
+            </p>
+        </div>
+
+        <div class="mx-auto max-w-4xl">
+            <div class="widget-divider mb-5 flex items-end justify-between gap-4 border-b pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-full border border-brand-gold/35 text-[10px] font-bold text-brand-gold">
+                        01
+                    </span>
+
+                    <div>
+                        <span class="widget-title block text-xs font-bold uppercase tracking-[.16em]">
+                            Día del turno
+                        </span>
+
+                        <span
+                            id="date-range-label"
+                            class="widget-muted mt-1 block text-xs"
+                        >
+                            Próximas fechas compatibles
+                        </span>
+                    </div>
+                </div>
+
+                <span
+                    id="available-dates-count"
+                    class="widget-muted shrink-0 text-right text-[10px] sm:text-xs"
+                    aria-live="polite"
+                ></span>
+            </div>
+
+            <div
+                id="dates-loading"
+                class="widget-summary hidden rounded-xl p-6 text-center"
+                role="status"
+            >
+                <i
+                    class="fas fa-circle-notch fa-spin text-brand-gold"
+                    aria-hidden="true"
+                ></i>
+
+                <p class="widget-muted mt-3 text-sm">
+                    Calculando fechas compatibles…
+                </p>
+            </div>
+
+            <div
+                id="dates-grid"
+                class="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4"
+                role="group"
+                aria-label="Fechas disponibles"
+                aria-live="polite"
+            ></div>
+
+            <div
+                id="dates-empty"
+                class="widget-summary hidden rounded-xl p-6 text-center"
+                role="status"
+            >
+                <i
+                    class="far fa-calendar-times text-xl text-brand-gold"
+                    aria-hidden="true"
+                ></i>
+
+                <p class="widget-title mt-3 text-sm font-semibold">
+                    No encontramos fechas compatibles.
+                </p>
+
+                <p class="widget-muted mx-auto mt-2 max-w-md text-xs leading-5">
+                    Volvé al paso anterior y modificá alguno de los profesionales seleccionados.
+                </p>
+            </div>
+
+            <div class="mt-6 flex items-start gap-3 border-l border-brand-gold/40 py-1 pl-4">
+                <i
+                    class="fas fa-info-circle mt-1 text-xs text-brand-gold"
+                    aria-hidden="true"
+                ></i>
+
+                <p class="widget-muted text-xs leading-5">
+                    Al seleccionar una fecha avanzarás automáticamente a la elección del horario.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBPASO 5B · HORARIO -->
+    <div id="datetime-step-time" class="hidden">
+        <div class="mb-8 border-b border-white/10 pb-6 sm:mb-10 sm:flex sm:items-end sm:justify-between">
+            <div>
+                <p class="editorial-kicker text-[10px] font-semibold">
+                    Último paso
+                </p>
+
+                <h3 class="widget-title mt-3 text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
+                    Elegí el horario
+                </h3>
+            </div>
+
+            <p class="widget-muted mt-3 max-w-md text-sm leading-6 sm:mt-0 sm:text-right">
+                Mostramos la franja horaria compatible con todos los profesionales seleccionados.
+            </p>
+        </div>
+
+        <div class="mx-auto max-w-4xl">
+            <div class="widget-divider mb-5 flex items-end justify-between gap-4 border-b pb-4">
+                <div class="flex items-center gap-3">
+                    <span class="flex h-9 w-9 items-center justify-center rounded-full border border-brand-gold/35 text-[10px] font-bold text-brand-gold">
+                        02
+                    </span>
+
+                    <div>
+                        <span class="widget-title block text-xs font-bold uppercase tracking-[.16em]">
+                            Horario inicial
+                        </span>
+
+                        <span
+                            id="selected-date-label"
+                            class="widget-muted mt-1 block text-xs"
+                        >
+                            Fecha seleccionada
+                        </span>
+                    </div>
+                </div>
+
+                <span
+                    id="available-times-count"
+                    class="widget-muted shrink-0 text-right text-[10px] sm:text-xs"
+                    aria-live="polite"
+                ></span>
+            </div>
+
+            <div
+                id="times-placeholder"
+                class="widget-summary rounded-xl p-6 text-center"
+            >
+                <i
+                    class="far fa-clock text-xl text-brand-gold"
+                    aria-hidden="true"
+                ></i>
+
+                <p class="widget-muted mt-3 text-sm">
+                    Elegí una fecha para consultar los horarios iniciales compatibles.
+                </p>
+            </div>
+
+            <div
+                id="times-loading"
+                class="widget-summary hidden rounded-xl p-6 text-center"
+                role="status"
+            >
+                <i
+                    class="fas fa-circle-notch fa-spin text-brand-gold"
+                    aria-hidden="true"
+                ></i>
+
+                <p class="widget-muted mt-3 text-sm">
+                    Calculando horarios compatibles…
+                </p>
+            </div>
+
+            <div
+                id="times-grid"
+                class="hidden grid-cols-3 gap-3 sm:grid-cols-4 lg:grid-cols-5"
+                role="group"
+                aria-label="Horarios iniciales disponibles"
+                aria-live="polite"
+            ></div>
+
+            <div
+                id="times-empty"
+                class="widget-summary hidden rounded-xl p-6 text-center"
+                role="status"
+            >
+                <i
+                    class="far fa-clock text-xl text-brand-gold"
+                    aria-hidden="true"
+                ></i>
+
+                <p class="widget-title mt-3 text-sm font-semibold">
+                    No hay horarios compatibles para esta fecha.
+                </p>
+
+                <p class="widget-muted mt-2 text-xs leading-5">
+                    Volvé y probá seleccionando otro día.
+                </p>
+            </div>
+
+            <div class="mt-6 flex items-start gap-3 border-l border-brand-gold/40 py-1 pl-4">
+                <i
+                    class="fas fa-info-circle mt-1 text-xs text-brand-gold"
+                    aria-hidden="true"
+                ></i>
+
+                <p class="widget-muted text-xs leading-5">
+                    El horario corresponde al inicio preferido del turno. La duración total y la disponibilidad final serán confirmadas por WhatsApp.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUBPASO 5C · RESUMEN -->
+    <div id="datetime-step-summary" class="hidden">
+        <div class="mb-8 border-b border-white/10 pb-6 sm:mb-10 sm:flex sm:items-end sm:justify-between">
+            <div>
+                <p class="editorial-kicker text-[10px] font-semibold">
+                    Último paso
+                </p>
+
+                <h3 class="widget-title mt-3 text-3xl font-extrabold uppercase tracking-tight md:text-4xl">
+                    Revisá tu solicitud
+                </h3>
+            </div>
+
+            <p class="widget-muted mt-3 max-w-md text-sm leading-6 sm:mt-0 sm:text-right">
+                Confirmá los servicios, profesionales, fecha y horario antes de continuar por WhatsApp.
+            </p>
+        </div>
+
+        <div class="mx-auto max-w-4xl">
+            <aside class="widget-summary rounded-xl p-5 sm:p-7 lg:p-8">
+                <div class="widget-divider mb-6 flex items-center justify-between gap-4 border-b pb-5">
+                    <div class="flex items-center gap-3">
+                        <span class="flex h-9 w-9 items-center justify-center rounded-full border border-brand-gold/35 text-[10px] font-bold text-brand-gold">
+                            03
+                        </span>
+
+                        <div>
+                            <p class="widget-title text-xs font-bold uppercase tracking-[.16em]">
+                                Resumen del turno
+                            </p>
+
+                            <p class="widget-muted mt-1 text-xs">
+                                Verificá que los datos sean correctos
+                            </p>
+                        </div>
+                    </div>
+
+                    <i
+                        class="far fa-check-circle text-xl text-brand-gold"
+                        aria-hidden="true"
+                    ></i>
+                </div>
+
+                <div class="grid gap-6 md:grid-cols-[1fr_auto] md:gap-10">
+                    <div
+                        id="summary-items"
+                        class="space-y-4"
+                        aria-live="polite"
+                    ></div>
+
+                    <div class="widget-divider border-t pt-5 md:min-w-[230px] md:border-l md:border-t-0 md:pl-8 md:pt-0">
+                        <p class="widget-muted text-[10px] font-semibold uppercase tracking-[.16em]">
+                            Fecha y hora inicial
+                        </p>
+
+                        <p
+                            id="summary-datetime"
+                            class="widget-title mt-2 text-base font-semibold leading-6"
+                            aria-live="polite"
+                        >
+                            Pendiente de selección
+                        </p>
+                    </div>
+                </div>
+
+                <div class="widget-divider mt-7 border-t pt-6">
+                    <button
+                        id="btn-whatsapp"
+                        type="button"
+                        onclick="sendWhatsApp()"
+                        disabled
+                        class="cta-button flex min-h-14 w-full items-center justify-center rounded-lg px-5 text-[10px] font-bold uppercase tracking-[.16em] sm:text-xs"
+                    >
+                        <i
+                            class="fab fa-whatsapp mr-3 text-xl"
+                            aria-hidden="true"
+                        ></i>
+                        Solicitar turno
+                    </button>
+
+                    <p class="widget-muted mx-auto mt-4 max-w-xl text-center text-xs leading-5">
+                        La solicitud se enviará por WhatsApp y quedará sujeta a confirmación del salón.
+                    </p>
+                </div>
+            </aside>
+        </div>
+    </div>
+</div>
+        </div>
+    </div>
+</section>
+
+
+<script>
+    const matrixData = [
+        { id_profesional: 'nora', id_servicio: 'color' },
+        { id_profesional: 'nora', id_servicio: 'luces' },
+        { id_profesional: 'nora', id_servicio: 'reflejos' },
+        { id_profesional: 'nora', id_servicio: 'corte' },
+        { id_profesional: 'nora', id_servicio: 'peinado' },
+
+        { id_profesional: 'roberto', id_servicio: 'corte' },
+
+        { id_profesional: 'andrea', id_servicio: 'color' },
+        { id_profesional: 'andrea', id_servicio: 'luces' },
+        { id_profesional: 'andrea', id_servicio: 'reflejos' },
+        { id_profesional: 'andrea', id_servicio: 'mechas' },
+        { id_profesional: 'andrea', id_servicio: 'queratina_botox' },
+        { id_profesional: 'andrea', id_servicio: 'alisado_nano' },
+        { id_profesional: 'andrea', id_servicio: 'peinado' },
+        { id_profesional: 'andrea', id_servicio: 'nutricion' },
+
+        { id_profesional: 'nancy', id_servicio: 'peinado' },
+        { id_profesional: 'nancy', id_servicio: 'queratina_botox' },
+        { id_profesional: 'nancy', id_servicio: 'alisado_nano' },
+        { id_profesional: 'nancy', id_servicio: 'corte' },
+
+        { id_profesional: 'eugenia', id_servicio: 'color' },
+        { id_profesional: 'eugenia', id_servicio: 'queratina_botox' },
+        { id_profesional: 'eugenia', id_servicio: 'alisado_nano' },
+        { id_profesional: 'eugenia', id_servicio: 'peinado' },
+        { id_profesional: 'eugenia', id_servicio: 'lavado' },
+        { id_profesional: 'eugenia', id_servicio: 'nutricion' },
+
+        { id_profesional: 'yazmin', id_servicio: 'queratina_botox' },
+        { id_profesional: 'yazmin', id_servicio: 'alisado_nano' },
+        { id_profesional: 'yazmin', id_servicio: 'peinado' },
+        { id_profesional: 'yazmin', id_servicio: 'lavado' },
+        { id_profesional: 'yazmin', id_servicio: 'nutricion' },
+        { id_profesional: 'yazmin', id_servicio: 'corte' }
+    ];
+
+    const categoryMap = {
+        colorimetria: {
+            title: 'Colorimetría',
+            services: ['color', 'luces', 'reflejos', 'mechas']
+        },
+        corte: {
+            title: 'Corte',
+            services: ['corte']
+        },
+        peinados: {
+            title: 'Peinados y styling',
+            services: ['peinado', 'lavado']
+        },
+        tratamientos: {
+            title: 'Tratamientos capilares',
+            services: ['queratina_botox', 'alisado_nano', 'nutricion']
+        }
+    };
+
+    const serviceNames = {
+        color: 'Color',
+        luces: 'Luces',
+        reflejos: 'Reflejos',
+        mechas: 'Mechas',
+        corte: 'Corte',
+        peinado: 'Peinado',
+        lavado: 'Lavado',
+        queratina_botox: 'Queratina / Botox',
+        alisado_nano: 'Alisado Nano',
+        nutricion: 'Nutrición'
+    };
+
+    const serviceDescriptions = {
+        color: 'Coloración completa y cobertura',
+        luces: 'Iluminación delicada y natural',
+        reflejos: 'Contraste y dimensión en el cabello',
+        mechas: 'Técnica personalizada de iluminación',
+        corte: 'Diseño adaptado a tu estilo',
+        peinado: 'Styling y terminación profesional',
+        lavado: 'Lavado y preparación del cabello',
+        queratina_botox: 'Control, brillo y reparación',
+        alisado_nano: 'Disciplina y suavidad prolongada',
+        nutricion: 'Tratamiento intensivo de cuidado'
+    };
+
+    const proNames = {
+        roberto: 'Roberto Contino',
+        nora: 'Nora',
+        andrea: 'Andrea',
+        nancy: 'Nancy',
+        eugenia: 'Eugenia',
+        yazmin: 'Yazmín'
+    };
+
+    const proRoles = {
+        roberto: 'Director y estilista',
+        nora: 'Colorista y estilista',
+        andrea: 'Colorista y especialista en tratamientos',
+        nancy: 'Estilista',
+        eugenia: 'Colorista y estilista',
+        yazmin: 'Estilista y especialista en tratamientos'
+    };
+
+    const proImages = {
+        roberto: './rober.jpg',
+        nora: './nora.jpg',
+        andrea: './andrea.jpg',
+        nancy: './nancy.jpg',
+        eugenia: './eugenia.jpg',
+        yazmin: './cristal.jpg'
+    };
+
+    /*
+     * getDay():
+     * 0 = domingo
+     * 1 = lunes
+     * 2 = martes
+     * 3 = miércoles
+     * 4 = jueves
+     * 5 = viernes
+     * 6 = sábado
+     */
+    const salonSchedule = {
+        2: { start: '10:00', end: '18:30' },
+        3: { start: '10:00', end: '18:30' },
+        4: { start: '10:00', end: '18:30' },
+        5: { start: '10:00', end: '18:30' },
+        6: { start: '10:00', end: '19:00' }
+    };
+
+    /*
+     * Andrea y Yazmín utilizan por el momento el horario general del salón.
+     * Para asignarles horarios específicos, se pueden agregar aquí.
+     */
+    const professionalSchedules = {
+        nancy: {
+            6: { start: '10:00', end: '19:00' }
+        },
+
+        eugenia: {
+            6: { start: '10:00', end: '19:00' }
+        },
+
+        nora: {
+            2: { start: '13:00', end: '18:30' },
+            3: { start: '13:00', end: '18:30' },
+            5: { start: '13:00', end: '18:30' },
+            6: { start: '10:00', end: '19:00' }
+        },
+
+        roberto: {
+            2: { start: '10:00', end: '17:00' },
+            3: { start: '10:00', end: '17:00' },
+            4: { start: '10:00', end: '17:00' },
+            5: { start: '10:00', end: '17:00' },
+            6: { start: '10:00', end: '19:00' }
+        }
+    };
+
+    const DATE_RANGE_DAYS = 14;
+    const SATURDAY_RANGE_COUNT = 4;
+    const SLOT_INTERVAL_MINUTES = 30;
+
+    let state = createInitialState();
+
+    function createInitialState() {
+        return {
+            step: 1,
+            category: null,
+            serviceId: null,
+            proId: null,
+            date: null,
+            time: null,
+            flowType: 'standard',
+            items: []
+        };
+    }
+
+    function updateUI() {
+        document.querySelectorAll('#reservas .widget-step').forEach(element => {
+            element.classList.add('hidden');
+        });
+
+        const currentStep = document.getElementById(`step-${state.step}`);
+
+        if (currentStep) {
+            currentStep.classList.remove('hidden');
+            currentStep.classList.remove('fade-in');
+            void currentStep.offsetWidth;
+            currentStep.classList.add('fade-in');
+        }
+
+        const stepTitles = [
+            'Categoría',
+            'Servicio',
+            'Profesional',
+            'Tu reserva',
+            'Fecha y hora'
+        ];
+
+        const stepIndicator = document.getElementById('step-indicator');
+        const stepCounter = document.getElementById('step-counter');
+        const progressBar = document.getElementById('progress-bar');
+        const backButton = document.getElementById('btn-back');
+
+        if (stepIndicator) {
+            stepIndicator.textContent =
+                `Paso ${state.step} de 5 · ${stepTitles[state.step - 1]}`;
+        }
+
+        if (stepCounter) {
+            stepCounter.textContent =
+                `${String(state.step).padStart(2, '0')} / 05`;
+        }
+
+        if (progressBar) {
+            progressBar.style.width = `${state.step * 20}%`;
+        }
+
+        if (backButton) {
+            backButton.classList.toggle('hidden', state.step === 1);
+            backButton.classList.toggle('flex', state.step > 1);
+        }
+
+        document.querySelectorAll('#reservas .cat-btn').forEach(button => {
+            button.setAttribute('aria-pressed', 'false');
+        });
+
+        if (state.category) {
+            document
+                .getElementById(`btn-cat-${state.category}`)
+                ?.setAttribute('aria-pressed', 'true');
+        }
+
+        renderBookingItems();
+        renderSummaryItems();
+        updateSummaryTime();
+
+        if (state.step === 5) {
+            renderAvailableDates();
+        }
+
+        checkConfirmReady();
+    }
+
+    function renderServices(serviceIds, title) {
+        const grid = document.getElementById('services-grid');
+
+        if (!grid) {
+            return;
+        }
+
+        grid.innerHTML = '';
+
+        serviceIds.forEach(serviceId => {
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className =
+                'widget-card group flex min-h-[112px] items-center justify-between rounded-xl p-5 text-left';
+
+            button.innerHTML = `
+                <span>
+                    <span class="widget-title block text-base font-semibold">
+                        ${serviceNames[serviceId]}
+                    </span>
+
+                    <span class="widget-muted mt-2 block text-xs leading-5">
+                        ${serviceDescriptions[serviceId]}
+                    </span>
+                </span>
+
+                <span class="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-current/20 transition group-hover:border-brand-gold group-hover:text-brand-gold">
+                    <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+                </span>
+            `;
+
+            button.addEventListener('click', () => {
+                selectService(serviceId);
+            });
+
+            grid.appendChild(button);
+        });
+
+        const categoryTitle = document.getElementById('category-title');
+
+        if (categoryTitle) {
+            categoryTitle.innerHTML = title;
+        }
+    }
+
+    function selectCategory(categoryKey) {
+        state.flowType = 'standard';
+        state.category = categoryKey;
+        state.serviceId = null;
+        state.proId = null;
+
+        renderServices(
+            categoryMap[categoryKey].services,
+            categoryMap[categoryKey].title
+        );
+
+        state.step = 2;
+        updateUI();
+    }
+
+    function selectService(serviceId) {
+        state.serviceId = serviceId;
+
+        if (state.flowType === 'by_pro') {
+            addBookingItem(serviceId, state.proId);
+            return;
+        }
+
+        const availableProfessionals = [
+            ...new Set(
+                matrixData
+                    .filter(item => item.id_servicio === serviceId)
+                    .map(item => item.id_profesional)
+            )
+        ];
+
+        renderPros(availableProfessionals);
+
+        const selectedServiceName = document.getElementById(
+            'selected-service-name'
+        );
+
+        if (selectedServiceName) {
+            selectedServiceName.textContent = serviceNames[serviceId];
+        }
+
+        state.step = 3;
+        updateUI();
+    }
+
+    function renderPros(professionalsList) {
+        const grid = document.getElementById('pros-grid');
+
+        if (!grid) {
+            return;
+        }
+
+        grid.innerHTML = '';
+
+        if (!professionalsList.length) {
+            grid.innerHTML = `
+                <p class="widget-muted col-span-full py-8 text-center">
+                    No hay profesionales disponibles para este servicio actualmente.
+                </p>
+            `;
+            return;
+        }
+
+        professionalsList.forEach(proId => {
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className =
+                'widget-card group flex items-center gap-5 rounded-xl p-5 text-left sm:flex-col sm:text-center lg:flex-row lg:text-left';
+
+            button.innerHTML = `
+                <img
+                    src="${proImages[proId]}"
+                    alt="${proNames[proId]}"
+                    class="pro-photo shrink-0"
+                >
+
+                <span>
+                    <span class="widget-title block text-lg font-semibold">
+                        ${proNames[proId]}
+                    </span>
+
+                    <span class="widget-muted mt-2 block text-xs leading-5">
+                        ${proRoles[proId]}
+                    </span>
+                </span>
+            `;
+
+            button.addEventListener('click', () => {
+                selectPro(proId);
+            });
+
+            grid.appendChild(button);
+        });
+    }
+
+    function selectPro(proId) {
+        state.proId = proId;
+        addBookingItem(state.serviceId, proId);
+    }
+
+    function addBookingItem(serviceId, proId) {
+        const duplicate = state.items.some(item => {
+            return item.serviceId === serviceId && item.proId === proId;
+        });
+
+        if (!duplicate) {
+            state.items.push({ serviceId, proId });
+        }
+
+        clearDateTimeSelection();
+
+        state.step = 4;
+        updateUI();
+    }
+
+    function renderBookingItems() {
+        const container = document.getElementById('booking-items');
+        const continueButton = document.getElementById('btn-continue-date');
+
+        if (!container) {
+            return;
+        }
+
+        if (!state.items.length) {
+            container.innerHTML = `
+                <div class="widget-summary rounded-xl p-6 text-center">
+                    <p class="widget-muted text-sm">
+                        Todavía no agregaste servicios.
+                    </p>
+                </div>
+            `;
+
+            if (continueButton) {
+                continueButton.disabled = true;
+            }
+
+            return;
+        }
+
+        if (continueButton) {
+            continueButton.disabled = false;
+        }
+
+        container.innerHTML = state.items
+            .map((item, index) => {
+                const serviceName = serviceNames[item.serviceId];
+                const professionalName = proNames[item.proId];
+
+                return `
+                    <article class="widget-summary flex items-center gap-4 rounded-xl p-4 sm:p-5">
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-brand-gold/40 text-brand-gold">
+                            <span class="text-xs font-bold">
+                                ${String(index + 1).padStart(2, '0')}
+                            </span>
+                        </div>
+
+                        <div class="min-w-0 flex-1">
+                            <p class="widget-title font-semibold">
+                                ${serviceName}
+                            </p>
+
+                            <p class="widget-muted mt-1 text-xs">
+                                con ${professionalName}
+                            </p>
+                        </div>
+
+                        <button
+                            type="button"
+                            onclick="removeBookingItem(${index})"
+                            class="widget-muted flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition hover:text-brand-gold"
+                            aria-label="Eliminar ${serviceName} con ${professionalName}"
+                        >
+                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                        </button>
+                    </article>
+                `;
+            })
+            .join('');
+    }
+
+    function renderSummaryItems() {
+        const container = document.getElementById('summary-items');
+
+        if (!container) {
+            return;
+        }
+
+        if (!state.items.length) {
+            container.innerHTML = `
+                <p class="widget-muted text-sm">
+                    Sin servicios seleccionados.
+                </p>
+            `;
+            return;
+        }
+
+        container.innerHTML = state.items
+            .map((item, index) => {
+                return `
+                    <div>
+                        <p class="widget-muted text-[10px] font-semibold uppercase tracking-[.16em]">
+                            Servicio ${index + 1}
+                        </p>
+
+                        <p class="widget-title mt-1 text-base font-semibold">
+                            ${serviceNames[item.serviceId]}
+                        </p>
+
+                        <p class="widget-muted mt-1 text-xs">
+                            con ${proNames[item.proId]}
+                        </p>
+                    </div>
+                `;
+            })
+            .join('');
+    }
+
+    function removeBookingItem(index) {
+        state.items.splice(index, 1);
+        clearDateTimeSelection();
+
+        if (!state.items.length) {
+            state.step = 4;
+        }
+
+        updateUI();
+    }
+
+    function addAnotherService() {
+        state.step = 1;
+        state.category = null;
+        state.serviceId = null;
+        state.proId = null;
+        state.flowType = 'standard';
+
+        updateUI();
+    }
+
+    function continueToDateTime() {
+        if (!state.items.length) {
+            return;
+        }
+
+        clearDateTimeSelection();
+        state.step = 5;
+        updateUI();
+    }
+
+   function goBack() {
+    if (state.step <= 1) {
+        return;
+    }
+
+    if (state.flowType === 'by_pro' && state.step === 2) {
+        resetWidget();
+        return;
+    }
+
+    if (state.step === 5) {
+        if (state.dateTimeStep === 'summary') {
+            state.dateTimeStep = 'time';
+        } else if (state.dateTimeStep === 'time') {
+            state.dateTimeStep = 'date';
+        } else {
+            state.step = 4;
+        }
+
+        updateUI();
+        return;
+    }
+
+    if (state.step === 4) {
+        state.step = state.flowType === 'by_pro' ? 2 : 3;
+        updateUI();
+        return;
+    }
+
+    state.step -= 1;
+    updateUI();
+}
+
+    function resetWidget() {
+        state = createInitialState();
+        resetDateTimeInterface();
+        updateUI();
+    }
+
+    function clearDateTimeSelection() {
+        state.date = null;
+        state.time = null;
+        resetDateTimeInterface();
+    }
+
+    function resetDateTimeInterface() {
+        document
+            .querySelectorAll('#reservas .date-btn, #reservas .time-btn')
+            .forEach(button => {
+                button.classList.remove('is-selected');
+                button.setAttribute('aria-pressed', 'false');
+            });
+
+        const datesGrid = document.getElementById('dates-grid');
+        const timesGrid = document.getElementById('times-grid');
+        const timesPlaceholder = document.getElementById('times-placeholder');
+        const datesEmpty = document.getElementById('dates-empty');
+        const timesEmpty = document.getElementById('times-empty');
+        const selectedDateLabel = document.getElementById(
+            'selected-date-label'
+        );
+        const datesCount = document.getElementById('available-dates-count');
+        const timesCount = document.getElementById('available-times-count');
+
+        if (datesGrid) {
+            datesGrid.innerHTML = '';
+        }
+
+        if (timesGrid) {
+            timesGrid.innerHTML = '';
+            timesGrid.classList.add('hidden');
+        }
+
+        if (timesPlaceholder) {
+            timesPlaceholder.classList.remove('hidden');
+        }
+
+        if (datesEmpty) {
+            datesEmpty.classList.add('hidden');
+        }
+
+        if (timesEmpty) {
+            timesEmpty.classList.add('hidden');
+        }
+
+        if (selectedDateLabel) {
+            selectedDateLabel.textContent = 'Primero seleccioná una fecha';
+        }
+
+        if (datesCount) {
+            datesCount.textContent = '';
+        }
+
+        if (timesCount) {
+            timesCount.textContent = '';
+        }
+
+        updateSummaryTime();
+    }
+
+    function filterByPro(proId) {
+        document
+            .getElementById('reservas')
+            ?.scrollIntoView({ behavior: 'smooth' });
+
+        state.step = 2;
+        state.category = null;
+        state.serviceId = null;
+        state.proId = proId;
+        state.flowType = 'by_pro';
+
+        const services = [
+            ...new Set(
+                matrixData
+                    .filter(item => item.id_profesional === proId)
+                    .map(item => item.id_servicio)
+            )
+        ];
+
+        renderServices(
+            services,
+            `Servicios de <span class="font-serif italic text-brand-gold">${proNames[proId]}</span>`
+        );
+
+        updateUI();
+    }
+
+    function getSelectedProfessionals() {
+        return [...new Set(state.items.map(item => item.proId))];
+    }
+
+    function usesSaturdayOnlyProfessional() {
+        const selectedProfessionals = getSelectedProfessionals();
+
+        return selectedProfessionals.some(proId => {
+            return proId === 'nancy' || proId === 'eugenia';
+        });
+    }
+
+    function getProfessionalSchedule(proId, weekday) {
+        const customSchedule = professionalSchedules[proId];
+
+        if (customSchedule) {
+            return customSchedule[weekday] || null;
+        }
+
+        return salonSchedule[weekday] || null;
+    }
+
+    function getCombinedScheduleForDate(date) {
+        const weekday = date.getDay();
+        const professionals = getSelectedProfessionals();
+
+        if (!professionals.length) {
+            return null;
+        }
+
+        const schedules = professionals.map(proId => {
+            return getProfessionalSchedule(proId, weekday);
+        });
+
+        if (schedules.some(schedule => !schedule)) {
+            return null;
+        }
+
+        const latestStartMinutes = Math.max(
+            ...schedules.map(schedule => timeToMinutes(schedule.start))
+        );
+
+        const earliestEndMinutes = Math.min(
+            ...schedules.map(schedule => timeToMinutes(schedule.end))
+        );
+
+        if (
+            earliestEndMinutes - latestStartMinutes <
+            SLOT_INTERVAL_MINUTES
+        ) {
+            return null;
+        }
+
+        return {
+            start: minutesToTime(latestStartMinutes),
+            end: minutesToTime(earliestEndMinutes)
+        };
+    }
+
+    function generateCandidateDates() {
+        const today = startOfDay(new Date());
+
+        if (usesSaturdayOnlyProfessional()) {
+            return getNextSaturdays(today, SATURDAY_RANGE_COUNT);
+        }
+
+        const dates = [];
+
+        for (let offset = 0; offset < DATE_RANGE_DAYS; offset += 1) {
+            const date = addDays(today, offset);
+            const weekday = date.getDay();
+
+            if (salonSchedule[weekday]) {
+                dates.push(date);
+            }
+        }
+
+        return dates;
+    }
+
+    function getNextSaturdays(startDate, count) {
+        const saturdays = [];
+        let cursor = startOfDay(startDate);
+
+        while (saturdays.length < count) {
+            if (cursor.getDay() === 6) {
+                saturdays.push(new Date(cursor));
+            }
+
+            cursor = addDays(cursor, 1);
+        }
+
+        return saturdays;
+    }
+
+    function getAvailableDates() {
+        return generateCandidateDates()
+            .map(date => {
+                return {
+                    date,
+                    schedule: getCombinedScheduleForDate(date)
+                };
+            })
+            .filter(item => {
+                if (!item.schedule) {
+                    return false;
+                }
+
+                return generateTimeSlots(item.date, item.schedule).length > 0;
+            });
+    }
+
+    function renderAvailableDates() {
+        const datesGrid = document.getElementById('dates-grid');
+        const datesEmpty = document.getElementById('dates-empty');
+        const datesCount = document.getElementById(
+            'available-dates-count'
+        );
+        const dateRangeLabel = document.getElementById('date-range-label');
+        const availabilityDescription = document.getElementById(
+            'availability-description'
+        );
+
+        if (!datesGrid) {
+            return;
+        }
+
+        datesGrid.innerHTML = '';
+
+        const availableDates = getAvailableDates();
+        const saturdayOnly = usesSaturdayOnlyProfessional();
+
+        if (dateRangeLabel) {
+            dateRangeLabel.textContent = saturdayOnly
+                ? 'Próximos 4 sábados compatibles'
+                : 'Próximas 2 semanas';
+        }
+
+        if (availabilityDescription) {
+            availabilityDescription.textContent = saturdayOnly
+                ? 'La selección incluye profesionales que atienden exclusivamente los sábados. Se muestran los próximos cuatro sábados compatibles.'
+                : 'Las opciones se calculan según los días y horarios habituales de los profesionales seleccionados.';
+        }
+
+        if (datesCount) {
+            datesCount.textContent = availableDates.length
+                ? `${availableDates.length} ${
+                      availableDates.length === 1 ? 'fecha' : 'fechas'
+                  }`
+                : '';
+        }
+
+        if (!availableDates.length) {
+            datesEmpty?.classList.remove('hidden');
+            clearRenderedTimes();
+            return;
+        }
+
+        datesEmpty?.classList.add('hidden');
+
+        availableDates.forEach(({ date }) => {
+            const isoDate = formatDateISO(date);
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className =
+                'date-btn widget-choice rounded-lg';
+            button.dataset.date = isoDate;
+            button.setAttribute('aria-pressed', 'false');
+            button.setAttribute(
+                'aria-label',
+                `Seleccionar ${formatLongDate(date)}`
+            );
+
+            if (isToday(date)) {
+                button.classList.add('is-today');
+            }
+
+            if (state.date === isoDate) {
+                button.classList.add('is-selected');
+                button.setAttribute('aria-pressed', 'true');
+            }
+
+            button.innerHTML = `
+                <span class="date-weekday">
+                    ${capitalize(
+                        new Intl.DateTimeFormat('es-AR', {
+                            weekday: 'short'
+                        })
+                            .format(date)
+                            .replace('.', '')
+                    )}
+                </span>
+
+                <span class="date-day">
+                    ${date.getDate()}
+                </span>
+
+                <span class="date-month">
+                    ${new Intl.DateTimeFormat('es-AR', {
+                        month: 'short'
+                    })
+                        .format(date)
+                        .replace('.', '')}
+                </span>
+            `;
+
+            button.addEventListener('click', () => {
+                selectDate(isoDate);
+            });
+
+            datesGrid.appendChild(button);
+        });
+
+        if (
+            state.date &&
+            availableDates.some(item => {
+                return formatDateISO(item.date) === state.date;
+            })
+        ) {
+            renderAvailableTimes(state.date);
+        } else {
+            state.date = null;
+            state.time = null;
+            clearRenderedTimes();
+            updateSummaryTime();
+        }
+    }
+
+    function selectDate(isoDate) {
+        state.date = isoDate;
+        state.time = null;
+
+        document.querySelectorAll('#reservas .date-btn').forEach(button => {
+            const selected = button.dataset.date === isoDate;
+
+            button.classList.toggle('is-selected', selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+
+        renderAvailableTimes(isoDate);
+        updateSummaryTime();
+    }
+
+    function renderAvailableTimes(isoDate) {
+        const date = parseISODate(isoDate);
+        const schedule = getCombinedScheduleForDate(date);
+        const timesGrid = document.getElementById('times-grid');
+        const timesPlaceholder = document.getElementById('times-placeholder');
+        const timesEmpty = document.getElementById('times-empty');
+        const timesCount = document.getElementById(
+            'available-times-count'
+        );
+        const selectedDateLabel = document.getElementById(
+            'selected-date-label'
+        );
+
+        if (!timesGrid) {
+            return;
+        }
+
+        timesGrid.innerHTML = '';
+
+        if (selectedDateLabel) {
+            selectedDateLabel.textContent = formatLongDate(date);
+        }
+
+        if (!schedule) {
+            timesGrid.classList.add('hidden');
+            timesPlaceholder?.classList.add('hidden');
+            timesEmpty?.classList.remove('hidden');
+
+            if (timesCount) {
+                timesCount.textContent = '';
+            }
+
+            return;
+        }
+
+        const availableTimes = generateTimeSlots(date, schedule);
+
+        timesPlaceholder?.classList.add('hidden');
+
+        if (timesCount) {
+            timesCount.textContent = availableTimes.length
+                ? `${availableTimes.length} ${
+                      availableTimes.length === 1 ? 'horario' : 'horarios'
+                  }`
+                : '';
+        }
+
+        if (!availableTimes.length) {
+            timesGrid.classList.add('hidden');
+            timesEmpty?.classList.remove('hidden');
+            return;
+        }
+
+        timesEmpty?.classList.add('hidden');
+        timesGrid.classList.remove('hidden');
+
+        availableTimes.forEach(time => {
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className =
+                'time-btn widget-choice rounded-lg';
+            button.dataset.time = time;
+            button.textContent = time;
+            button.setAttribute('aria-pressed', 'false');
+            button.setAttribute(
+                'aria-label',
+                `Seleccionar horario inicial ${time}`
+            );
+
+            if (state.time === time) {
+                button.classList.add('is-selected');
+                button.setAttribute('aria-pressed', 'true');
+            }
+
+            button.addEventListener('click', () => {
+                selectTime(time);
+            });
+
+            timesGrid.appendChild(button);
+        });
+    }
+
+    function generateTimeSlots(date, schedule) {
+        const startMinutes = timeToMinutes(schedule.start);
+        const endMinutes = timeToMinutes(schedule.end);
+        const slots = [];
+
+        let minimumStartMinutes = startMinutes;
+
+        if (isToday(date)) {
+            const now = new Date();
+
+            const currentMinutes =
+                now.getHours() * 60 + now.getMinutes();
+
+            minimumStartMinutes = Math.max(
+                startMinutes,
+                roundUpToInterval(
+                    currentMinutes + 1,
+                    SLOT_INTERVAL_MINUTES
+                )
+            );
+        }
+
+        for (
+            let minutes = minimumStartMinutes;
+            minutes + SLOT_INTERVAL_MINUTES <= endMinutes;
+            minutes += SLOT_INTERVAL_MINUTES
+        ) {
+            slots.push(minutesToTime(minutes));
+        }
+
+        return slots;
+    }
+
+    function selectTime(time) {
+        state.time = time;
+
+        document.querySelectorAll('#reservas .time-btn').forEach(button => {
+            const selected = button.dataset.time === time;
+
+            button.classList.toggle('is-selected', selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+
+        updateSummaryTime();
+    }
+
+    function clearRenderedTimes() {
+        const timesGrid = document.getElementById('times-grid');
+        const timesPlaceholder = document.getElementById('times-placeholder');
+        const timesEmpty = document.getElementById('times-empty');
+        const timesCount = document.getElementById(
+            'available-times-count'
+        );
+        const selectedDateLabel = document.getElementById(
+            'selected-date-label'
+        );
+
+        if (timesGrid) {
+            timesGrid.innerHTML = '';
+            timesGrid.classList.add('hidden');
+        }
+
+        timesPlaceholder?.classList.remove('hidden');
+        timesEmpty?.classList.add('hidden');
+
+        if (timesCount) {
+            timesCount.textContent = '';
+        }
+
+        if (selectedDateLabel) {
+            selectedDateLabel.textContent =
+                'Primero seleccioná una fecha';
+        }
+    }
+
+    function updateSummaryTime() {
+        const summary = document.getElementById('summary-datetime');
+
+        if (!summary) {
+            return;
+        }
+
+        if (state.date && state.time) {
+            summary.textContent =
+                `${formatLongDate(parseISODate(state.date))} · ${state.time} h`;
+        } else if (state.date) {
+            summary.textContent =
+                `${formatLongDate(parseISODate(state.date))} · Falta elegir horario`;
+        } else if (state.time) {
+            summary.textContent =
+                `${state.time} h · Falta elegir día`;
+        } else {
+            summary.textContent = 'Pendiente de selección';
+        }
+
+        checkConfirmReady();
+    }
+
+    function checkConfirmReady() {
+        const whatsappButton = document.getElementById('btn-whatsapp');
+
+        if (!whatsappButton) {
+            return;
+        }
+
+        whatsappButton.disabled = !(
+            state.items.length &&
+            state.date &&
+            state.time
+        );
+    }
+
+    function sendWhatsApp() {
+        if (
+            !state.items.length ||
+            !state.date ||
+            !state.time
+        ) {
+            return;
+        }
+
+        const phone = '5491161654729';
+
+        const servicesText = state.items
+            .map((item, index) => {
+                return `${index + 1}. *${serviceNames[item.serviceId]}* con *${proNames[item.proId]}*`;
+            })
+            .join('\n');
+
+        const formattedDate = formatLongDate(
+            parseISODate(state.date)
+        );
+
+        const message = `Hola RC Estilistas. Me gustaría solicitar un turno para los siguientes servicios:
+
+${servicesText}
+
+📅 *Día preferido:* ${formattedDate}
+⏰ *Horario inicial preferido:* ${state.time} h
+
+Entiendo que el horario se encuentra sujeto a confirmación según la disponibilidad de los profesionales y la duración total de los servicios.
+
+Quedo a la espera de la confirmación. ¡Muchas gracias!`;
+
+        window.open(
+            `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+            '_blank',
+            'noopener,noreferrer'
+        );
+
+        showWhatsAppNotice();
+    }
+
+    function showWhatsAppNotice() {
+        const existingNotice = document.getElementById(
+            'widget-whatsapp-notice'
+        );
+
+        existingNotice?.remove();
+
+        const notice = document.createElement('div');
+
+        notice.id = 'widget-whatsapp-notice';
+        notice.className =
+            'fixed left-1/2 top-8 z-[100] -translate-x-1/2 rounded-lg border border-brand-gold/50 bg-[#163f62] px-6 py-4 text-sm font-semibold text-white shadow-2xl';
+
+        notice.innerHTML = `
+            <i
+                class="fab fa-whatsapp mr-2 text-lg"
+                aria-hidden="true"
+            ></i>
+            Abriendo WhatsApp…
+        `;
+
+        document.body.appendChild(notice);
+
+        window.setTimeout(() => {
+            notice.remove();
+        }, 2600);
+    }
+
+    function initThemeToggle() {
+        const section = document.getElementById('reservas');
+        const button = document.getElementById('theme-toggle');
+        const label = document.getElementById('theme-label');
+        const icon = document.getElementById('theme-icon');
+
+        if (!section || !button || !label || !icon) {
+            return;
+        }
+
+        button.addEventListener('click', () => {
+            const isLight = section.dataset.theme === 'light';
+
+            section.dataset.theme = isLight ? 'dark' : 'light';
+
+            button.setAttribute(
+                'aria-pressed',
+                String(!isLight)
+            );
+
+            button.setAttribute(
+                'aria-label',
+                isLight
+                    ? 'Cambiar a modo claro'
+                    : 'Cambiar a modo noche'
+            );
+
+            label.textContent = isLight
+                ? 'Modo claro'
+                : 'Modo noche';
+
+            icon.className = isLight
+                ? 'fas fa-sun'
+                : 'fas fa-moon';
+        });
+    }
+
+    function timeToMinutes(time) {
+        const [hours, minutes] = time
+            .split(':')
+            .map(Number);
+
+        return hours * 60 + minutes;
+    }
+
+    function minutesToTime(totalMinutes) {
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    }
+
+    function roundUpToInterval(value, interval) {
+        return Math.ceil(value / interval) * interval;
+    }
+
+    function startOfDay(date) {
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        );
+    }
+
+    function addDays(date, days) {
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + days
+        );
+    }
+
+    function isToday(date) {
+        const today = new Date();
+
+        return (
+            date.getFullYear() === today.getFullYear() &&
+            date.getMonth() === today.getMonth() &&
+            date.getDate() === today.getDate()
+        );
+    }
+
+    function formatDateISO(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}-${month}-${day}`;
+    }
+
+    function parseISODate(isoDate) {
+        const [year, month, day] = isoDate
+            .split('-')
+            .map(Number);
+
+        return new Date(year, month - 1, day);
+    }
+
+    function formatLongDate(date) {
+        return capitalize(
+            new Intl.DateTimeFormat('es-AR', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            }).format(date)
+        );
+    }
+
+    function capitalize(text) {
+        if (!text) {
+            return '';
+        }
+
+        return text.charAt(0).toUpperCase() + text.slice(1);
+    }
+
+    initThemeToggle();
+    updateUI();
+</script>
+

@@ -7,7 +7,10 @@
     <title>Roberto Contino | Estilistas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="icon" type="image/png" href="./isologo.png">
-
+<meta property="og:image" content="./hero1.jpg">
+<meta property="og:image:type" content="image/jpeg"> 
+<meta property="og:image:width" content="1200"> 
+<meta property="og:image:height" content="630">
     <link
         href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,400;0,500;0,700;1,400;1,500&display=swap"
         rel="stylesheet">
@@ -40,7 +43,536 @@
             }
         }
     </script>
+    
     <style>
+
+    #reservas {
+    --widget-bg: #0f1113;
+    --widget-panel: #15191d;
+    --widget-panel-soft: #1b2025;
+    --widget-card: #181d22;
+    --widget-card-hover: #20262c;
+    --widget-text: #f7f4ee;
+    --widget-muted: #a9adb1;
+    --widget-line: rgba(220, 175, 87, 0.25);
+    --widget-line-soft: rgba(255, 255, 255, 0.10);
+    --widget-blue: #295f8f;
+    --widget-blue-dark: #1f4c74;
+    --widget-gold: #dcaf57;
+    --widget-danger: #d56a6a;
+    --widget-shadow: 0 26px 70px rgba(0, 0, 0, 0.28);
+
+    background:
+        radial-gradient(
+            circle at 15% 10%,
+            rgba(41, 95, 143, 0.18),
+            transparent 34%
+        ),
+        radial-gradient(
+            circle at 90% 80%,
+            rgba(220, 175, 87, 0.08),
+            transparent 30%
+        ),
+        #0b0d0f;
+
+    color: var(--widget-text);
+    transition:
+        background 0.35s ease,
+        color 0.35s ease;
+}
+
+#reservas[data-theme="light"] {
+    --widget-bg: #f7f4ee;
+    --widget-panel: #ffffff;
+    --widget-panel-soft: #f3f0ea;
+    --widget-card: #fbfaf7;
+    --widget-card-hover: #ffffff;
+    --widget-text: #121416;
+    --widget-muted: #6f7377;
+    --widget-line: rgba(220, 175, 87, 0.42);
+    --widget-line-soft: rgba(15, 15, 15, 0.10);
+    --widget-shadow: 0 24px 60px rgba(31, 36, 41, 0.12);
+
+    background:
+        radial-gradient(
+            circle at 10% 12%,
+            rgba(41, 95, 143, 0.09),
+            transparent 30%
+        ),
+        radial-gradient(
+            circle at 92% 82%,
+            rgba(220, 175, 87, 0.12),
+            transparent 32%
+        ),
+        #f3f0ea;
+}
+
+#reservas .widget-shell {
+    background: var(--widget-panel);
+    border: 1px solid var(--widget-line-soft);
+    box-shadow: var(--widget-shadow);
+
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+#reservas .widget-topbar {
+    background:
+        linear-gradient(
+            110deg,
+            rgba(41, 95, 143, 0.98),
+            rgba(30, 67, 101, 0.98)
+        ),
+        var(--widget-blue);
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+#reservas .widget-content {
+    background: var(--widget-panel);
+}
+
+#reservas .widget-content,
+#reservas .widget-summary,
+#reservas .widget-card,
+#reservas .widget-choice {
+    transition:
+        background 0.35s ease,
+        border-color 0.35s ease,
+        color 0.35s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+}
+
+#reservas .widget-card,
+#reservas .widget-choice {
+    background: var(--widget-card);
+    border: 1px solid var(--widget-line-soft);
+    color: var(--widget-text);
+}
+
+#reservas .widget-card:hover,
+#reservas .widget-choice:hover {
+    background: var(--widget-card-hover);
+    border-color: rgba(220, 175, 87, 0.65);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 34px rgba(0, 0, 0, 0.14);
+}
+
+#reservas .widget-card:focus-visible,
+#reservas .widget-choice:focus-visible,
+#reservas button:focus-visible {
+    outline: 2px solid var(--widget-gold);
+    outline-offset: 3px;
+}
+
+#reservas .widget-card[aria-pressed="true"],
+#reservas .widget-choice.is-selected {
+    background:
+        linear-gradient(
+            135deg,
+            var(--widget-blue),
+            var(--widget-blue-dark)
+        );
+
+    border-color: var(--widget-gold);
+    color: #ffffff;
+    box-shadow: 0 14px 30px rgba(41, 95, 143, 0.24);
+}
+
+#reservas .widget-card[aria-pressed="true"] .muted,
+#reservas .widget-choice.is-selected .muted,
+#reservas .widget-choice.is-selected .widget-muted {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+#reservas .widget-summary {
+    background:
+        linear-gradient(
+            160deg,
+            var(--widget-panel-soft),
+            var(--widget-card)
+        );
+
+    border: 1px solid var(--widget-line);
+}
+
+#reservas .widget-title {
+    color: var(--widget-text);
+}
+
+#reservas .widget-muted {
+    color: var(--widget-muted);
+}
+
+#reservas .widget-label {
+    color: var(--widget-gold);
+}
+
+#reservas .widget-divider {
+    border-color: var(--widget-line-soft);
+}
+
+#reservas .editorial-kicker {
+    color: var(--widget-gold);
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+}
+
+#reservas .editorial-line {
+    width: 72px;
+    height: 1px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--widget-gold),
+            transparent
+        );
+}
+
+/* Categorías */
+
+#reservas .category-icon {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.45);
+    opacity: 0.78;
+
+    transition:
+        filter 0.3s ease,
+        opacity 0.3s ease,
+        transform 0.3s ease;
+}
+
+#reservas[data-theme="light"] .category-icon {
+    filter: grayscale(1);
+    opacity: 0.62;
+}
+
+#reservas .widget-card:hover .category-icon,
+#reservas .widget-card[aria-pressed="true"] .category-icon {
+    filter: none;
+    opacity: 1;
+    transform: scale(1.04);
+}
+
+/* Profesionales */
+
+#reservas .pro-photo {
+    width: 112px;
+    height: 112px;
+    object-fit: cover;
+    border-radius: 999px;
+    border: 1px solid rgba(220, 175, 87, 0.45);
+    filter: grayscale(1);
+
+    transition:
+        filter 0.45s ease,
+        transform 0.35s ease,
+        border-color 0.35s ease;
+}
+
+#reservas .widget-card:hover .pro-photo {
+    filter: grayscale(0);
+    transform: scale(1.025);
+    border-color: var(--widget-gold);
+}
+
+/* Barra de progreso */
+
+#reservas .progress-track {
+    background: rgba(0, 0, 0, 0.24);
+}
+
+#reservas .progress-fill {
+    background:
+        linear-gradient(
+            90deg,
+            #e6bd6d,
+            var(--widget-gold)
+        );
+}
+
+/* Botones principales */
+
+#reservas .cta-button {
+    background: var(--widget-blue);
+    color: #ffffff;
+    border: 1px solid rgba(220, 175, 87, 0.7);
+    box-shadow: 0 14px 28px rgba(41, 95, 143, 0.25);
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease,
+        box-shadow 0.25s ease,
+        opacity 0.25s ease;
+}
+
+#reservas .cta-button:not(:disabled):hover {
+    background: var(--widget-gold);
+    color: #101214;
+    transform: translateY(-2px);
+    box-shadow: 0 18px 34px rgba(220, 175, 87, 0.22);
+}
+
+#reservas .cta-button:disabled {
+    opacity: 0.42;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* Toggle opcional */
+
+#reservas .theme-toggle {
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    color: #ffffff;
+}
+
+#reservas .theme-toggle:hover {
+    background: rgba(255, 255, 255, 0.17);
+}
+
+/* Fechas dinámicas */
+
+#reservas #dates-grid:empty,
+#reservas #times-grid:empty {
+    display: none;
+}
+
+#reservas .date-btn {
+    position: relative;
+    display: flex;
+    min-height: 92px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+    padding: 14px 10px;
+    text-align: center;
+}
+
+#reservas .date-btn .date-weekday {
+    color: var(--widget-muted);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+#reservas .date-btn .date-day {
+    color: var(--widget-text);
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+#reservas .date-btn .date-month {
+    color: var(--widget-muted);
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1.2;
+    text-transform: capitalize;
+}
+
+#reservas .date-btn.is-selected .date-weekday,
+#reservas .date-btn.is-selected .date-month {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+#reservas .date-btn.is-selected .date-day {
+    color: #ffffff;
+}
+
+#reservas .date-btn.is-today::after {
+    content: "Hoy";
+    position: absolute;
+    top: 7px;
+    right: 7px;
+    padding: 3px 6px;
+    border-radius: 999px;
+
+    background: rgba(220, 175, 87, 0.14);
+    color: var(--widget-gold);
+
+    font-size: 8px;
+    font-weight: 700;
+    letter-spacing: 0.10em;
+    line-height: 1;
+    text-transform: uppercase;
+}
+
+#reservas .date-btn.is-selected.is-today::after {
+    background: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+/* Horarios dinámicos */
+
+#reservas #times-grid {
+    display: grid;
+}
+
+#reservas #times-grid.hidden {
+    display: none;
+}
+
+#reservas .time-btn {
+    min-height: 54px;
+    padding: 10px 8px;
+    font-size: 14px;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+}
+
+#reservas .time-btn.is-selected {
+    background:
+        linear-gradient(
+            135deg,
+            var(--widget-blue),
+            var(--widget-blue-dark)
+        );
+
+    border-color: var(--widget-gold);
+    color: #ffffff;
+    box-shadow: 0 12px 24px rgba(41, 95, 143, 0.22);
+}
+
+#reservas .date-btn:disabled,
+#reservas .time-btn:disabled,
+#reservas .widget-choice:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+#reservas .date-btn:disabled:hover,
+#reservas .time-btn:disabled:hover,
+#reservas .widget-choice:disabled:hover {
+    background: var(--widget-card);
+    border-color: var(--widget-line-soft);
+    transform: none;
+    box-shadow: none;
+}
+
+/* Estados vacíos y carga */
+
+#reservas #dates-loading,
+#reservas #times-loading,
+#reservas #dates-empty,
+#reservas #times-empty,
+#reservas #times-placeholder {
+    min-height: 120px;
+}
+
+#reservas #dates-loading i,
+#reservas #times-loading i,
+#reservas #dates-empty i,
+#reservas #times-empty i,
+#reservas #times-placeholder i {
+    color: var(--widget-gold);
+}
+
+#reservas #dates-empty,
+#reservas #times-empty {
+    border-style: dashed;
+}
+
+#reservas #available-dates-count,
+#reservas #available-times-count {
+    min-width: 70px;
+}
+
+/* Animación de entrada */
+
+#reservas .fade-in {
+    animation:
+        widgetFade 0.38s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes widgetFade {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive */
+
+@media (max-width: 639px) {
+    #reservas .widget-shell {
+        border-radius: 14px;
+    }
+
+    #reservas .widget-content {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+
+    #reservas .date-btn {
+        min-height: 84px;
+    }
+
+    #reservas .date-btn .date-day {
+        font-size: 21px;
+    }
+
+    #reservas .time-btn {
+        min-height: 50px;
+        font-size: 13px;
+    }
+
+    #reservas .pro-photo {
+        width: 88px;
+        height: 88px;
+    }
+}
+
+@media (min-width: 640px) {
+    #reservas #dates-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    #reservas #times-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    #reservas .date-btn {
+        min-height: 96px;
+    }
+}
+
+/* Accesibilidad */
+
+@media (prefers-reduced-motion: reduce) {
+    #reservas *,
+    #reservas *::before,
+    #reservas *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+
         /* === MOBILE MENU TRANSITION === */
         #mobile-menu {
             transition: all 0.3s ease-in-out;
@@ -100,7 +632,7 @@
 }
 
 .nav-transparent .hamburger-icon {
-    color: white;
+    color: rgba(15, 15, 15, 0.3) ;
 }
 
         /* === GLASS PANEL === */
@@ -202,55 +734,115 @@
     </style>
 </head>
 
+            <!--  BODY -->
+
 <body class="bg-brand-offwhite text-brand-dark font-sans antialiased">
 
-    <nav id="main-nav" class="fixed w-full z-50 border-b transition-all nav-transparent">
-        <div class="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center cursor-pointer"
-                    onclick="window.scrollTo({top:0,behavior:'smooth'})">
-                    <img id="nav-logo" src="./blanco_solo.png" alt="Roberto Contino Estilistas"
-                        class="h-10 md:h-10 w-auto object-contain transition-all duration-300" />
+    <!--  NAVBAR -->
+  <nav
+    id="main-nav"
+    class="pointer-events-none fixed inset-x-0 top-0 z-50 transition-all"
+>
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="flex h-20 items-center justify-end">
+
+            <button
+                id="menu-toggle"
+                type="button"
+                onclick="toggleMobileMenu()"
+                class="hamburger-icon pointer-events-auto relative z-[60] flex h-12 w-12 items-center justify-center rounded-full border border-brand-blue/20 bg-white/90 text-brand-blue shadow-lg backdrop-blur-md transition-all duration-300 hover:border-brand-gold hover:bg-brand-blue hover:text-white focus:outline-none focus:ring-2 focus:ring-brand-gold/40"
+                aria-label="Abrir menú"
+                aria-controls="mobile-menu"
+                aria-expanded="false"
+            >
+                <i
+                    id="menu-icon"
+                    class="fas fa-bars text-xl"
+                    aria-hidden="true"
+                ></i>
+            </button>
+
+        </div>
+    </div>
+
+    <div
+        id="mobile-menu"
+        class="pointer-events-none absolute left-0 top-full w-full -translate-y-3 opacity-0 transition-all duration-300"
+    >
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div
+                class="pointer-events-auto ml-auto max-w-sm overflow-hidden border border-black/5 bg-white/95 shadow-[0_24px_60px_rgba(15,15,15,.20)] backdrop-blur-xl"
+            >
+
+                <div class="border-b border-black/5 px-6 py-5">
+                    <span class="text-[10px] font-bold uppercase tracking-[0.22em] text-brand-gold">
+                        Navegación
+                    </span>
+
+                    <p class="mt-2 text-sm font-light text-brand-light">
+                        Accedé rápidamente a las principales secciones.
+                    </p>
                 </div>
-                <div class="hidden md:flex space-x-8 items-center">
-    <a href="#nosotros" class="desktop-link text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Nosotros</a>
-    <a href="#equipo" class="desktop-link text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Equipo</a>
-    <a href="#contacto" class="desktop-link text-xs font-bold uppercase tracking-[0.15em] hover:text-brand-gold transition-colors duration-300">Contacto</a>
-    <!-- El botón se mantiene igual -->
-                    <button onclick="document.getElementById('reservas').scrollIntoView({behavior:'smooth'})"
-                        class="btn-premium bg-brand-blue text-white px-5 py-2.5 text-xs font-bold uppercase tracking-[0.2em] border border-white/20 hover:border-brand-gold transition-all">
-                        Reservar Turno
+
+                <div class="flex flex-col">
+                    <a
+                        href="#nosotros"
+                        onclick="toggleMobileMenu()"
+                        class="group flex min-h-14 items-center justify-between border-b border-black/5 px-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-dark transition-colors hover:bg-brand-cream hover:text-brand-blue"
+                    >
+                        Nosotros
+                        <i
+                            class="fas fa-arrow-right text-[10px] text-brand-gold transition-transform group-hover:translate-x-1"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+
+                    <a
+                        href="#equipo"
+                        onclick="toggleMobileMenu()"
+                        class="group flex min-h-14 items-center justify-between border-b border-black/5 px-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-dark transition-colors hover:bg-brand-cream hover:text-brand-blue"
+                    >
+                        Equipo
+                        <i
+                            class="fas fa-arrow-right text-[10px] text-brand-gold transition-transform group-hover:translate-x-1"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+
+                    <a
+                        href="#contacto"
+                        onclick="toggleMobileMenu()"
+                        class="group flex min-h-14 items-center justify-between border-b border-black/5 px-6 text-xs font-bold uppercase tracking-[0.16em] text-brand-dark transition-colors hover:bg-brand-cream hover:text-brand-blue"
+                    >
+                        Contacto
+                        <i
+                            class="fas fa-arrow-right text-[10px] text-brand-gold transition-transform group-hover:translate-x-1"
+                            aria-hidden="true"
+                        ></i>
+                    </a>
+                </div>
+
+                <div class="p-4">
+                    <button
+                        type="button"
+                        onclick="document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' }); toggleMobileMenu();"
+                        class="flex min-h-14 w-full items-center justify-center bg-brand-blue px-5 text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-brand-gold hover:text-brand-dark"
+                    >
+                        Reservar turno
+                        <i
+                            class="fas fa-calendar-alt ml-3 text-sm"
+                            aria-hidden="true"
+                        ></i>
                     </button>
                 </div>
-                <!-- Mobile menu button -->
-                <div class="md:hidden flex items-center">
-                    <button onclick="toggleMobileMenu()"
-                        class="hamburger-icon hover:text-brand-gold focus:outline-none transition-colors">
-                        <i class="fas fa-bars text-2xl"></i>
-                    </button>
-                </div>
+
             </div>
         </div>
+    </div>
+</nav>
 
-        <!-- Mobile Menu Dropdown -->
-        <div id="mobile-menu"
-            class="hidden md:hidden absolute w-full left-0 top-full flex-col bg-white border-t border-gray-100 shadow-xl pb-4">
-            <a href="#nosotros" onclick="toggleMobileMenu()"
-                class="block px-6 py-4 text-brand-dark font-semibold border-b border-gray-50 hover:bg-gray-50 transition-colors">Nosotros</a>
-            <a href="#equipo" onclick="toggleMobileMenu()"
-                class="block px-6 py-4 text-brand-dark font-semibold border-b border-gray-50 hover:bg-gray-50 transition-colors">Equipo</a>
-            <a href="#contacto" onclick="toggleMobileMenu()"
-                class="block px-6 py-4 text-brand-dark font-semibold border-b border-gray-50 hover:bg-gray-50 transition-colors">Contacto</a>
-            <div class="px-6 pt-4 pb-2">
-                <button onclick="document.getElementById('reservas').scrollIntoView(); toggleMobileMenu();"
-                    class="w-full bg-brand-blue text-white px-4 py-2 rounded-md text-sm font-bold uppercase tracking-wider shadow-md">
-                    Reservar Turno
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <section class="relative h-screen flex items-center justify-center overflow-hidden texture-overlay">
+    <!--  HERO -->
+    <section id="hero" class="relative h-screen flex items-center justify-center overflow-hidden texture-overlay">
         <!-- Imagen de fondo -->
         <div class="absolute inset-0 z-0">
             <div id="hero-bg"
@@ -288,119 +880,394 @@
         </div>
     </section>
 
+
+    <!-- WIDGET TURNOS -->
+    <!-- CONTENEDOR PARA EL WIDGET DE TURNOS -->
+    <div id="widget-turnos-container"></div>
+
+    <!-- EQUIPO -->
+    <section id="equipo" class="relative overflow-hidden bg-brand-dark py-16 sm:py-20 md:py-28 lg:py-36">
+        <div
+            class="pointer-events-none absolute inset-0 opacity-70"
+            aria-hidden="true"
+            style="background:
+                radial-gradient(circle at 10% 15%, rgba(41,95,143,.20), transparent 30%),
+                radial-gradient(circle at 90% 85%, rgba(220,175,87,.10), transparent 28%);"
+        ></div>
+
+        <div class="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+
+            <!-- Encabezado -->
+            <div class="mx-auto mb-10 max-w-3xl text-center sm:mb-14 lg:mb-20 reveal">
+                <span class="mb-4 block text-[10px] font-bold uppercase tracking-[0.22em] text-brand-gold sm:text-xs sm:tracking-[0.30em]">
+                    Nuestros profesionales
+                </span>
+
+                <h2
+                    class="text-3xl font-extrabold uppercase leading-[1.05] tracking-tight text-white sm:text-4xl lg:text-5xl"
+                    style="font-family: 'Montserrat', sans-serif;"
+                >
+                    El equipo
+                </h2>
+
+                <div class="gold-sep"></div>
+
+                <p class="mx-auto mt-4 max-w-2xl text-sm font-light leading-6 text-white/65 sm:text-base sm:leading-7">
+                    Experiencia, criterio y especialización para acompañar cada transformación de manera personalizada.
+                </p>
+            </div>
+
+            <!-- Direcciones -->
+            <div class="mb-12 grid grid-cols-1 gap-4 sm:gap-5 lg:mb-20 lg:grid-cols-2">
+
+                <!-- Roberto -->
+                <button
+                    type="button"
+                    onclick="filterByPro('roberto')"
+                    class="group relative min-h-[500px] overflow-hidden bg-black text-left sm:min-h-[620px] lg:h-[680px]"
+                    aria-label="Ver servicios de Roberto Contino"
+                >
+                    <img
+                        src="./rober.jpg"
+                        alt="Roberto Contino"
+                        class="h-full w-full object-cover object-center grayscale-filter opacity-85 transition-all duration-1000 group-hover:scale-105 group-hover:opacity-100"
+                    >
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent"
+                        aria-hidden="true"
+                    ></div>
+
+                    <div
+                        class="pointer-events-none absolute inset-3 border border-brand-gold/20 sm:inset-5"
+                        aria-hidden="true"
+                    ></div>
+
+                    <div class="absolute inset-x-0 bottom-0 p-5 sm:p-8 lg:p-10">
+                        <div class="mb-5 flex items-center gap-3">
+                            <span class="h-px w-10 bg-brand-gold"></span>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.24em] text-brand-gold sm:text-[10px]">
+                                Dirección
+                            </span>
+                        </div>
+
+                        <h3
+                            class="text-4xl font-extrabold uppercase leading-none tracking-tight text-white sm:text-5xl lg:text-6xl"
+                            style="font-family: 'Montserrat', sans-serif;"
+                        >
+                            Roberto
+                        </h3>
+
+                        <p class="mt-3 font-serif text-lg italic text-brand-gold sm:text-xl">
+                            Director y especialista en corte
+                        </p>
+
+                        <p class="mt-5 max-w-xl text-sm font-light leading-6 text-white/75 sm:text-base sm:leading-7">
+                            Precisión técnica, geometría y visagismo para crear cortes personalizados según el rostro, la textura y el movimiento natural del cabello.
+                        </p>
+
+                        <span class="mt-6 inline-flex min-h-11 items-center border border-brand-gold/70 px-4 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gold transition-colors duration-300 group-hover:bg-brand-gold group-hover:text-brand-dark sm:px-5 sm:text-xs">
+                            Ver servicios
+                            <i class="fas fa-arrow-right ml-3 text-[10px]" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </button>
+
+                <!-- Nora -->
+                <button
+                    type="button"
+                    onclick="filterByPro('nora')"
+                    class="group relative min-h-[500px] overflow-hidden bg-black text-left sm:min-h-[620px] lg:h-[680px]"
+                    aria-label="Ver servicios de Nora"
+                >
+                    <img
+                        src="./nora.jpg"
+                        alt="Nora"
+                        class="h-full w-full object-cover object-center grayscale-filter opacity-85 transition-all duration-1000 group-hover:scale-105 group-hover:opacity-100"
+                    >
+
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent"
+                        aria-hidden="true"
+                    ></div>
+
+                    <div
+                        class="pointer-events-none absolute inset-3 border border-brand-gold/20 sm:inset-5"
+                        aria-hidden="true"
+                    ></div>
+
+                    <div class="absolute inset-x-0 bottom-0 p-5 sm:p-8 lg:p-10">
+                        <div class="mb-5 flex items-center gap-3">
+                            <span class="h-px w-10 bg-brand-gold"></span>
+                            <span class="text-[9px] font-bold uppercase tracking-[0.24em] text-brand-gold sm:text-[10px]">
+                                Dirección
+                            </span>
+                        </div>
+
+                        <h3
+                            class="text-4xl font-extrabold uppercase leading-none tracking-tight text-white sm:text-5xl lg:text-6xl"
+                            style="font-family: 'Montserrat', sans-serif;"
+                        >
+                            Nora
+                        </h3>
+
+                        <p class="mt-3 font-serif text-lg italic text-brand-gold sm:text-xl">
+                            Directora y master colorista
+                        </p>
+
+                        <p class="mt-5 max-w-xl text-sm font-light leading-6 text-white/75 sm:text-base sm:leading-7">
+                            Especialista en colorimetría, iluminación y transformaciones personalizadas, con foco en el diagnóstico y en resultados naturales.
+                        </p>
+
+                        <span class="mt-6 inline-flex min-h-11 items-center border border-brand-gold/70 px-4 text-[10px] font-bold uppercase tracking-[0.18em] text-brand-gold transition-colors duration-300 group-hover:bg-brand-gold group-hover:text-brand-dark sm:px-5 sm:text-xs">
+                            Ver servicios
+                            <i class="fas fa-arrow-right ml-3 text-[10px]" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Staff -->
+            <div class="border-t border-white/10 pt-10 sm:pt-14 lg:pt-16">
+                <div class="mb-7 flex flex-col gap-3 sm:mb-10 sm:flex-row sm:items-end sm:justify-between">
+                    <div>
+                        <span class="block text-[10px] font-bold uppercase tracking-[0.22em] text-brand-gold sm:text-xs">
+                            Equipo profesional
+                        </span>
+
+                        <h3 class="mt-2 text-2xl font-bold uppercase tracking-tight text-white sm:text-3xl">
+                            Especialistas en cada detalle
+                        </h3>
+                    </div>
+
+                    <p class="max-w-xl text-sm font-light leading-6 text-white/55 sm:text-right">
+                        Seleccioná un perfil para conocer los servicios que realiza cada profesional.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-3 sm:gap-5 lg:grid-cols-4 lg:gap-6">
+
+                    <!-- Andrea -->
+                    <button
+                        type="button"
+                        onclick="filterByPro('andrea')"
+                        class="group relative min-h-[300px] overflow-hidden bg-white/5 text-left sm:min-h-[390px]"
+                        aria-label="Ver servicios de Andrea"
+                    >
+                        <img
+                            src="./andrea.jpg"
+                            alt="Andrea"
+                            class="absolute inset-0 h-full w-full object-cover grayscale-filter opacity-75 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                        >
+
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div
+                            class="pointer-events-none absolute inset-2 border border-white/10 transition-colors duration-300 group-hover:border-brand-gold/40 sm:inset-3"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div class="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                            <p class="text-[9px] font-bold uppercase tracking-[0.20em] text-brand-gold sm:text-[10px]">
+                                Color y tratamientos
+                            </p>
+
+                            <h4 class="mt-2 text-xl font-extrabold uppercase tracking-wide text-white sm:text-2xl">
+                                Andrea
+                            </h4>
+
+                            <span class="mt-4 inline-flex items-center text-[9px] font-bold uppercase tracking-[0.16em] text-white/70 sm:text-[10px]">
+                                Ver servicios
+                                <i class="fas fa-arrow-right ml-2 text-[8px]" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </button>
+
+                    <!-- Nancy -->
+                    <button
+                        type="button"
+                        onclick="filterByPro('nancy')"
+                        class="group relative min-h-[300px] overflow-hidden bg-white/5 text-left sm:min-h-[390px]"
+                        aria-label="Ver servicios de Nancy"
+                    >
+                        <img
+                            src="./nancy.jpg"
+                            alt="Nancy"
+                            class="absolute inset-0 h-full w-full object-cover grayscale-filter opacity-75 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                        >
+
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div
+                            class="pointer-events-none absolute inset-2 border border-white/10 transition-colors duration-300 group-hover:border-brand-gold/40 sm:inset-3"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div class="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                            <p class="text-[9px] font-bold uppercase tracking-[0.20em] text-brand-gold sm:text-[10px]">
+                                Corte y tratamientos
+                            </p>
+
+                            <h4 class="mt-2 text-xl font-extrabold uppercase tracking-wide text-white sm:text-2xl">
+                                Nancy
+                            </h4>
+
+                            <span class="mt-4 inline-flex items-center text-[9px] font-bold uppercase tracking-[0.16em] text-white/70 sm:text-[10px]">
+                                Ver servicios
+                                <i class="fas fa-arrow-right ml-2 text-[8px]" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </button>
+
+                    <!-- Eugenia -->
+                    <button
+                        type="button"
+                        onclick="filterByPro('eugenia')"
+                        class="group relative min-h-[300px] overflow-hidden bg-white/5 text-left sm:min-h-[390px]"
+                        aria-label="Ver servicios de Eugenia"
+                    >
+                        <img
+                            src="./eugenia.jpg"
+                            alt="Eugenia"
+                            class="absolute inset-0 h-full w-full object-cover grayscale-filter opacity-75 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                        >
+
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div
+                            class="pointer-events-none absolute inset-2 border border-white/10 transition-colors duration-300 group-hover:border-brand-gold/40 sm:inset-3"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div class="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                            <p class="text-[9px] font-bold uppercase tracking-[0.20em] text-brand-gold sm:text-[10px]">
+                                Styling y nutrición
+                            </p>
+
+                            <h4 class="mt-2 text-xl font-extrabold uppercase tracking-wide text-white sm:text-2xl">
+                                Eugenia
+                            </h4>
+
+                            <span class="mt-4 inline-flex items-center text-[9px] font-bold uppercase tracking-[0.16em] text-white/70 sm:text-[10px]">
+                                Ver servicios
+                                <i class="fas fa-arrow-right ml-2 text-[8px]" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </button>
+
+                    <!-- Yazmín -->
+                    <button
+                        type="button"
+                        onclick="filterByPro('yazmin')"
+                        class="group relative min-h-[300px] overflow-hidden bg-white/5 text-left sm:min-h-[390px]"
+                        aria-label="Ver servicios de Yazmín"
+                    >
+                        <img
+                            src="./cristal.jpg"
+                            alt="Yazmín"
+                            class="absolute inset-0 h-full w-full object-cover grayscale-filter opacity-75 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"
+                        >
+
+                        <div
+                            class="absolute inset-0 bg-gradient-to-t from-black via-black/25 to-transparent"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div
+                            class="pointer-events-none absolute inset-2 border border-white/10 transition-colors duration-300 group-hover:border-brand-gold/40 sm:inset-3"
+                            aria-hidden="true"
+                        ></div>
+
+                        <div class="absolute inset-x-0 bottom-0 p-4 sm:p-6">
+                            <p class="text-[9px] font-bold uppercase tracking-[0.20em] text-brand-gold sm:text-[10px]">
+                                Corte y tratamientos
+                            </p>
+
+                            <h4 class="mt-2 text-xl font-extrabold uppercase tracking-wide text-white sm:text-2xl">
+                                Yazmín
+                            </h4>
+
+                            <span class="mt-4 inline-flex items-center text-[9px] font-bold uppercase tracking-[0.16em] text-white/70 sm:text-[10px]">
+                                Ver servicios
+                                <i class="fas fa-arrow-right ml-2 text-[8px]" aria-hidden="true"></i>
+                            </span>
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- NOSOTROS Y DIFERENCIALES -->
+    <section id="nosotros" class="py-28 md:py-36 bg-white relative">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <!-- Imagen -->
+                    <div class="relative h-[450px] md:h-[580px] overflow-hidden group reveal">
+                        <img src="./historia2.jpg" alt="Nuestro Salón"
+                            class="w-full h-full object-cover grayscale-filter transition-transform duration-1000 group-hover:scale-105" />
+                        <div
+                            class="absolute inset-0 bg-brand-dark/15 group-hover:bg-transparent transition-colors duration-700">
+                        </div>
+                        <!-- Decorative frame -->
+                        <div class="absolute top-4 left-4 right-4 bottom-4 border border-brand-gold/20 pointer-events-none">
+                        </div>
+                    </div>
+                    <!-- Contenido -->
+                    <div class="reveal reveal-delay-2">
+                        <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Experiencia, oficio y evolución constante</span>
+                        <div class="editorial-line mb-8"></div>
+                        <h2 class="text-3xl font-extrabold text-brand-dark uppercase tracking-tight mb-8 leading-[1.1]"
+                            style="font-family: 'Montserrat', sans-serif;">Nuestra historia</h2>
+
+                        <div class="space-y-6 text-gray font-light text-lg leading-relaxed max-w-xl">
+                            <p>
+                                Roberto Contino Estilistas es un salón con una sólida trayectoria en el cuidado, la
+                                transformación y la salud del cabello. Desde sus comienzos en Zona Norte, construyó una
+                                identidad basada en la excelencia profesional, la actualización permanente y una atención
+                                profundamente personalizada.
+                            </p>
+                            <p>
+                                Con el paso de los años, el salón se consolidó como un referente en Olivos y Vicente López,
+                                acompañando a generaciones de clientes que valoran la confianza, el asesoramiento honesto y
+                                la calidad constante de cada servicio.
+                            </p>
+                            <p>
+                                Nuestra experiencia combina oficio, creatividad y conocimiento técnico. Interpretamos las
+                                necesidades, el estilo y la personalidad de cada cliente para crear resultados que se vean
+                                bien, se sientan naturales y puedan mantenerse en el tiempo.
+                            </p>
+                        </div>
+                    </div>
+                </div>        
+            </div>
+    </section>
+
+ <!--  CINTA -->
     <div class="bg-brand-dark text-center py-5 px-4 border-t border-brand-gold/20">
         <p class="text-white/80 text-xs md:text-sm font-medium tracking-[0.2em] uppercase">
-            Atención personalizada<span class="mx-4 text-brand-gold/40">—</span> <a
+             <a
                 href="#reservas"
                 class="text-brand-gold hover:text-white transition-colors duration-300 underline underline-offset-4 decoration-brand-gold/30 hover:decoration-brand-gold">Reservá
                 tu horario</a>
         </p>
     </div>
 
-    <!-- SECCIÓN: NOSOTROS Y DIFERENCIALES -->
-    <section id="nosotros" class="py-28 md:py-36 bg-white relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                <!-- Imagen -->
-                <div class="relative h-[450px] md:h-[580px] overflow-hidden group reveal">
-                    <img src="./historia2.jpg" alt="Nuestro Salón"
-                        class="w-full h-full object-cover grayscale-filter transition-transform duration-1000 group-hover:scale-105" />
-                    <div
-                        class="absolute inset-0 bg-brand-dark/15 group-hover:bg-transparent transition-colors duration-700">
-                    </div>
-                    <!-- Decorative frame -->
-                    <div class="absolute top-4 left-4 right-4 bottom-4 border border-brand-gold/20 pointer-events-none">
-                    </div>
-                </div>
-                <!-- Contenido -->
-                <div class="reveal reveal-delay-2">
-                    <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Experiencia, oficio y evolución constante</span>
-                    <div class="editorial-line mb-8"></div>
-                    <h2 class="text-3xl font-extrabold text-brand-dark uppercase tracking-tight mb-8 leading-[1.1]"
-                        style="font-family: 'Montserrat', sans-serif;">Nuestra historia</h2>
-
-                    <div class="space-y-6 text-gray font-light text-lg leading-relaxed max-w-xl">
-                        <p>
-                            Roberto Contino Estilistas es un salón con una sólida trayectoria en el cuidado, la
-                            transformación y la salud del cabello. Desde sus comienzos en Zona Norte, construyó una
-                            identidad basada en la excelencia profesional, la actualización permanente y una atención
-                            profundamente personalizada.
-                        </p>
-                        <p>
-                            Con el paso de los años, el salón se consolidó como un referente en Olivos y Vicente López,
-                            acompañando a generaciones de clientes que valoran la confianza, el asesoramiento honesto y
-                            la calidad constante de cada servicio.
-                        </p>
-                        <p>
-                            Nuestra experiencia combina oficio, creatividad y conocimiento técnico. Interpretamos las
-                            necesidades, el estilo y la personalidad de cada cliente para crear resultados que se vean
-                            bien, se sientan naturales y puedan mantenerse en el tiempo.
-                        </p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- DIFERENCIALES visuales -->
-            <div class="mt-28 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                <!-- Tarjeta 1 -->
-                <div
-                    class="bg-white border border-gray-100/80 p-8 flex flex-col h-full hover:shadow-xl hover:shadow-brand-blue/5 hover:-translate-y-2 transition-all duration-500 group reveal reveal-delay-1">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6">
-                        <img src="./peinado.png" alt="Icono Peinado" class="w-full h-full object-contain" />
-                    </div>
-                    <h3 class="text-sm font-bold text-brand-dark uppercase tracking-[0.1em] mb-4">Experiencia
-                        profesional</h3>
-                    <div class="w-8 h-px bg-brand-gold/40 mb-4"></div>
-                    <p class="text-gray font-light leading-relaxed flex-grow">Una trayectoria construida
-                        sobre el oficio, la formación permanente y la atención de distintas generaciones de clientes.
-                    </p>
-                </div>
-                <!-- Tarjeta 2 -->
-                <div
-                    class="bg-white border border-gray-100/80 p-8 flex flex-col h-full hover:shadow-xl hover:shadow-brand-blue/5 hover:-translate-y-2 transition-all duration-500 group reveal reveal-delay-2">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6">
-                        <img src="./tratamiento.png" alt="Icono tratamiento" class="w-full h-full object-contain" />
-                    </div>
-                    <h3 class="text-sm font-bold text-brand-dark uppercase tracking-[0.1em] mb-4">Diagnóstico
-                        personalizado</h3>
-                    <div class="w-8 h-px bg-brand-gold/40 mb-4"></div>
-                    <p class="text-gray font-light  leading-relaxed flex-grow">Analizamos la textura, el
-                        estado, el historial y las necesidades del cabello antes de recomendar cada servicio.</p>
-                </div>
-                <!-- Tarjeta 3 -->
-                <div
-                    class="bg-white border border-gray-100/80 p-8 flex flex-col h-full hover:shadow-xl hover:shadow-brand-blue/5 hover:-translate-y-2 transition-all duration-500 group reveal reveal-delay-3">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6">
-                        <img src="./corte.png" alt="Icono corte" class="w-full h-full object-contain" />
-                    </div>
-                    <h3 class="text-sm font-bold text-brand-dark uppercase tracking-[0.1em] mb-4">Especialización
-                        técnica</h3>
-                    <div class="w-8 h-px bg-brand-gold/40 mb-4"></div>
-                    <p class="text-gray font-light leading-relaxed flex-grow">Experiencia en corte,
-                        colorimetría, iluminación, reflejos, tratamientos y diseño de estilos personalizados.</p>
-                </div>
-                <!-- Tarjeta 4 -->
-                <div
-                    class="bg-white border border-gray-100/80 p-8 flex flex-col h-full hover:shadow-xl hover:shadow-brand-blue/5 hover:-translate-y-2 transition-all duration-500 group reveal reveal-delay-4">
-                    <div class="w-12 h-12 flex items-center justify-center mb-6">
-                        <img src="./color.png" alt="Icono color" class="w-full h-full object-contain" />
-                    </div>
-                    <h3 class="text-sm font-bold text-brand-dark uppercase tracking-[0.1em] mb-4">Cuidado capilar</h3>
-                    <div class="w-8 h-px bg-brand-gold/40 mb-4"></div>
-                    <p class="text-gray font-light leading-relaxed flex-grow">Cada intervención busca
-                        alcanzar el resultado estético deseado preservando la salud, la fuerza y la calidad del cabello.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- SECCIÓN: METODOLOGÍA -->
     <section id="metodo" class="py-28 md:py-36 bg-brand-dark relative texture-overlay overflow-hidden">
         <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 reveal">
-                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Atención
-                    personalizada</span>
+                
                 <h2 class="text-3xl md:text-5xl font-extrabold text-white uppercase tracking-tight mb-8 leading-[1.1]"
                     style="font-family: 'Montserrat', sans-serif;">Nuestra forma de trabajar</h2>
                 <div class="gold-sep"></div>
@@ -461,306 +1328,113 @@
         </div>
     </section>
 
-
-    <section id="reservas" class="py-28 md:py-36 bg-brand-cream relative">
-        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <!-- CONTACTO -->
+    <section id="contacto" class="py-28 md:py-36 bg-brand-cream relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16 reveal">
-                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Reserva tu experiencia</span>
+                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Hagamos
+                    contacto</span>
                 <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-6"
-                    style="font-family: 'Montserrat', sans-serif;">Turno
-                    online</h2>
+                    style="font-family: 'Montserrat', sans-serif;">Contacto</h2>
                 <div class="gold-sep"></div>
-                <p class="mt-4 text-gray font-light text-base">Seleccioná el servicio y agendá con nuestros
-                    especialistas.</p>
+                <p class="mt-4 text-gray font-light text-base">Envíanos tu consulta o planificá tu próxima visita.
+                </p>
             </div>
 
-            <!-- Contenedor del Widget -->
             <div
-                class="bg-white shadow-2xl rounded-xl overflow-hidden border border-gray-100 min-h-[500px] flex flex-col relative">
+                class="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 min-h-[600px]">
 
-                <!-- Header del Widget (Breadcrumbs/Steps) -->
-                <div
-                    class="bg-brand-blue border-b border-brand-blue/20 p-5 flex justify-between items-center text-sm font-medium text-white">
-                    <div class="flex-grow mr-4">
-                        <span id="step-indicator" class="tracking-widest uppercase text-xs mb-1 block">Paso 1 de 4: Categoría</span>
-                        <div class="h-1 w-full bg-black/20 rounded-full">
-                            <div id="progress-bar" class="h-full bg-brand-gold rounded-full transition-all duration-500" style="width: 25%;"></div>
+                <!-- Columna Izquierda: Formulario -->
+                <div class="p-8 md:p-12 xl:p-16 flex flex-col justify-center">
+                    <h3 class="text-2xl uppercase font-bold text-brand-blue mb-8">Envianos un mensaje</h3>
+                    <form class="space-y-6 flex-grow flex flex-col justify-center"
+                        onsubmit="event.preventDefault(); alert('Mensaje enviado (Simulado)');">
+                        <div>
+                            <label for="nombre"
+                                class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-2">Nombre
+                                completo</label>
+                            <input type="text" id="nombre"
+                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm"
+                                placeholder="Tu nombre" required>
                         </div>
-                    </div>
-                    <button id="btn-back" class="hidden hover:text-brand-gold transition-colors flex items-center"
-                        onclick="goBack()">
-                        <i class="fas fa-arrow-left mr-2"></i> Volver
-                    </button>
+                        <div>
+                            <label for="email"
+                                class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-2">Email</label>
+                            <input type="email" id="email"
+                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm"
+                                placeholder="tu@email.com" required>
+                        </div>
+                        <div>
+                            <label for="mensaje"
+                                class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-2">Consulta</label>
+                            <textarea id="mensaje" rows="4"
+                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm resize-none"
+                                placeholder="¿En qué te podemos ayudar?" required></textarea>
+                        </div>
+                        <button type="submit"
+                            class="w-full bg-brand-blue text-white py-4 rounded font-bold uppercase tracking-wider hover:bg-brand-gold hover:text-brand-dark transition-all shadow-md mt-4">
+                            Enviar Consulta
+                        </button>
+                    </form>
                 </div>
 
-                <!-- Contenido Dinámico del Widget -->
-                <div class="p-8 md:p-12 flex-grow bg-white">
+                <!-- Columna Derecha: Mapa y Vías de Contacto -->
+                <div class="bg-brand-dark p-8 md:p-12 xl:p-16 relative flex flex-col justify-between">
+                    <div class="absolute inset-0 bg-brand-blue/5"></div>
 
-                    <!-- Paso 1: Categorías -->
-                    <div id="step-1" class="widget-step grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 fade-in">
-                        <button id="btn-cat-colorimetria" onclick="selectCategory('colorimetria')"
-                            class="cat-btn flex flex-col items-center justify-center p-6 md:p-8 border border-gray-200 rounded-lg hover:border-brand-dark hover:shadow-lg transition-all group bg-gray-50 hover:bg-white relative overflow-hidden">
-                            <div
-                                class="absolute inset-0 bg-brand-dark/5 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom">
-                            </div>
-                            <img src="./color.png"
-                                class="w-12 h-12 md:w-16 md:h-16 mb-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all relative z-10 object-contain"
-                                alt="Colorimetría" />
-                            <span
-                                class="font-bold text-brand-blue uppercase tracking-wider text-xs md:text-sm text-center relative z-10">Color</span>
-                        </button>
-                        <button id="btn-cat-corte" onclick="selectCategory('corte')"
-                            class="cat-btn flex flex-col items-center justify-center p-6 md:p-8 border border-gray-200 rounded-lg hover:border-brand-blue hover:shadow-lg transition-all group bg-gray-50 hover:bg-white relative overflow-hidden">
-                            <div
-                                class="absolute inset-0 bg-brand-blue/5 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom">
-                            </div>
-                            <img src="./corte.png"
-                                class="w-12 h-12 md:w-16 md:h-16 mb-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all relative z-10 object-contain"
-                                alt="Corte" />
-                            <span
-                                class="font-bold text-brand-blue uppercase tracking-wider text-xs md:text-sm text-center relative z-10">Corte</span>
-                        </button>
-                        <button id="btn-cat-peinados" onclick="selectCategory('peinados')"
-                            class="cat-btn flex flex-col items-center justify-center p-6 md:p-8 border border-gray-200 rounded-lg hover:border-brand-blue hover:shadow-lg transition-all group bg-gray-50 hover:bg-white relative overflow-hidden">
-                            <div
-                                class="absolute inset-0 bg-brand-blue/5 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom">
-                            </div>
-                            <img src="./peinado.png"
-                                class="w-12 h-12 md:w-16 md:h-16 mb-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all relative z-10 object-contain"
-                                alt="Peinados" />
-                            <span
-                                class="font-bold text-brand-blue uppercase tracking-wider text-xs md:text-sm text-center relative z-10">Peinados</span>
-                        </button>
-                        <button id="btn-cat-tratamientos" onclick="selectCategory('tratamientos')"
-                            class="cat-btn flex flex-col items-center justify-center p-6 md:p-8 border border-gray-200 rounded-lg hover:border-brand-gold hover:shadow-lg transition-all group bg-gray-50 hover:bg-white relative overflow-hidden">
-                            <div
-                                class="absolute inset-0 bg-brand-gold/10 transform scale-y-0 group-hover:scale-y-100 transition-transform origin-bottom">
-                            </div>
-                            <img src="./tratamiento.png"
-                                class="w-12 h-12 md:w-16 md:h-16 mb-4 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all relative z-10 object-contain"
-                                alt="Tratamientos" />
-                            <span
-                                class="font-bold text-brand-blue uppercase tracking-wider text-xs md:text-sm text-center relative z-10">Tratamientos</span>
-                        </button>
-                    </div>
-
-                    <!-- Paso 2: Servicios -->
-                    <div id="step-2" class="widget-step hidden fade-in">
-                        <h3 class="text-2xl font-bold mb-8 text-center text-brand-blue" id="category-title">Seleccioná
-                            un Servicio</h3>
-                        <div id="services-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                            <!-- Los servicios se inyectan acá vía JS -->
-                        </div>
-                    </div>
-
-                    <!-- Paso 3: Profesionales -->
-                    <div id="step-3" class="widget-step hidden fade-in">
-                        <h3 class="text-2xl font-bold mb-2 text-center text-brand-blue">Elegí a tu Profesional</h3>
-                        <p class="text-center text-sm text-brand-light mb-8">Especialistas disponibles para <span
-                                id="selected-service-name" class="font-bold text-brand-dark"></span></p>
-                        <div id="pros-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-6">
-                            <!-- Los profesionales se inyectan acá vía JS -->
-                        </div>
-                    </div>
-
-                    <!-- Paso 4: Fecha y Confirmación -->
-                    <div id="step-4" class="widget-step hidden fade-in">
-                        <h3 class="text-2xl font-bold mb-8 text-center text-brand-blue">Agendar Turno</h3>
-                        <div class="grid md:grid-cols-5 gap-8">
-                            <!-- Calendario Mockup -->
-                            <div class="md:col-span-3">
-                                <label
-                                    class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-4 border-b pb-2">1.
-                                    Seleccioná el Día</label>
-                                <div class="grid grid-cols-3 gap-3 mb-8">
-                                    <button
-                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all date-btn font-medium"
-                                        onclick="selectDate('Jue 15')">Jue 15</button>
-                                    <button
-                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all date-btn font-medium"
-                                        onclick="selectDate('Vie 16')">Vie 16</button>
-                                    <button
-                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all date-btn font-medium"
-                                        onclick="selectDate('Sáb 17')">Sáb 17</button>
-                                </div>
-                                <label
-                                    class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-4 border-b pb-2">2.
-                                    Seleccioná el Horario</label>
-                                <div class="grid grid-cols-3 gap-3">
-                                    <button
-                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all time-btn font-medium"
-                                        onclick="selectTime('10:00')">10:00</button>
-                                    <button
-                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all time-btn font-medium"
-                                        onclick="selectTime('14:30')">14:30</button>
-                                    <button
-                                        class="py-3 border border-gray-200 rounded bg-gray-50 text-center hover:border-brand-blue hover:text-brand-blue transition-all time-btn font-medium"
-                                        onclick="selectTime('17:00')">17:00</button>
+                    <div class="relative z-10">
+                        <h3 class="text-2xl font-bold uppercase text-brand-gold mb-8">Información</h3>
+                        <div class="space-y-6 mb-10">
+                            <div class="flex items-start">
+                                <i class="fas fa-map-marker-alt mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
+                                <div class="ml-4">
+                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Ubicación</p>
+                                    <p class="text-white font-light text-sm">Av. Maipú 2670<br>Olivos,
+                                        B1636<br>Provincia de Buenos Aires</p>
                                 </div>
                             </div>
-
-                            <!-- Resumen -->
-                            <div
-                                class="md:col-span-2 bg-gray-50 p-6 rounded-lg border border-brand-gold/30 flex flex-col justify-between shadow-sm">
-                                <div>
-                                    <h4
-                                        class="font-bold text-sm uppercase text-brand-gold tracking-wider mb-6 border-b border-brand-gold/30 pb-2">
-                                        Resumen</h4>
-
-                                    <div class="flex items-start mb-4">
-                                        <i class="fas fa-cut w-8 text-brand-light mt-1"></i>
-                                        <div>
-                                            <p class="text-xs text-brand-light uppercase">Servicio</p>
-                                            <p id="summary-service" class="font-bold text-brand-blue">-</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-start mb-4">
-                                        <i class="fas fa-user w-8 text-brand-light mt-1"></i>
-                                        <div>
-                                            <p class="text-xs text-brand-light uppercase">Profesional</p>
-                                            <p id="summary-pro" class="font-bold text-brand-blue">-</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="flex items-start mb-4">
-                                        <i class="fas fa-calendar-alt w-8 text-brand-light mt-1"></i>
-                                        <div>
-                                            <p class="text-xs text-brand-light uppercase">Fecha y Hora</p>
-                                            <p id="summary-datetime" class="font-bold text-brand-blue text-sm">Pendiente
-                                                selección</p>
-                                        </div>
-                                    </div>
+                            <div class="flex items-start">
+                                <i class="fa fa-address-book mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
+                                <div class="ml-4">
+                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Contacto
+                                        Directo</p>
+                                    <a 
+                                        class="text-brand-white hover:text-white transition-colors flex items-center font-light text-sm font-medium">
+                                        <i class="fas fa-phone-alt mr-2"></i> +54 9 11 4711-0023
+                                    </a>
+                                    <a href="https://wa.me/5491161654729" target="_blank"
+                                        class="text-brand-white hover:text-white transition-colors flex items-center text-sm font-light font-medium">
+                                        <i class="fab fa-whatsapp mr-2"></i> +54 9 11 6165-4729
+                                    </a>
                                 </div>
-
-                                <button id="btn-whatsapp" onclick="sendWhatsApp()" disabled
-                                    class="mt-8 w-full bg-brand-blue text-white py-4 rounded font-bold uppercase tracking-wider hover:bg-opacity-90 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center shadow-md">
-                                    <i class="fab fa-whatsapp text-xl mr-2"></i> Solicitar Turno
-                                </button>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-clock mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
+                                <div class="ml-4">
+                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Horarios de
+                                        Atención</p>
+                                    <p class="text-white font-light text-sm">Mar a Vie: 10:00 - 18:30<br>Sáb: 10:00 -
+                                        19:00</p>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="equipo" class="py-28 md:py-36 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-20 reveal">
-                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Nuestros
-                    profesionales</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-6"
-                    style="font-family: 'Montserrat', sans-serif;">El Equipo</h2>
-                <div class="gold-sep"></div>
-                <p class="mt-4 text-gray font-light text-base">Experiencia profesional en corte, color y cuidado
-                    capilar.</p>
-            </div>
-
-            <!-- Eje Principal: Roberto y Nora (Side by Side) -->
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-2 mb-16">
-                <!-- Perfil Roberto -->
-                <div class="group relative overflow-hidden bg-brand-dark aspect-[4/5] lg:aspect-auto lg:h-[600px] cursor-pointer"
-                    onclick="filterByPro('roberto')">
-                    <!-- Foto inspirada en rc-recovery-2 -->
-                    <img src="./rober.jpg" alt="Roberto Contino"
-                        class="w-full h-full object-cover grayscale-filter transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-brand-dark/50 to-transparent">
-                    </div>
-                    <div
-                        class="absolute bottom-0 w-full p-8 md:p-10 transform translate-y-0 lg:translate-y-12 group-hover:translate-y-0 transition-transform duration-500">
-                        <h3 class="text-4xl font-extrabold text-white uppercase tracking-wider"
-                            style="font-family: 'Montserrat', sans-serif;">Roberto</h3>
-                        <p class="text-brand-gold font-serif text-xl italic mt-2">Director y especialista en corte</p>
+                        <!-- Mapa Iframe -->
                         <div
-                            class="opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
-                            <p class="text-gray-200 text-sm font-light max-w-md md:mb-4">
-                                Con una amplia trayectoria en el diseño capilar, Roberto combina precisión técnica,
-                                geometría y visagismo para crear cortes personalizados. Cada propuesta considera la
-                                forma del rostro, la textura, el movimiento natural del cabello y los hábitos cotidianos
-                                de cada cliente.
-                            </p>
-                            <span
-                                class="inline-block border border-brand-gold text-brand-gold px-4 py-2 text-xs uppercase tracking-widest mt-4">Ver
-                                Servicios</span>
+                            class="h-48 md:h-56 w-full rounded border border-white/10 overflow-hidden relative shadow-inner">
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3287.643336829709!2d-58.488319124401875!3d-34.51194385265434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb16b5a38aebd%3A0xe54d929f9df881db!2sAv.%20Maip%C3%BA%202670%2C%20B1636%20Olivos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1715000000000!5m2!1ses-419!2sar"
+                                class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen=""
+                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                         </div>
                     </div>
-                </div>
-
-                <!-- Perfil Nora -->
-                <div class="group relative overflow-hidden bg-brand-dark aspect-[4/5] lg:aspect-auto lg:h-[600px] cursor-pointer"
-                    onclick="filterByPro('nora')">
-                    <img src="./nora.jpg" alt="Nora"
-                        class="w-full h-full object-cover grayscale-filter transition-transform duration-1000 group-hover:scale-105 opacity-80 group-hover:opacity-100" />
-                    <div class="absolute inset-0 bg-gradient-to-t from-brand-blue/90 via-brand-dark/50 to-transparent">
-                    </div>
-                    <div
-                        class="absolute bottom-0 w-full p-8 md:p-10 transform translate-y-0 lg:translate-y-12 group-hover:translate-y-0 transition-transform duration-500">
-                        <h3 class="text-4xl font-extrabold text-white uppercase tracking-wider"
-                            style="font-family: 'Montserrat', sans-serif;">Nora</h3>
-                        <p class="text-brand-gold font-serif text-xl italic mt-2">Directora y master colorista</p>
-                        <div
-                            class="opacity-100 lg:opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 mt-4">
-                            <p class="text-gray-200 text-sm font-light max-w-md md:mb-4">
-                                Especialista en colorimetría, iluminación y transformaciones personalizadas, Nora
-                                trabaja cada color a partir de un diagnóstico preciso del cabello, su base, su historial
-                                químico y el resultado buscado. Su experiencia abarca color, luces y balayage
-                                priorizando resultados naturales.
-                            </p>
-                            <span
-                                class="inline-block border border-brand-gold text-brand-gold px-4 py-2 text-xs uppercase tracking-widest mt-4">Ver
-                                Servicios</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Resto del Staff -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 px-4">
-                <!-- Andrea -->
-                <div class="text-center group cursor-pointer" onclick="filterByPro('andrea')">
-                    <div
-                        class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden mb-6 bg-gray-100 border-4 border-transparent group-hover:border-brand-dark transition-all duration-300 shadow-md">
-                        <img src="./andrea.jpg" alt="Andrea" class="w-full h-full object-cover grayscale-filter" />
-                    </div>
-                    <h4 class="font-bold text-brand-blue text-xl uppercase tracking-wide">Andrea</h4>
-                    <p class="text-brand-dark mt-1">Color & Tratamientos</p>
-                </div>
-                <!-- Nancy -->
-                <div class="text-center group cursor-pointer" onclick="filterByPro('nancy')">
-                    <div
-                        class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden mb-6 bg-gray-100 border-4 border-transparent group-hover:border-brand-blue transition-all duration-300 shadow-md">
-                        <img src="./nancy.jpg" alt="Nancy" class="w-full h-full object-cover grayscale-filter" />
-                    </div>
-                    <h4 class="font-bold text-brand-blue text-xl uppercase tracking-wide">Nancy</h4>
-                    <p class="text-brand-dark mt-1">Corte & Tratamientos</p>
-                </div>
-                <!-- Eugenia -->
-                <div class="text-center group cursor-pointer" onclick="filterByPro('eugenia')">
-                    <div
-                        class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden mb-6 bg-gray-100 border-4 border-transparent group-hover:border-brand-gold transition-all duration-300 shadow-md">
-                        <img src="./eugenia.jpg" alt="Eugenia" class="w-full h-full object-cover grayscale-filter" />
-                    </div>
-                    <h4 class="font-bold text-brand-blue text-xl uppercase tracking-wide">Eugenia</h4>
-                    <p class="text-brand-dark mt-1">Styling & Nutrición</p>
-                </div>
-                <!-- Yazmin -->
-                <div class="text-center group cursor-pointer" onclick="filterByPro('yazmin')">
-                    <div
-                        class="w-32 h-32 md:w-40 md:h-40 mx-auto rounded-full overflow-hidden mb-6 bg-gray-100 border-4 border-transparent group-hover:border-brand-blue transition-all duration-300 shadow-md">
-                        <img src="./cristal.jpg" alt="Yazmin" class="w-full h-full object-cover grayscale-filter" />
-                    </div>
-                    <h4 class="font-bold text-brand-blue text-xl uppercase tracking-wide">Yazmín</h4>
-                    <p class="text-brand-dark mt-1">Corte & Tratamientos</p>
                 </div>
             </div>
         </div>
     </section>
 
 
-
-
+    <!-- GALERIA 
     <section id="galeria" class="py-28 md:py-36 bg-brand-dark relative texture-overlay overflow-hidden">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
@@ -878,115 +1552,12 @@
         </div>
 
     </section>
+-->
 
-    <!-- Sección adaptada a los estilos y componentes existentes del documento. :contentReference[oaicite:0]{index=0} -->
+   
 
 
-
-    <section id="contacto" class="py-28 md:py-36 bg-brand-cream relative">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="text-center mb-16 reveal">
-                <span class="block text-xs font-bold text-brand-gold uppercase tracking-[0.25em] mb-4">Hagamos
-                    contacto</span>
-                <h2 class="text-3xl md:text-4xl font-extrabold text-brand-dark uppercase tracking-tight mb-6"
-                    style="font-family: 'Montserrat', sans-serif;">Contacto</h2>
-                <div class="gold-sep"></div>
-                <p class="mt-4 text-gray font-light text-base">Envíanos tu consulta o planificá tu próxima visita.
-                </p>
-            </div>
-
-            <div
-                class="grid grid-cols-1 lg:grid-cols-2 gap-0 bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-100 min-h-[600px]">
-
-                <!-- Columna Izquierda: Formulario -->
-                <div class="p-8 md:p-12 xl:p-16 flex flex-col justify-center">
-                    <h3 class="text-2xl uppercase font-bold text-brand-blue mb-8">Envianos un mensaje</h3>
-                    <form class="space-y-6 flex-grow flex flex-col justify-center"
-                        onsubmit="event.preventDefault(); alert('Mensaje enviado (Simulado)');">
-                        <div>
-                            <label for="nombre"
-                                class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-2">Nombre
-                                completo</label>
-                            <input type="text" id="nombre"
-                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm"
-                                placeholder="Tu nombre" required>
-                        </div>
-                        <div>
-                            <label for="email"
-                                class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-2">Email</label>
-                            <input type="email" id="email"
-                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm"
-                                placeholder="tu@email.com" required>
-                        </div>
-                        <div>
-                            <label for="mensaje"
-                                class="block text-sm font-bold text-brand-blue uppercase tracking-wider mb-2">Consulta</label>
-                            <textarea id="mensaje" rows="4"
-                                class="w-full px-5 py-4 bg-gray-50 border border-gray-200 rounded text-brand-dark focus:ring-2 focus:ring-brand-blue focus:border-transparent outline-none transition-all shadow-sm resize-none"
-                                placeholder="¿En qué te podemos ayudar?" required></textarea>
-                        </div>
-                        <button type="submit"
-                            class="w-full bg-brand-blue text-white py-4 rounded font-bold uppercase tracking-wider hover:bg-brand-gold hover:text-brand-dark transition-all shadow-md mt-4">
-                            Enviar Consulta
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Columna Derecha: Mapa y Vías de Contacto -->
-                <div class="bg-brand-dark p-8 md:p-12 xl:p-16 relative flex flex-col justify-between">
-                    <div class="absolute inset-0 bg-brand-blue/5"></div>
-
-                    <div class="relative z-10">
-                        <h3 class="text-2xl font-bold uppercase text-brand-gold mb-8">Información</h3>
-                        <div class="space-y-6 mb-10">
-                            <div class="flex items-start">
-                                <i class="fas fa-map-marker-alt mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
-                                <div class="ml-4">
-                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Ubicación</p>
-                                    <p class="text-white font-light text-sm">Av. Maipú 2670<br>Olivos,
-                                        B1636<br>Provincia de Buenos Aires</p>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fa fa-address-book mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
-                                <div class="ml-4">
-                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Contacto
-                                        Directo</p>
-                                    <a 
-                                        class="text-brand-white hover:text-white transition-colors flex items-center font-light text-sm font-medium">
-                                        <i class="fas fa-phone-alt mr-2"></i> +54 9 11 4711-0023
-                                    </a>
-                                    <a href="https://wa.me/5491161654729" target="_blank"
-                                        class="text-brand-white hover:text-white transition-colors flex items-center text-sm font-light font-medium">
-                                        <i class="fab fa-whatsapp mr-2"></i> +54 9 11 6165-4729
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="flex items-start">
-                                <i class="fas fa-clock mt-1.5 w-8 text-brand-gold text-xl text-center"></i>
-                                <div class="ml-4">
-                                    <p class="font-bold text-white uppercase tracking-wider text-sm mb-1">Horarios de
-                                        Atención</p>
-                                    <p class="text-white font-light text-sm">Mar a Vie: 10:00 - 18:30<br>Sáb: 10:00 -
-                                        19:00</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Mapa Iframe -->
-                        <div
-                            class="h-48 md:h-56 w-full rounded border border-white/10 overflow-hidden relative shadow-inner">
-                            <iframe
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3287.643336829709!2d-58.488319124401875!3d-34.51194385265434!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb16b5a38aebd%3A0xe54d929f9df881db!2sAv.%20Maip%C3%BA%202670%2C%20B1636%20Olivos%2C%20Provincia%20de%20Buenos%20Aires!5e0!3m2!1ses-419!2sar!4v1715000000000!5m2!1ses-419!2sar"
-                                class="absolute inset-0 w-full h-full" style="border:0;" allowfullscreen=""
-                                loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
+    <!-- FOOTER -->
     <footer class="bg-brand-dark text-white pt-20 pb-10 relative texture-overlay">
         <div class="max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-12 relative z-10">
             <div>
@@ -1061,8 +1632,14 @@
         <i class="fab fa-whatsapp text-2xl"></i>
     </a>
 
+
+    <!-- SCRIPTS -->
+
+
     <script>
-        // --- MOBILE MENU ---
+
+
+    // --- MOBILE MENU --------------------------------------------->
         function toggleMobileMenu() {
             const menu = document.getElementById('mobile-menu');
             menu.classList.toggle('hidden');
@@ -1070,418 +1647,1373 @@
         menu.classList.toggle('active'); // <-- Esta línea soluciona el problema
     }
 
-        // --- BASE DE DATOS RELACIONAL (Extraída del RTF) ---
-        const matrixData = [
-            { "id_profesional": "nora", "id_servicio": "color" },
-            { "id_profesional": "nora", "id_servicio": "luces" },
-            { "id_profesional": "nora", "id_servicio": "reflejos" },
-            { "id_profesional": "nora", "id_servicio": "corte" },
-            { "id_profesional": "nora", "id_servicio": "peinado" },
-            { "id_profesional": "roberto", "id_servicio": "corte" },
-            { "id_profesional": "andrea", "id_servicio": "color" },
-            { "id_profesional": "andrea", "id_servicio": "luces" },
-            { "id_profesional": "andrea", "id_servicio": "reflejos" },
-            { "id_profesional": "andrea", "id_servicio": "mechas" },
-            { "id_profesional": "andrea", "id_servicio": "queratina_botox" },
-            { "id_profesional": "andrea", "id_servicio": "alisado_nano" },
-            { "id_profesional": "andrea", "id_servicio": "peinado" },
-            { "id_profesional": "andrea", "id_servicio": "nutricion" },
-            { "id_profesional": "nancy", "id_servicio": "peinado" },
-            { "id_profesional": "nancy", "id_servicio": "queratina_botox" },
-            { "id_profesional": "nancy", "id_servicio": "alisado_nano" },
-            { "id_profesional": "nancy", "id_servicio": "corte" },
-            { "id_profesional": "eugenia", "id_servicio": "color" },
-            { "id_profesional": "eugenia", "id_servicio": "queratina_botox" },
-            { "id_profesional": "eugenia", "id_servicio": "alisado_nano" },
-            { "id_profesional": "eugenia", "id_servicio": "peinado" },
-            { "id_profesional": "eugenia", "id_servicio": "lavado" },
-            { "id_profesional": "eugenia", "id_servicio": "nutricion" },
-            { "id_profesional": "yazmin", "id_servicio": "queratina_botox" },
-            { "id_profesional": "yazmin", "id_servicio": "alisado_nano" },
-            { "id_profesional": "yazmin", "id_servicio": "peinado" },
-            { "id_profesional": "yazmin", "id_servicio": "lavado" },
-            { "id_profesional": "yazmin", "id_servicio": "nutricion" },
-            { "id_profesional": "yazmin", "id_servicio": "corte" }
-        ];
+    // --- INSERTAR WIDGET --------------------------------------------->
 
-        // --- DICCIONARIOS UI ---
-        const categoryMap = {
-            'colorimetria': { title: 'Colorimetría', services: ['color', 'luces', 'reflejos', 'mechas'], icon: './color.png' },
-            'corte': { title: 'Corte', services: ['corte'], icon: './corte.png' },
-            'peinados': { title: 'Peinados y Styling', services: ['peinado', 'lavado'], icon: './peinado.png' },
-            'tratamientos': { title: 'Tratamientos Capilares', services: ['queratina_botox', 'alisado_nano', 'nutricion'], icon: './tratamiento.png' }
-        };
+    document.addEventListener("DOMContentLoaded", () => {
+        fetch('widget-turnos.html')
+            .then(response => {
+                if (!response.ok) throw new Error('Error al cargar el widget');
+                return response.text();
+            })
+            .then(html => {
+                // Inyectamos el HTML
+                document.getElementById('widget-turnos-container').innerHTML = html;
+                
+                // 3. LA CLAVE: Inicializamos el script del widget RECIÉN ACÁ, 
+                // cuando el HTML ya existe en la página.
+                inicializarWidgetTurnos();
+            })
+            .catch(error => console.error('Hubo un problema:', error));
+    });
+        
+    // --- WIDGET --------------------------------------------->
+    const matrixData = [
+        { id_profesional: 'nora', id_servicio: 'color' },
+        { id_profesional: 'nora', id_servicio: 'luces' },
+        { id_profesional: 'nora', id_servicio: 'reflejos' },
+        { id_profesional: 'nora', id_servicio: 'corte' },
+        { id_profesional: 'nora', id_servicio: 'peinado' },
 
-        const serviceNames = {
-            'color': 'Color', 'luces': 'Luces', 'reflejos': 'Reflejos', 'mechas': 'Mechas',
-            'corte': 'Corte', 'peinado': 'Peinado', 'lavado': 'Lavado',
-            'queratina_botox': 'Queratina / Botox', 'alisado_nano': 'Alisado Nano', 'nutricion': 'Nutrición'
-        };
+        { id_profesional: 'roberto', id_servicio: 'corte' },
 
-        const proNames = {
-            'roberto': 'Roberto Contino', 'nora': 'Nora', 'andrea': 'Andrea',
-            'nancy': 'Nancy', 'eugenia': 'Eugenia', 'yazmin': 'Yazmín'
-        };
+        { id_profesional: 'andrea', id_servicio: 'color' },
+        { id_profesional: 'andrea', id_servicio: 'luces' },
+        { id_profesional: 'andrea', id_servicio: 'reflejos' },
+        { id_profesional: 'andrea', id_servicio: 'mechas' },
+        { id_profesional: 'andrea', id_servicio: 'queratina_botox' },
+        { id_profesional: 'andrea', id_servicio: 'alisado_nano' },
+        { id_profesional: 'andrea', id_servicio: 'peinado' },
+        { id_profesional: 'andrea', id_servicio: 'nutricion' },
 
-        const proImages = {
-            'roberto': './rober.jpg',
-            'nora': './nora.jpg',
-            'andrea': './andrea.jpg',
-            'nancy': './nancy.jpg',
-            'eugenia': './eugenia.jpg',
-            'yazmin': './cristal.jpg'
-        };
+        { id_profesional: 'nancy', id_servicio: 'peinado' },
+        { id_profesional: 'nancy', id_servicio: 'queratina_botox' },
+        { id_profesional: 'nancy', id_servicio: 'alisado_nano' },
+        { id_profesional: 'nancy', id_servicio: 'corte' },
 
-        // --- ESTADO DEL WIDGET ---
-        let state = {
+        { id_profesional: 'eugenia', id_servicio: 'color' },
+        { id_profesional: 'eugenia', id_servicio: 'queratina_botox' },
+        { id_profesional: 'eugenia', id_servicio: 'alisado_nano' },
+        { id_profesional: 'eugenia', id_servicio: 'peinado' },
+        { id_profesional: 'eugenia', id_servicio: 'lavado' },
+        { id_profesional: 'eugenia', id_servicio: 'nutricion' },
+
+        { id_profesional: 'yazmin', id_servicio: 'queratina_botox' },
+        { id_profesional: 'yazmin', id_servicio: 'alisado_nano' },
+        { id_profesional: 'yazmin', id_servicio: 'peinado' },
+        { id_profesional: 'yazmin', id_servicio: 'lavado' },
+        { id_profesional: 'yazmin', id_servicio: 'nutricion' },
+        { id_profesional: 'yazmin', id_servicio: 'corte' }
+    ];
+
+    const categoryMap = {
+        colorimetria: {
+            title: 'Colorimetría',
+            services: ['color', 'luces', 'reflejos', 'mechas']
+        },
+        corte: {
+            title: 'Corte',
+            services: ['corte']
+        },
+        peinados: {
+            title: 'Peinados y styling',
+            services: ['peinado', 'lavado']
+        },
+        tratamientos: {
+            title: 'Tratamientos capilares',
+            services: ['queratina_botox', 'alisado_nano', 'nutricion']
+        }
+    };
+
+    const serviceNames = {
+        color: 'Color',
+        luces: 'Luces',
+        reflejos: 'Reflejos',
+        mechas: 'Mechas',
+        corte: 'Corte',
+        peinado: 'Peinado',
+        lavado: 'Lavado',
+        queratina_botox: 'Queratina / Botox',
+        alisado_nano: 'Alisado Nano',
+        nutricion: 'Nutrición'
+    };
+
+    const serviceDescriptions = {
+        color: 'Coloración completa y cobertura',
+        luces: 'Iluminación delicada y natural',
+        reflejos: 'Contraste y dimensión en el cabello',
+        mechas: 'Técnica personalizada de iluminación',
+        corte: 'Diseño adaptado a tu estilo',
+        peinado: 'Styling y terminación profesional',
+        lavado: 'Lavado y preparación del cabello',
+        queratina_botox: 'Control, brillo y reparación',
+        alisado_nano: 'Disciplina y suavidad prolongada',
+        nutricion: 'Tratamiento intensivo de cuidado'
+    };
+
+    const proNames = {
+        roberto: 'Roberto Contino',
+        nora: 'Nora',
+        andrea: 'Andrea',
+        nancy: 'Nancy',
+        eugenia: 'Eugenia',
+        yazmin: 'Yazmín'
+    };
+
+    const proRoles = {
+        roberto: 'Director y estilista',
+        nora: 'Colorista y estilista',
+        andrea: 'Colorista y especialista en tratamientos',
+        nancy: 'Estilista',
+        eugenia: 'Colorista y estilista',
+        yazmin: 'Estilista y especialista en tratamientos'
+    };
+
+    const proImages = {
+        roberto: './rober.jpg',
+        nora: './nora.jpg',
+        andrea: './andrea.jpg',
+        nancy: './nancy.jpg',
+        eugenia: './eugenia.jpg',
+        yazmin: './cristal.jpg'
+    };
+
+    /*
+     * getDay():
+     * 0 = domingo
+     * 1 = lunes
+     * 2 = martes
+     * 3 = miércoles
+     * 4 = jueves
+     * 5 = viernes
+     * 6 = sábado
+     */
+    const salonSchedule = {
+        2: { start: '10:00', end: '18:30' },
+        3: { start: '10:00', end: '18:30' },
+        4: { start: '10:00', end: '18:30' },
+        5: { start: '10:00', end: '18:30' },
+        6: { start: '10:00', end: '19:00' }
+    };
+
+    /*
+     * Andrea y Yazmín utilizan por el momento el horario general del salón.
+     * Para asignarles horarios específicos, se pueden agregar aquí.
+     */
+    const professionalSchedules = {
+        nancy: {
+            6: { start: '10:00', end: '19:00' }
+        },
+
+        eugenia: {
+            6: { start: '10:00', end: '19:00' }
+        },
+
+        nora: {
+            2: { start: '13:00', end: '18:30' },
+            3: { start: '13:00', end: '18:30' },
+            5: { start: '13:00', end: '18:30' },
+            6: { start: '10:00', end: '19:00' }
+        },
+
+        roberto: {
+            2: { start: '10:00', end: '17:00' },
+            3: { start: '10:00', end: '17:00' },
+            4: { start: '10:00', end: '17:00' },
+            5: { start: '10:00', end: '17:00' },
+            6: { start: '10:00', end: '19:00' }
+        }
+    };
+
+    const DATE_RANGE_DAYS = 14;
+    const SATURDAY_RANGE_COUNT = 4;
+    const SLOT_INTERVAL_MINUTES = 30;
+
+    let state = createInitialState();
+    function createInitialState() {
+        return {
             step: 1,
             category: null,
             serviceId: null,
             proId: null,
             date: null,
             time: null,
-            flowType: 'standard' // 'standard' or 'by_pro'
+            dateTimeStep: 'date',
+            flowType: 'standard',
+            items: []
         };
+    }
+    function renderDateTimeSubstep() {
+    const dateStep = document.getElementById('datetime-step-date');
+    const timeStep = document.getElementById('datetime-step-time');
+    const summaryStep = document.getElementById('datetime-step-summary');
 
-        // --- FUNCIONES CORE DEL UI ---
+    if (!dateStep || !timeStep || !summaryStep) return;
 
-        function updateUI() {
-            // Ocultar todos los steps
-            document.querySelectorAll('.widget-step').forEach(el => el.classList.add('hidden'));
+    dateStep.classList.toggle('hidden', state.dateTimeStep !== 'date');
+    timeStep.classList.toggle('hidden', state.dateTimeStep !== 'time');
+    summaryStep.classList.toggle('hidden', state.dateTimeStep !== 'summary');
+}
 
-            // Mostrar step actual con animación
-            const currentStepEl = document.getElementById(`step-${state.step}`);
-            currentStepEl.classList.remove('hidden');
+    function updateUI() {
+        document.querySelectorAll('#reservas .widget-step').forEach(element => {
+            element.classList.add('hidden');
+        });
 
-            // Textos y Breadcrumbs
-            const stepTitles = ["Categoría", "Servicio", "Profesional", "Fecha y Hora"];
-            document.getElementById('step-indicator').innerText = `Paso ${state.step} de 4: ${stepTitles[state.step - 1]}`;
-            document.getElementById('progress-bar').style.width = `${state.step * 25}%`;
+        const currentStep = document.getElementById(`step-${state.step}`);
 
-            const btnBack = document.getElementById('btn-back');
-            if (state.step > 1) {
-                btnBack.classList.remove('hidden');
-            } else {
-                btnBack.classList.add('hidden');
-            }
-
-            // Actualizar interfaz de Categorías si venimos de atrás
-            if (state.step === 1) {
-                document.querySelectorAll('.cat-btn').forEach(btn => {
-                    btn.classList.remove('border-brand-dark', 'border-brand-blue', 'border-brand-gold', 'shadow-md');
-                    btn.classList.add('border-gray-200');
-                });
-
-                if (state.category) {
-                    const activeBtn = document.getElementById(`btn-cat-${state.category}`);
-                    if (activeBtn) {
-                        activeBtn.classList.remove('border-gray-200');
-                        if (state.category === 'colorimetria') activeBtn.classList.add('border-brand-dark', 'shadow-md');
-                        if (state.category === 'corte') activeBtn.classList.add('border-brand-blue', 'shadow-md');
-                        if (state.category === 'peinados') activeBtn.classList.add('border-brand-blue', 'shadow-md');
-                        if (state.category === 'tratamientos') activeBtn.classList.add('border-brand-gold', 'shadow-md');
-                    }
-                }
-            }
-
-            // Actualizar Resumen
-            if (state.serviceId) document.getElementById('summary-service').innerText = serviceNames[state.serviceId];
-            if (state.proId) document.getElementById('summary-pro').innerText = proNames[state.proId];
-
-            if (state.step === 4) {
-                checkConfirmReady();
-            }
+        if (currentStep) {
+            currentStep.classList.remove('hidden');
+            currentStep.classList.remove('fade-in');
+            void currentStep.offsetWidth;
+            currentStep.classList.add('fade-in');
         }
 
-        function goBack() {
-            if (state.step > 1) {
-                if (state.flowType === 'by_pro' && state.step === 2) {
-                    // Si viene desde un perfil, volver al inicio resetea todo
-                    resetWidget();
-                    return;
-                }
+        const stepTitles = [
+            'Categoría',
+            'Servicio',
+            'Profesional',
+            'Tu reserva',
+            'Fecha y hora'
+        ];
 
-                state.step--;
+        const stepIndicator = document.getElementById('step-indicator');
+        const stepCounter = document.getElementById('step-counter');
+        const progressBar = document.getElementById('progress-bar');
+        const backButton = document.getElementById('btn-back');
 
-                // Limpiar estado futuro según el paso (mantenemos category visualmente)
-                if (state.step === 2) state.serviceId = null;
-                if (state.step === 3) {
-                    state.proId = null;
-                    state.date = null;
-                    state.time = null;
-                    document.getElementById('summary-pro').innerText = '-';
-                    document.getElementById('summary-datetime').innerText = 'Pendiente selección';
-                    document.getElementById('summary-datetime').classList.remove('text-brand-dark');
-                    // Resetear botones de fecha y hora
-                    document.querySelectorAll('.date-btn, .time-btn').forEach(btn => btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue'));
-                }
-                updateUI();
-            }
+        if (stepIndicator) {
+            stepIndicator.textContent =
+                `Paso ${state.step} de 5 · ${stepTitles[state.step - 1]}`;
         }
 
-        function resetWidget() {
-            state = { step: 1, category: null, serviceId: null, proId: null, date: null, time: null, flowType: 'standard' };
-            document.getElementById('summary-service').innerText = '-';
-            document.getElementById('summary-pro').innerText = '-';
-            document.getElementById('summary-datetime').innerText = 'Pendiente selección';
-            document.querySelectorAll('.date-btn, .time-btn').forEach(btn => btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue'));
-            updateUI();
+        if (stepCounter) {
+            stepCounter.textContent =
+                `${String(state.step).padStart(2, '0')} / 05`;
         }
 
-        function selectCategory(catKey) {
-            state.flowType = 'standard';
-            state.category = catKey;
+        if (progressBar) {
+            progressBar.style.width = `${state.step * 20}%`;
+        }
 
-            const grid = document.getElementById('services-grid');
-            grid.innerHTML = '';
+        if (backButton) {
+            backButton.classList.toggle('hidden', state.step === 1);
+            backButton.classList.toggle('flex', state.step > 1);
+        }
 
-            categoryMap[catKey].services.forEach(svcId => {
-                const btn = document.createElement('button');
-                btn.className = "p-5 border border-gray-200 rounded-lg text-left font-bold text-brand-blue hover:border-brand-dark hover:shadow-md hover:-translate-y-1 transition-all flex justify-between items-center group bg-white";
-                btn.innerHTML = `
-                    <span>${serviceNames[svcId]}</span>
-                    <div class="w-8 h-8 rounded-full bg-gray-50 flex items-center justify-center group-hover:bg-brand-dark group-hover:text-white transition-colors">
-                        <i class="fas fa-chevron-right text-sm text-brand-light group-hover:text-white"></i>
-                    </div>
-                `;
-                btn.onclick = () => selectService(svcId);
-                grid.appendChild(btn);
+        document.querySelectorAll('#reservas .cat-btn').forEach(button => {
+            button.setAttribute('aria-pressed', 'false');
+        });
+
+        if (state.category) {
+            document
+                .getElementById(`btn-cat-${state.category}`)
+                ?.setAttribute('aria-pressed', 'true');
+        }
+
+        renderBookingItems();
+        renderSummaryItems();
+        updateSummaryTime();
+        
+        if (state.step === 5) {
+            renderAvailableDates();
+            renderDateTimeSubstep();
+}
+
+        checkConfirmReady();
+    }
+
+    function renderServices(serviceIds, title) {
+        const grid = document.getElementById('services-grid');
+
+        if (!grid) {
+            return;
+        }
+
+        grid.innerHTML = '';
+
+        serviceIds.forEach(serviceId => {
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className =
+                'widget-card group flex min-h-[112px] items-center justify-between rounded-xl p-5 text-left';
+
+            button.innerHTML = `
+                <span>
+                    <span class="widget-title block text-base font-semibold">
+                        ${serviceNames[serviceId]}
+                    </span>
+
+                    <span class="widget-muted mt-2 block text-xs leading-5">
+                        ${serviceDescriptions[serviceId]}
+                    </span>
+                </span>
+
+                <span class="ml-4 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-current/20 transition group-hover:border-brand-gold group-hover:text-brand-gold">
+                    <i class="fas fa-arrow-right text-xs" aria-hidden="true"></i>
+                </span>
+            `;
+
+            button.addEventListener('click', () => {
+                selectService(serviceId);
             });
 
-            document.getElementById('category-title').innerText = categoryMap[catKey].title;
-            state.step = 2;
-            updateUI();
+            grid.appendChild(button);
+        });
+
+        const categoryTitle = document.getElementById('category-title');
+
+        if (categoryTitle) {
+            categoryTitle.innerHTML = title;
+        }
+    }
+
+    function selectCategory(categoryKey) {
+        state.flowType = 'standard';
+        state.category = categoryKey;
+        state.serviceId = null;
+        state.proId = null;
+
+        renderServices(
+            categoryMap[categoryKey].services,
+            categoryMap[categoryKey].title
+        );
+
+        state.step = 2;
+        updateUI();
+    }
+
+    function selectService(serviceId) {
+        state.serviceId = serviceId;
+
+        if (state.flowType === 'by_pro') {
+            addBookingItem(serviceId, state.proId);
+            return;
         }
 
-        function selectService(svcId) {
-            state.serviceId = svcId;
+        const availableProfessionals = [
+            ...new Set(
+                matrixData
+                    .filter(item => item.id_servicio === serviceId)
+                    .map(item => item.id_profesional)
+            )
+        ];
 
-            let availablePros = [];
-            if (state.flowType === 'standard') {
-                // Filtrar profesionales que hacen este servicio
-                availablePros = matrixData.filter(item => item.id_servicio === svcId).map(item => item.id_profesional);
-                // Eliminar duplicados si los hubiera
-                availablePros = [...new Set(availablePros)];
+        renderPros(availableProfessionals);
 
-                renderPros(availablePros);
-                document.getElementById('selected-service-name').innerText = serviceNames[svcId];
-                state.step = 3;
-            } else if (state.flowType === 'by_pro') {
-                // Si venimos del perfil, ya tenemos al profesional, saltar a fecha
-                state.step = 4;
+        const selectedServiceName = document.getElementById(
+            'selected-service-name'
+        );
+
+        if (selectedServiceName) {
+            selectedServiceName.textContent = serviceNames[serviceId];
+        }
+
+        state.step = 3;
+        updateUI();
+    }
+
+    function renderPros(professionalsList) {
+        const grid = document.getElementById('pros-grid');
+
+        if (!grid) {
+            return;
+        }
+
+        grid.innerHTML = '';
+
+        if (!professionalsList.length) {
+            grid.innerHTML = `
+                <p class="widget-muted col-span-full py-8 text-center">
+                    No hay profesionales disponibles para este servicio actualmente.
+                </p>
+            `;
+            return;
+        }
+
+        professionalsList.forEach(proId => {
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className =
+                'widget-card group flex items-center gap-5 rounded-xl p-5 text-left sm:flex-col sm:text-center lg:flex-row lg:text-left';
+
+            button.innerHTML = `
+                <img
+                    src="${proImages[proId]}"
+                    alt="${proNames[proId]}"
+                    class="pro-photo shrink-0"
+                >
+
+                <span>
+                    <span class="widget-title block text-lg font-semibold">
+                        ${proNames[proId]}
+                    </span>
+
+                    <span class="widget-muted mt-2 block text-xs leading-5">
+                        ${proRoles[proId]}
+                    </span>
+                </span>
+            `;
+
+            button.addEventListener('click', () => {
+                selectPro(proId);
+            });
+
+            grid.appendChild(button);
+        });
+    }
+
+    function selectPro(proId) {
+        state.proId = proId;
+        addBookingItem(state.serviceId, proId);
+    }
+
+    function addBookingItem(serviceId, proId) {
+        const duplicate = state.items.some(item => {
+            return item.serviceId === serviceId && item.proId === proId;
+        });
+
+        if (!duplicate) {
+            state.items.push({ serviceId, proId });
+        }
+
+        clearDateTimeSelection();
+
+        state.step = 4;
+        updateUI();
+    }
+
+    function renderBookingItems() {
+        const container = document.getElementById('booking-items');
+        const continueButton = document.getElementById('btn-continue-date');
+
+        if (!container) {
+            return;
+        }
+
+        if (!state.items.length) {
+            container.innerHTML = `
+                <div class="widget-summary rounded-xl p-6 text-center">
+                    <p class="widget-muted text-sm">
+                        Todavía no agregaste servicios.
+                    </p>
+                </div>
+            `;
+
+            if (continueButton) {
+                continueButton.disabled = true;
             }
 
-            updateUI();
+            return;
         }
 
-        function renderPros(prosList) {
-            const grid = document.getElementById('pros-grid');
-            grid.innerHTML = '';
+        if (continueButton) {
+            continueButton.disabled = false;
+        }
 
-            if (prosList.length === 0) {
-                grid.innerHTML = '<p class="col-span-full text-center text-brand-light py-8">No hay profesionales disponibles para este servicio actualmente.</p>';
-            } else {
-                prosList.forEach(proId => {
-                    const btn = document.createElement('button');
-                    btn.className = "flex flex-col items-center p-6 border border-gray-200 rounded-xl hover:border-brand-blue hover:shadow-lg transition-all group bg-white";
-                    btn.innerHTML = `
-                        <div class="w-20 h-20 rounded-full overflow-hidden mb-4 border-2 border-transparent group-hover:border-brand-blue transition-colors">
-                            <img src="${proImages[proId]}" alt="${proNames[proId]}" class="w-full h-full object-cover grayscale-filter" />
+        container.innerHTML = state.items
+            .map((item, index) => {
+                const serviceName = serviceNames[item.serviceId];
+                const professionalName = proNames[item.proId];
+
+                return `
+                    <article class="widget-summary flex items-center gap-4 rounded-xl p-4 sm:p-5">
+                        <div class="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-brand-gold/40 text-brand-gold">
+                            <span class="text-xs font-bold">
+                                ${String(index + 1).padStart(2, '0')}
+                            </span>
                         </div>
-                        <span class="font-bold text-sm text-brand-blue group-hover:text-brand-dark transition-colors">${proNames[proId]}</span>
-                    `;
-                    btn.onclick = () => selectPro(proId);
-                    grid.appendChild(btn);
-                });
-            }
+
+                        <div class="min-w-0 flex-1">
+                            <p class="widget-title font-semibold">
+                                ${serviceName}
+                            </p>
+
+                            <p class="widget-muted mt-1 text-xs">
+                                con ${professionalName}
+                            </p>
+                        </div>
+
+                        <button
+                            type="button"
+                            onclick="removeBookingItem(${index})"
+                            class="widget-muted flex h-11 w-11 shrink-0 items-center justify-center rounded-full transition hover:text-brand-gold"
+                            aria-label="Eliminar ${serviceName} con ${professionalName}"
+                        >
+                            <i class="fas fa-trash-alt" aria-hidden="true"></i>
+                        </button>
+                    </article>
+                `;
+            })
+            .join('');
+    }
+
+    function renderSummaryItems() {
+        const container = document.getElementById('summary-items');
+
+        if (!container) {
+            return;
         }
 
-        function selectPro(proId) {
-            state.proId = proId;
-            state.step = 4;
-            updateUI();
+        if (!state.items.length) {
+            container.innerHTML = `
+                <p class="widget-muted text-sm">
+                    Sin servicios seleccionados.
+                </p>
+            `;
+            return;
         }
 
-        // ENTRY POINT SECUNDARIO: Desde los perfiles del equipo
-        function filterByPro(proId) {
-            // Scroll to widget
-            document.getElementById('reservas').scrollIntoView({ behavior: 'smooth' });
+        container.innerHTML = state.items
+            .map((item, index) => {
+                return `
+                    <div>
+                        <p class="widget-muted text-[10px] font-semibold uppercase tracking-[.16em]">
+                            Servicio ${index + 1}
+                        </p>
 
-            state.flowType = 'by_pro';
-            state.proId = proId;
-            state.category = null;
+                        <p class="widget-title mt-1 text-base font-semibold">
+                            ${serviceNames[item.serviceId]}
+                        </p>
 
-            // Buscar servicios de este profesional en la matriz
-            const proServices = matrixData.filter(item => item.id_profesional === proId).map(item => item.id_servicio);
-
-            const grid = document.getElementById('services-grid');
-            grid.innerHTML = '';
-
-            proServices.forEach(svcId => {
-                const btn = document.createElement('button');
-                btn.className = "p-5 border border-brand-blue/20 rounded-lg text-left font-bold text-brand-blue hover:border-brand-blue hover:shadow-md transition-all flex justify-between items-center group bg-white";
-                btn.innerHTML = `
-                    <span>${serviceNames[svcId]}</span>
-                    <div class="w-8 h-8 rounded-full bg-brand-blue/10 flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-colors">
-                        <i class="fas fa-check text-sm text-brand-blue group-hover:text-white"></i>
+                        <p class="widget-muted mt-1 text-xs">
+                            con ${proNames[item.proId]}
+                        </p>
                     </div>
                 `;
-                btn.onclick = () => selectService(svcId);
-                grid.appendChild(btn);
-            });
+            })
+            .join('');
+    }
 
-            document.getElementById('category-title').innerHTML = `Servicios de <span class="text-brand-dark">${proNames[proId]}</span>`;
-            state.step = 2; // Saltamos categoría, vamos directo a elegir servicio de este pro
-            updateUI();
+    function removeBookingItem(index) {
+        state.items.splice(index, 1);
+        clearDateTimeSelection();
+
+        if (!state.items.length) {
+            state.step = 4;
         }
 
-        function selectDate(dateStr) {
-            state.date = dateStr;
+        updateUI();
+    }
 
-            // Visual feedback
-            document.querySelectorAll('.date-btn').forEach(btn => {
-                if (btn.innerText === dateStr) {
-                    btn.classList.add('bg-brand-blue', 'text-white', 'border-brand-blue');
-                    btn.classList.remove('bg-gray-50');
-                } else {
-                    btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue');
-                    btn.classList.add('bg-gray-50');
-                }
+    function addAnotherService() {
+        state.step = 1;
+        state.category = null;
+        state.serviceId = null;
+        state.proId = null;
+        state.flowType = 'standard';
+
+        updateUI();
+    }
+
+    function continueToDateTime() {
+    if (!state.items.length) return;
+
+    clearDateTimeSelection();
+    state.dateTimeStep = 'date';
+    state.step = 5;
+    updateUI();
+}
+function goBack() {
+    if (state.step <= 1) {
+        return;
+    }
+
+    if (state.flowType === 'by_pro' && state.step === 2) {
+        resetWidget();
+        return;
+    }
+
+    if (state.step === 5) {
+        if (state.dateTimeStep === 'summary') {
+            state.dateTimeStep = 'time';
+        } else if (state.dateTimeStep === 'time') {
+            state.dateTimeStep = 'date';
+        } else {
+            state.step = 4;
+        }
+
+        updateUI();
+        return;
+    }
+
+    if (state.step === 4) {
+        state.step = state.flowType === 'by_pro' ? 2 : 3;
+        updateUI();
+        return;
+    }
+
+    state.step -= 1;
+    updateUI();
+}
+
+    function resetWidget() {
+        state = createInitialState();
+        resetDateTimeInterface();
+        updateUI();
+    }
+
+    function clearDateTimeSelection() {
+        state.date = null;
+        state.time = null;
+        resetDateTimeInterface();
+    }
+
+    function resetDateTimeInterface() {
+        document
+            .querySelectorAll('#reservas .date-btn, #reservas .time-btn')
+            .forEach(button => {
+                button.classList.remove('is-selected');
+                button.setAttribute('aria-pressed', 'false');
             });
 
+        const datesGrid = document.getElementById('dates-grid');
+        const timesGrid = document.getElementById('times-grid');
+        const timesPlaceholder = document.getElementById('times-placeholder');
+        const datesEmpty = document.getElementById('dates-empty');
+        const timesEmpty = document.getElementById('times-empty');
+        const selectedDateLabel = document.getElementById(
+            'selected-date-label'
+        );
+        const datesCount = document.getElementById('available-dates-count');
+        const timesCount = document.getElementById('available-times-count');
+
+        if (datesGrid) {
+            datesGrid.innerHTML = '';
+        }
+
+        if (timesGrid) {
+            timesGrid.innerHTML = '';
+            timesGrid.classList.add('hidden');
+        }
+
+        if (timesPlaceholder) {
+            timesPlaceholder.classList.remove('hidden');
+        }
+
+        if (datesEmpty) {
+            datesEmpty.classList.add('hidden');
+        }
+
+        if (timesEmpty) {
+            timesEmpty.classList.add('hidden');
+        }
+
+        if (selectedDateLabel) {
+            selectedDateLabel.textContent = 'Primero seleccioná una fecha';
+        }
+
+        if (datesCount) {
+            datesCount.textContent = '';
+        }
+
+        if (timesCount) {
+            timesCount.textContent = '';
+        }
+
+        updateSummaryTime();
+    }
+
+    function filterByPro(proId) {
+        document
+            .getElementById('reservas')
+            ?.scrollIntoView({ behavior: 'smooth' });
+
+        state.step = 2;
+        state.category = null;
+        state.serviceId = null;
+        state.proId = proId;
+        state.flowType = 'by_pro';
+
+        const services = [
+            ...new Set(
+                matrixData
+                    .filter(item => item.id_profesional === proId)
+                    .map(item => item.id_servicio)
+            )
+        ];
+
+        renderServices(
+            services,
+            `Servicios de <span class="font-serif italic text-brand-gold">${proNames[proId]}</span>`
+        );
+
+        updateUI();
+    }
+
+    function getSelectedProfessionals() {
+        return [...new Set(state.items.map(item => item.proId))];
+    }
+
+    function usesSaturdayOnlyProfessional() {
+        const selectedProfessionals = getSelectedProfessionals();
+
+        return selectedProfessionals.some(proId => {
+            return proId === 'nancy' || proId === 'eugenia';
+        });
+    }
+
+    function getProfessionalSchedule(proId, weekday) {
+        const customSchedule = professionalSchedules[proId];
+
+        if (customSchedule) {
+            return customSchedule[weekday] || null;
+        }
+
+        return salonSchedule[weekday] || null;
+    }
+
+    function getCombinedScheduleForDate(date) {
+        const weekday = date.getDay();
+        const professionals = getSelectedProfessionals();
+
+        if (!professionals.length) {
+            return null;
+        }
+
+        const schedules = professionals.map(proId => {
+            return getProfessionalSchedule(proId, weekday);
+        });
+
+        if (schedules.some(schedule => !schedule)) {
+            return null;
+        }
+
+        const latestStartMinutes = Math.max(
+            ...schedules.map(schedule => timeToMinutes(schedule.start))
+        );
+
+        const earliestEndMinutes = Math.min(
+            ...schedules.map(schedule => timeToMinutes(schedule.end))
+        );
+
+        if (
+            earliestEndMinutes - latestStartMinutes <
+            SLOT_INTERVAL_MINUTES
+        ) {
+            return null;
+        }
+
+        return {
+            start: minutesToTime(latestStartMinutes),
+            end: minutesToTime(earliestEndMinutes)
+        };
+    }
+
+    function generateCandidateDates() {
+        const today = startOfDay(new Date());
+
+        if (usesSaturdayOnlyProfessional()) {
+            return getNextSaturdays(today, SATURDAY_RANGE_COUNT);
+        }
+
+        const dates = [];
+
+        for (let offset = 0; offset < DATE_RANGE_DAYS; offset += 1) {
+            const date = addDays(today, offset);
+            const weekday = date.getDay();
+
+            if (salonSchedule[weekday]) {
+                dates.push(date);
+            }
+        }
+
+        return dates;
+    }
+
+    function getNextSaturdays(startDate, count) {
+        const saturdays = [];
+        let cursor = startOfDay(startDate);
+
+        while (saturdays.length < count) {
+            if (cursor.getDay() === 6) {
+                saturdays.push(new Date(cursor));
+            }
+
+            cursor = addDays(cursor, 1);
+        }
+
+        return saturdays;
+    }
+
+    function getAvailableDates() {
+        return generateCandidateDates()
+            .map(date => {
+                return {
+                    date,
+                    schedule: getCombinedScheduleForDate(date)
+                };
+            })
+            .filter(item => {
+                if (!item.schedule) {
+                    return false;
+                }
+
+                return generateTimeSlots(item.date, item.schedule).length > 0;
+            });
+    }
+
+    function renderAvailableDates() {
+        const datesGrid = document.getElementById('dates-grid');
+        const datesEmpty = document.getElementById('dates-empty');
+        const datesCount = document.getElementById(
+            'available-dates-count'
+        );
+        const dateRangeLabel = document.getElementById('date-range-label');
+        const availabilityDescription = document.getElementById(
+            'availability-description'
+        );
+
+        if (!datesGrid) {
+            return;
+        }
+
+        datesGrid.innerHTML = '';
+
+        const availableDates = getAvailableDates();
+        const saturdayOnly = usesSaturdayOnlyProfessional();
+
+        if (dateRangeLabel) {
+            dateRangeLabel.textContent = saturdayOnly
+                ? 'Próximos 4 sábados compatibles'
+                : 'Próximas 2 semanas';
+        }
+
+        if (availabilityDescription) {
+            availabilityDescription.textContent = saturdayOnly
+                ? 'La selección incluye profesionales que atienden exclusivamente los sábados. Se muestran los próximos cuatro sábados compatibles.'
+                : 'Las opciones se calculan según los días y horarios habituales de los profesionales seleccionados.';
+        }
+
+        if (datesCount) {
+            datesCount.textContent = availableDates.length
+                ? `${availableDates.length} ${
+                      availableDates.length === 1 ? 'fecha' : 'fechas'
+                  }`
+                : '';
+        }
+
+        if (!availableDates.length) {
+            datesEmpty?.classList.remove('hidden');
+            clearRenderedTimes();
+            return;
+        }
+
+        datesEmpty?.classList.add('hidden');
+
+        availableDates.forEach(({ date }) => {
+            const isoDate = formatDateISO(date);
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className =
+                'date-btn widget-choice rounded-lg';
+            button.dataset.date = isoDate;
+            button.setAttribute('aria-pressed', 'false');
+            button.setAttribute(
+                'aria-label',
+                `Seleccionar ${formatLongDate(date)}`
+            );
+
+            if (isToday(date)) {
+                button.classList.add('is-today');
+            }
+
+            if (state.date === isoDate) {
+                button.classList.add('is-selected');
+                button.setAttribute('aria-pressed', 'true');
+            }
+
+            button.innerHTML = `
+                <span class="date-weekday">
+                    ${capitalize(
+                        new Intl.DateTimeFormat('es-AR', {
+                            weekday: 'short'
+                        })
+                            .format(date)
+                            .replace('.', '')
+                    )}
+                </span>
+
+                <span class="date-day">
+                    ${date.getDate()}
+                </span>
+
+                <span class="date-month">
+                    ${new Intl.DateTimeFormat('es-AR', {
+                        month: 'short'
+                    })
+                        .format(date)
+                        .replace('.', '')}
+                </span>
+            `;
+
+            button.addEventListener('click', () => {
+                selectDate(isoDate);
+            });
+
+            datesGrid.appendChild(button);
+        });
+
+        if (
+            state.date &&
+            availableDates.some(item => {
+                return formatDateISO(item.date) === state.date;
+            })
+        ) {
+            renderAvailableTimes(state.date);
+        } else {
+            state.date = null;
+            state.time = null;
+            clearRenderedTimes();
             updateSummaryTime();
         }
+    }
 
-        function selectTime(timeStr) {
-            state.time = timeStr;
+    function selectDate(isoDate) {
+        state.date = isoDate;
+        state.time = null;
+        state.dateTimeStep = 'time';
+        renderDateTimeSubstep();
 
-            // Visual feedback
-            document.querySelectorAll('.time-btn').forEach(btn => {
-                if (btn.innerText === timeStr) {
-                    btn.classList.add('bg-brand-blue', 'text-white', 'border-brand-blue');
-                    btn.classList.remove('bg-gray-50');
-                } else {
-                    btn.classList.remove('bg-brand-blue', 'text-white', 'border-brand-blue');
-                    btn.classList.add('bg-gray-50');
-                }
+        document.querySelectorAll('#reservas .date-btn').forEach(button => {
+            const selected = button.dataset.date === isoDate;
+
+            button.classList.toggle('is-selected', selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+
+        renderAvailableTimes(isoDate);
+        updateSummaryTime();
+    }
+
+    function renderAvailableTimes(isoDate) {
+        const date = parseISODate(isoDate);
+        const schedule = getCombinedScheduleForDate(date);
+        const timesGrid = document.getElementById('times-grid');
+        const timesPlaceholder = document.getElementById('times-placeholder');
+        const timesEmpty = document.getElementById('times-empty');
+        const timesCount = document.getElementById(
+            'available-times-count'
+        );
+        const selectedDateLabel = document.getElementById(
+            'selected-date-label'
+        );
+
+        if (!timesGrid) {
+            return;
+        }
+
+        timesGrid.innerHTML = '';
+
+        if (selectedDateLabel) {
+            selectedDateLabel.textContent = formatLongDate(date);
+        }
+
+        if (!schedule) {
+            timesGrid.classList.add('hidden');
+            timesPlaceholder?.classList.add('hidden');
+            timesEmpty?.classList.remove('hidden');
+
+            if (timesCount) {
+                timesCount.textContent = '';
+            }
+
+            return;
+        }
+
+        const availableTimes = generateTimeSlots(date, schedule);
+
+        timesPlaceholder?.classList.add('hidden');
+
+        if (timesCount) {
+            timesCount.textContent = availableTimes.length
+                ? `${availableTimes.length} ${
+                      availableTimes.length === 1 ? 'horario' : 'horarios'
+                  }`
+                : '';
+        }
+
+        if (!availableTimes.length) {
+            timesGrid.classList.add('hidden');
+            timesEmpty?.classList.remove('hidden');
+            return;
+        }
+
+        timesEmpty?.classList.add('hidden');
+        timesGrid.classList.remove('hidden');
+
+        availableTimes.forEach(time => {
+            const button = document.createElement('button');
+
+            button.type = 'button';
+            button.className =
+                'time-btn widget-choice rounded-lg';
+            button.dataset.time = time;
+            button.textContent = time;
+            button.setAttribute('aria-pressed', 'false');
+            button.setAttribute(
+                'aria-label',
+                `Seleccionar horario inicial ${time}`
+            );
+
+            if (state.time === time) {
+                button.classList.add('is-selected');
+                button.setAttribute('aria-pressed', 'true');
+            }
+
+            button.addEventListener('click', () => {
+                selectTime(time);
             });
 
-            updateSummaryTime();
+            timesGrid.appendChild(button);
+        });
+    }
+
+    function generateTimeSlots(date, schedule) {
+        const startMinutes = timeToMinutes(schedule.start);
+        const endMinutes = timeToMinutes(schedule.end);
+        const slots = [];
+
+        let minimumStartMinutes = startMinutes;
+
+        if (isToday(date)) {
+            const now = new Date();
+
+            const currentMinutes =
+                now.getHours() * 60 + now.getMinutes();
+
+            minimumStartMinutes = Math.max(
+                startMinutes,
+                roundUpToInterval(
+                    currentMinutes + 1,
+                    SLOT_INTERVAL_MINUTES
+                )
+            );
         }
 
-        function updateSummaryTime() {
-            const summaryNode = document.getElementById('summary-datetime');
-            if (state.date && state.time) {
-                summaryNode.innerHTML = `${state.date} a las ${state.time}hs <i class="fas fa-check-circle text-green-500 ml-2"></i>`;
-                summaryNode.classList.add('text-brand-dark'); // Highlight when complete
-            } else if (state.date) {
-                summaryNode.innerText = `${state.date} (Falta horario)`;
-            } else if (state.time) {
-                summaryNode.innerText = `Horario: ${state.time}hs (Falta fecha)`;
-            }
-            checkConfirmReady();
+        for (
+            let minutes = minimumStartMinutes;
+            minutes + SLOT_INTERVAL_MINUTES <= endMinutes;
+            minutes += SLOT_INTERVAL_MINUTES
+        ) {
+            slots.push(minutesToTime(minutes));
         }
 
-        function checkConfirmReady() {
-            const btn = document.getElementById('btn-whatsapp');
-            if (state.serviceId && state.proId && state.date && state.time) {
-                btn.disabled = false;
-                btn.classList.add('animate-pulse');
-                setTimeout(() => btn.classList.remove('animate-pulse'), 1000);
-            } else {
-                btn.disabled = true;
-            }
+        return slots;
+    }
+
+    function selectTime(time) {
+        state.time = time;
+        
+
+        document.querySelectorAll('#reservas .time-btn').forEach(button => {
+            const selected = button.dataset.time === time;
+
+            button.classList.toggle('is-selected', selected);
+            button.setAttribute('aria-pressed', String(selected));
+        });
+
+        updateSummaryTime();
+        state.dateTimeStep = 'summary';
+        renderDateTimeSubstep();
+    }
+
+    function clearRenderedTimes() {
+        const timesGrid = document.getElementById('times-grid');
+        const timesPlaceholder = document.getElementById('times-placeholder');
+        const timesEmpty = document.getElementById('times-empty');
+        const timesCount = document.getElementById(
+            'available-times-count'
+        );
+        const selectedDateLabel = document.getElementById(
+            'selected-date-label'
+        );
+
+        if (timesGrid) {
+            timesGrid.innerHTML = '';
+            timesGrid.classList.add('hidden');
         }
 
-        function sendWhatsApp() {
-            const phone = "5491161654729";
-            const message = `Hola RC Estilistas! Me gustaría solicitar un turno:
-✂️ *Servicio:* ${serviceNames[state.serviceId]}
-👤 *Profesional:* ${proNames[state.proId]}
-📅 *Día:* ${state.date}
-⏰ *Hora:* ${state.time}hs
+        timesPlaceholder?.classList.remove('hidden');
+        timesEmpty?.classList.add('hidden');
 
-Aguardamos confirmación. ¡Muchas gracias!`;
-
-            const encodedMessage = encodeURIComponent(message);
-            window.open(`https://wa.me/${phone}?text=${encodedMessage}`, '_blank');
-
-            // Custom Message Box instead of alert
-            const msgBox = document.createElement('div');
-            msgBox.className = "fixed top-32 left-1/2 transform -translate-x-1/2 bg-brand-blue text-white px-8 py-4 rounded-lg shadow-2xl z-[60] flex items-center font-bold";
-            msgBox.innerHTML = '<i class="fab fa-whatsapp text-green-400 text-2xl mr-3"></i> Redirigiendo a WhatsApp...';
-            document.body.appendChild(msgBox);
-
-            setTimeout(() => {
-                msgBox.style.opacity = '0';
-                msgBox.style.transition = 'opacity 0.5s';
-                setTimeout(() => msgBox.remove(), 500);
-                resetWidget(); // Limpiar el widget después de enviar
-            }, 3000);
+        if (timesCount) {
+            timesCount.textContent = '';
         }
 
+        if (selectedDateLabel) {
+            selectedDateLabel.textContent =
+                'Primero seleccioná una fecha';
+        }
+    }
+
+    function updateSummaryTime() {
+        const summary = document.getElementById('summary-datetime');
+
+        if (!summary) {
+            return;
+        }
+
+        if (state.date && state.time) {
+            summary.textContent =
+                `${formatLongDate(parseISODate(state.date))} · ${state.time} h`;
+        } else if (state.date) {
+            summary.textContent =
+                `${formatLongDate(parseISODate(state.date))} · Falta elegir horario`;
+        } else if (state.time) {
+            summary.textContent =
+                `${state.time} h · Falta elegir día`;
+        } else {
+            summary.textContent = 'Pendiente de selección';
+        }
+
+        checkConfirmReady();
+    }
+
+    function checkConfirmReady() {
+        const whatsappButton = document.getElementById('btn-whatsapp');
+
+        if (!whatsappButton) {
+            return;
+        }
+
+        whatsappButton.disabled = !(
+            state.items.length &&
+            state.date &&
+            state.time
+        );
+    }
+
+    function sendWhatsApp() {
+        if (
+            !state.items.length ||
+            !state.date ||
+            !state.time
+        ) {
+            return;
+        }
+
+        const phone = '5491161654729';
+
+        const servicesText = state.items
+            .map((item, index) => {
+                return `${index + 1}. *${serviceNames[item.serviceId]}* con *${proNames[item.proId]}*`;
+            })
+            .join('\n');
+
+        const formattedDate = formatLongDate(
+            parseISODate(state.date)
+        );
+
+        const message = `Hola RC Estilistas. Me gustaría solicitar un turno para los siguientes servicios:
+
+${servicesText}
+
+📅 *Día preferido:* ${formattedDate}
+⏰ *Horario inicial preferido:* ${state.time} h
+
+Entiendo que el horario se encuentra sujeto a confirmación según la disponibilidad de los profesionales y la duración total de los servicios.
+
+Quedo a la espera de la confirmación. ¡Muchas gracias!`;
+
+        window.open(
+            `https://wa.me/${phone}?text=${encodeURIComponent(message)}`,
+            '_blank',
+            'noopener,noreferrer'
+        );
+
+        showWhatsAppNotice();
+    }
+
+    function showWhatsAppNotice() {
+        const existingNotice = document.getElementById(
+            'widget-whatsapp-notice'
+        );
+
+        existingNotice?.remove();
+
+        const notice = document.createElement('div');
+
+        notice.id = 'widget-whatsapp-notice';
+        notice.className =
+            'fixed left-1/2 top-8 z-[100] -translate-x-1/2 rounded-lg border border-brand-gold/50 bg-[#163f62] px-6 py-4 text-sm font-semibold text-white shadow-2xl';
+
+        notice.innerHTML = `
+            <i
+                class="fab fa-whatsapp mr-2 text-lg"
+                aria-hidden="true"
+            ></i>
+            Abriendo WhatsApp…
+        `;
+
+        document.body.appendChild(notice);
+
+        window.setTimeout(() => {
+            notice.remove();
+        }, 2600);
+    }
+
+    function initThemeToggle() {
+        const section = document.getElementById('reservas');
+        const button = document.getElementById('theme-toggle');
+        const label = document.getElementById('theme-label');
+        const icon = document.getElementById('theme-icon');
+
+        if (!section || !button || !label || !icon) {
+            return;
+        }
+
+        button.addEventListener('click', () => {
+            const isLight = section.dataset.theme === 'light';
+
+            section.dataset.theme = isLight ? 'dark' : 'light';
+
+            button.setAttribute(
+                'aria-pressed',
+                String(!isLight)
+            );
+
+            button.setAttribute(
+                'aria-label',
+                isLight
+                    ? 'Cambiar a modo claro'
+                    : 'Cambiar a modo noche'
+            );
+
+            label.textContent = isLight
+                ? 'Modo claro'
+                : 'Modo noche';
+
+            icon.className = isLight
+                ? 'fas fa-sun'
+                : 'fas fa-moon';
+        });
+    }
+
+    function timeToMinutes(time) {
+        const [hours, minutes] = time
+            .split(':')
+            .map(Number);
+
+        return hours * 60 + minutes;
+    }
+
+    function minutesToTime(totalMinutes) {
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = totalMinutes % 60;
+
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
+    }
+
+    function roundUpToInterval(value, interval) {
+        return Math.ceil(value / interval) * interval;
+    }
+
+    function startOfDay(date) {
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate()
+        );
+    }
+
+    function addDays(date, days) {
+        return new Date(
+            date.getFullYear(),
+            date.getMonth(),
+            date.getDate() + days
+        );
+    }
+
+    function isToday(date) {
+        const today = new Date();
+
+        return (
+            date.getFullYear() === today.getFullYear() &&
+            date.getMonth() === today.getMonth() &&
+            date.getDate() === today.getDate()
+        );
+    }
+
+    function formatDateISO(date) {
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}-${month}-${day}`;
+    }
+
+    function parseISODate(isoDate) {
+        const [year, month, day] = isoDate
+            .split('-')
+            .map(Number);
+
+        return new Date(year, month - 1, day);
+    }
+
+    function formatLongDate(date) {
+        return capitalize(
+            new Intl.DateTimeFormat('es-AR', {
+                weekday: 'long',
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric'
+            }).format(date)
+        );
+    }
+
+    function capitalize(text) {
+        if (!text) {
+            return '';
+        }
+
+        return text.charAt(0).toUpperCase() + text.slice(1);
+    }
+
+    initThemeToggle();
+    updateUI();
+        
+    
+       // === NAVBAR SCROLL LOGIC === -->
        // === NAVBAR SCROLL LOGIC ===
 const header = document.getElementById('main-nav');
 const logo = document.getElementById('nav-logo');
-const scrollThreshold = 50;
+const hamburger = document.querySelector('.hamburger-icon');
+const hero = document.getElementById('hero');
 
-window.addEventListener('scroll', () => {
-    if (window.scrollY > scrollThreshold) {
-        header.classList.remove('nav-transparent');
-        header.classList.add('nav-solid');
-        logo.src = './azul_solo.png';
-        logo.classList.replace('h-10', 'h-12'); // grow slightly
-        logo.classList.replace('md:h-12', 'md:h-14'); // grow slightly
-        
-        // Ahora solo afecta a los links de escritorio
-        document.querySelectorAll('.desktop-link').forEach(a => {
-            a.classList.replace('hover:text-brand-gold', 'hover:text-brand-blue');
-            a.style.color = '#7F7F7F';
-        });
-        
-        document.querySelectorAll('#main-nav, .hamburger-icon').forEach(btn => btn.style.color = '#295f8f');
-    } else {
-        header.classList.add('nav-transparent');
-        header.classList.remove('nav-solid');
-        logo.src = './blanco_solo.png';
-        logo.classList.replace('h-12', 'h-10'); // shrink slightly
-        logo.classList.replace('md:h-14', 'md:h-12'); // shrink slightly
-        
-        // Ahora solo afecta a los links de escritorio
-        document.querySelectorAll('.desktop-link').forEach(a => {
-            a.classList.replace('hover:text-brand-blue', 'hover:text-brand-gold');
-            a.style.color = 'rgba(255,255,255,0.85)';
-        });
-        
-        document.querySelectorAll('#main-nav, .hamburger-icon').forEach(btn => btn.style.color = 'white');
+function updateNavbar() {
+    if (!header || !logo || !hamburger) return;
+
+    // La navbar permanece siempre transparente
+    header.classList.add('nav-transparent');
+    header.classList.remove('nav-solid');
+
+    // La hamburguesa permanece siempre azul
+    hamburger.style.color = '#295f8f';
+
+    // El logo desaparece cuando termina el hero
+    if (hero) {
+        const heroBottom = hero.getBoundingClientRect().bottom;
+        const navbarHeight = header.offsetHeight;
+
+        const heroFinished = heroBottom <= navbarHeight;
+
+        logo.classList.toggle('opacity-0', heroFinished);
+        logo.classList.toggle('pointer-events-none', heroFinished);
+        logo.classList.toggle('opacity-100', !heroFinished);
     }
+}
+
+window.addEventListener('scroll', updateNavbar, { passive: true });
+window.addEventListener('resize', updateNavbar);
+
+document.addEventListener('DOMContentLoaded', () => {
+    updateNavbar();
 });
-
-        // === SCROLL REVEAL ANIMATIONS ===
-        document.addEventListener("DOMContentLoaded", () => {
-            const observerOptions = {
-                root: null,
-                rootMargin: '0px',
-                threshold: 0.15
-            };
-
-            const observer = new IntersectionObserver((entries, observer) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                        observer.unobserve(entry.target);
-                    }
-                });
-            }, observerOptions);
-
-            document.querySelectorAll('.reveal').forEach((el) => {
-                observer.observe(el);
-            });
-
-            // Trigger initial scroll event to set nav state in case of page reload halfway down
-            window.dispatchEvent(new Event('scroll'));
-        });
     </script>
+
 </body>
 
 </html>
